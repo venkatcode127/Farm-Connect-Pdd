@@ -1,0 +1,16 @@
+# IDE & Editors
+.idea/
+.vscode/
+*.iml
+
+# Build Artifacts
+**/build/
+android-app/app/build/
+android-app/build/
+android-app/.gradle/
+automation/target/
+automation/test-output/
+
+# Local properties
+**/local.properties
+powershell.bat

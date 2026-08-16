@@ -109,7 +109,7 @@ public class LoginAdvancedTests extends BaseTest {
 
     @Test(priority = 3, retryAnalyzer = RetryAnalyzer.class, description = "Verify auth screen has feature highlights")
     public void TC_AUTH_039_verifyFeatureHighlights() {
-        int featureCount = (int)(long)(Long)executeScript("return document.querySelectorAll('.auth-feature').length;");
+        int featureCount = ((Number)executeScript("return document.querySelectorAll('.auth-feature').length;")).intValue();
         Assert.assertTrue(featureCount >= 3, "Should have at least 3 feature highlights");
     }
 

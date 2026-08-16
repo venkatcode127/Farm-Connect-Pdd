@@ -28,10 +28,20 @@ public class DriverManager {
      * Get or create an AndroidDriver instance for the current thread.
      */
     public static AndroidDriver getDriver() {
-        if (driverThreadLocal.get() == null) {
-            driverThreadLocal.set(createDriver());
+        AndroidDriver driver = driverThreadLocal.get();
+        if (driver == null || driver.getSessionId() == null) {
+            driver = createDriver();
+            driverThreadLocal.set(driver);
         }
-        return driverThreadLocal.get();
+        return driver;
+    }
+
+    /**
+     * Check if driver is currently active.
+     */
+    public static boolean hasDriver() {
+        AndroidDriver driver = driverThreadLocal.get();
+        return driver != null && driver.getSessionId() != null;
     }
 
     /**

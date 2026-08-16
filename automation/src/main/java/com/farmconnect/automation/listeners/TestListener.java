@@ -55,34 +55,49 @@ public class TestListener implements ITestListener, ISuiteListener {
         long duration = System.currentTimeMillis() - suiteStartTime;
         log.info("Suite finished: " + suite.getName() + " | Duration: " + duration + "ms");
 
-        // Generate all reports
-        try {
-            String excelDir = "test-output/reports/Excel";
-            String htmlDir = "test-output/reports/HTML";
-            String jsonDir = "test-output/reports/JSON";
-            String summaryDir = "test-output/reports/Summary";
+        // Generate all reports in standard test-output/reports
+        String[] reportDirs = {"test-output/reports", "test-results", "Test Results"};
+        for (String baseDir : reportDirs) {
+            try {
+                String excelDir = baseDir + "/Excel";
+                String htmlDir = baseDir + "/HTML";
+                String jsonDir = baseDir + "/JSON";
+                String summaryDir = baseDir + "/Summary";
 
-            ExcelReportGenerator.generateReports(testResults, excelDir);
-            HtmlReportGenerator.generateReports(testResults, htmlDir);
-            JsonReportGenerator.generateJsonReport(testResults, jsonDir + "/execution-results.json");
-            JsonReportGenerator.generateMarkdownSummary(testResults, summaryDir + "/summary.md");
+                ExcelReportGenerator.generateReports(testResults, excelDir);
+                HtmlReportGenerator.generateReports(testResults, htmlDir);
+                JsonReportGenerator.generateJsonReport(testResults, jsonDir + "/execution-results.json");
+                JsonReportGenerator.generateMarkdownSummary(testResults, summaryDir + "/summary.md");
 
-            log.info("All reports generated successfully");
-        } catch (Exception e) {
-            log.error("Failed to generate reports: " + e.getMessage());
+                log.info("Reports generated successfully in: " + baseDir);
+            } catch (Exception e) {
+                log.error("Failed to generate reports for " + baseDir + ": " + e.getMessage());
+            }
         }
     }
 
     private void recordResult(ITestResult result, String status, String failureReason) {
         long executionTime = result.getEndMillis() - result.getStartMillis();
         String className = result.getTestClass().getRealClass().getSimpleName();
+        String methodName = result.getMethod().getMethodName();
         String module = extractModule(className);
+
+        // Check if this test was already recorded (from a previous retry)
+        for (Map<String, String> existing : testResults) {
+            if (className.equals(existing.get("className")) && methodName.equals(existing.get("testName"))) {
+                existing.put("status", status);
+                existing.put("executionTime", String.valueOf(executionTime));
+                existing.put("failureReason", failureReason != null ? failureReason : "");
+                return;
+            }
+        }
+
         String testId = generateTestId(module);
 
         Map<String, String> testData = new LinkedHashMap<>();
         testData.put("testId", testId);
         testData.put("module", module);
-        testData.put("testName", result.getMethod().getMethodName());
+        testData.put("testName", methodName);
         testData.put("className", className);
         testData.put("priority", String.valueOf(result.getMethod().getPriority()));
         testData.put("status", status);

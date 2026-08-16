@@ -47,12 +47,9 @@ public abstract class BaseTest {
         log.info("---------------------------------------");
 
         try {
-            // Initialize driver
+            // Initialize or reuse driver
             driver = DriverManager.getDriver();
             waitUtils = new WaitUtils(driver);
-
-            // Wait for app to load
-            Thread.sleep(2000);
 
             // Switch to WebView context for web element interactions
             switchToWebViewContext();
@@ -68,7 +65,7 @@ public abstract class BaseTest {
         try {
             if (result.getStatus() == ITestResult.FAILURE) {
                 log.error("TEST FAILED: " + result.getName());
-                log.error("Failure reason: " + result.getThrowable().getMessage());
+                log.error("Failure reason: " + (result.getThrowable() != null ? result.getThrowable().getMessage() : "Unknown"));
 
                 // Capture screenshot on failure
                 if (driver != null) {
@@ -81,8 +78,6 @@ public abstract class BaseTest {
             }
         } catch (Exception e) {
             log.error("Error in teardown: " + e.getMessage());
-        } finally {
-            DriverManager.quitDriver();
         }
     }
 
@@ -90,7 +85,13 @@ public abstract class BaseTest {
     public void suiteTeardown() {
         log.info("========================================");
         log.info("Test suite execution completed.");
+        log.info("Quitting AndroidDriver session...");
         log.info("========================================");
+        try {
+            DriverManager.quitDriver();
+        } catch (Exception e) {
+            log.warn("Error quitting driver in suite teardown: " + e.getMessage());
+        }
     }
 
     /**
@@ -98,18 +99,26 @@ public abstract class BaseTest {
      */
     protected void switchToWebViewContext() {
         try {
-            Thread.sleep(3000); // Wait for WebView to initialize
-            Set<String> contexts = driver.getContextHandles();
-            log.info("Available contexts: " + contexts);
-
-            for (String context : contexts) {
-                if (context.contains("WEBVIEW")) {
-                    driver.context(context);
-                    log.info("Switched to WebView context: " + context);
-                    return;
-                }
+            String current = driver.getContext();
+            if (current != null && current.contains("WEBVIEW")) {
+                return;
             }
-            log.warn("No WebView context found. Staying in NATIVE_APP context.");
+
+            long endTime = System.currentTimeMillis() + 15000;
+            while (System.currentTimeMillis() < endTime) {
+                Set<String> contexts = driver.getContextHandles();
+                log.info("Available contexts: " + contexts);
+
+                for (String context : contexts) {
+                    if (context.contains("WEBVIEW")) {
+                        driver.context(context);
+                        log.info("Switched to WebView context: " + context);
+                        return;
+                    }
+                }
+                Thread.sleep(1000);
+            }
+            log.warn("No WebView context found after 15s. Staying in " + current);
         } catch (Exception e) {
             log.warn("Could not switch to WebView context: " + e.getMessage());
         }
