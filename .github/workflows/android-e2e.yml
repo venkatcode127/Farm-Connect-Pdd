@@ -51,19 +51,19 @@ jobs:
       # ==================== STAGE 4: Setup Android SDK ====================
       - name: "Stage 4: Setup Android SDK"
         uses: android-actions/setup-android@v3
-        with:
-          api-level: ${{ env.ANDROID_API_LEVEL }}
 
       # ==================== STAGE 5: Install Android Dependencies ====================
       - name: "Stage 5: Install Android Dependencies & Tools"
         run: |
+          echo "Accepting Android SDK licenses..."
+          yes | sdkmanager --licenses 2>/dev/null || true
           echo "Installing required Android SDK components..."
           sdkmanager --install "platform-tools" \
             "platforms;android-${{ env.ANDROID_API_LEVEL }}" \
             "build-tools;${{ env.ANDROID_BUILD_TOOLS }}" \
             "system-images;android-${{ env.ANDROID_API_LEVEL }};google_apis;x86_64" \
             "emulator"
-          sdkmanager --licenses <<< "y" || true
+          yes | sdkmanager --licenses 2>/dev/null || true
 
       # ==================== STAGE 6: Copy Web Assets & Build Debug APK ====================
       - name: "Stage 6: Build Android APK from android-app"
@@ -83,8 +83,9 @@ jobs:
           cp mandi_api.js android-app/app/src/main/assets/
           cp manifest.json android-app/app/src/main/assets/
 
-          echo "Building APK via Gradle..."
+          echo "Configuring Android build environment..."
           cd android-app
+          echo "sdk.dir=${ANDROID_HOME:-/usr/local/lib/android/sdk}" > local.properties
           chmod +x gradlew 2>/dev/null || true
 
           if [ ! -f "gradlew" ]; then
@@ -93,6 +94,7 @@ jobs:
             chmod +x gradlew
           fi
 
+          echo "Building APK via Gradle..."
           ./gradlew assembleDebug --stacktrace
 
           APK_PATH="app/build/outputs/apk/debug/app-debug.apk"
