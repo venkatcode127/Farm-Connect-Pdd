@@ -344,10 +344,13 @@ jobs:
             echo "" >> $GITHUB_STEP_SUMMARY
             python3 -c "
 import json
-d = json.load(open('$JSON_FILE'))
-for t in d.get('testResults', []):
-    if t.get('status') == 'PASS':
-        print(f\"- ✓ **{t.get('testId','')}** - \`{t.get('testName','')}\` ({t.get('module','')})\")
+try:
+    d = json.load(open('$JSON_FILE'))
+    for t in d.get('testResults', []):
+        if t.get('status') == 'PASS':
+            print('- ✓ **' + str(t.get('testId','')) + '** - `' + str(t.get('testName','')) + '` (' + str(t.get('module','')) + ')')
+except Exception:
+    pass
 " >> $GITHUB_STEP_SUMMARY 2>/dev/null || true
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "</details>" >> $GITHUB_STEP_SUMMARY
@@ -361,11 +364,14 @@ for t in d.get('testResults', []):
             else
               python3 -c "
 import json
-d = json.load(open('$JSON_FILE'))
-for t in d.get('testResults', []):
-    if t.get('status') == 'FAIL':
-        print(f\"- ✗ **{t.get('testId','')}** - \`{t.get('testName','')}\` ({t.get('module','')})\")
-        print(f\"  - Reason: \`{t.get('failureReason','Unknown')}\`\")
+try:
+    d = json.load(open('$JSON_FILE'))
+    for t in d.get('testResults', []):
+        if t.get('status') == 'FAIL':
+            print('- ✗ **' + str(t.get('testId','')) + '** - `' + str(t.get('testName','')) + '` (' + str(t.get('module','')) + ')')
+            print('  - Reason: `' + str(t.get('failureReason','Unknown')) + '`')
+except Exception:
+    pass
 " >> $GITHUB_STEP_SUMMARY 2>/dev/null || true
             fi
             echo "" >> $GITHUB_STEP_SUMMARY
@@ -380,10 +386,13 @@ for t in d.get('testResults', []):
             else
               python3 -c "
 import json
-d = json.load(open('$JSON_FILE'))
-for t in d.get('testResults', []):
-    if t.get('status') == 'SKIP':
-        print(f\"- ⊘ **{t.get('testId','')}** - \`{t.get('testName','')}\` ({t.get('module','')})\")
+try:
+    d = json.load(open('$JSON_FILE'))
+    for t in d.get('testResults', []):
+        if t.get('status') == 'SKIP':
+            print('- ⊘ **' + str(t.get('testId','')) + '** - `' + str(t.get('testName','')) + '` (' + str(t.get('module','')) + ')')
+except Exception:
+    pass
 " >> $GITHUB_STEP_SUMMARY 2>/dev/null || true
             fi
             echo "" >> $GITHUB_STEP_SUMMARY
