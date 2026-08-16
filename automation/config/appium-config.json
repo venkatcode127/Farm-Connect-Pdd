@@ -1,0 +1,69 @@
+{
+  "appium": {
+    "serverUrl": "http://127.0.0.1:4723",
+    "serverHost": "127.0.0.1",
+    "serverPort": 4723,
+    "startTimeout": 120,
+    "sessionTimeout": 600
+  },
+  "capabilities": {
+    "platformName": "Android",
+    "automationName": "UiAutomator2",
+    "deviceName": "emulator-5554",
+    "app": "../android-app/app/build/outputs/apk/debug/app-debug.apk",
+    "appPackage": "com.farmconnect.ai.debug",
+    "appActivity": "com.farmconnect.ai.MainActivity",
+    "autoGrantPermissions": true,
+    "noReset": false,
+    "fullReset": false,
+    "newCommandTimeout": 300,
+    "androidInstallTimeout": 120000,
+    "adbExecTimeout": 60000,
+    "uiautomator2ServerLaunchTimeout": 60000,
+    "uiautomator2ServerInstallTimeout": 60000,
+    "chromedriverAutodownload": true,
+    "autoWebview": false,
+    "nativeWebScreenshot": true,
+    "ensureWebviewsHavePages": true,
+    "webviewConnectTimeout": 30000
+  },
+  "webview": {
+    "contextSwitch": true,
+    "webviewContext": "WEBVIEW_com.farmconnect.ai.debug",
+    "defaultContext": "NATIVE_APP",
+    "switchRetries": 10,
+    "switchRetryInterval": 2000
+  },
+  "timeouts": {
+    "implicitWait": 15,
+    "explicitWait": 30,
+    "pageLoadTimeout": 60,
+    "scriptTimeout": 30
+  },
+  "retry": {
+    "maxRetries": 2,
+    "retryDelay": 3000
+  },
+  "parallel": {
+    "enabled": false,
+    "threadCount": 1,
+    "dataProviderThreadCount": 1
+  },
+  "screenshots": {
+    "captureOnFailure": true,
+    "captureOnPass": false,
+    "outputDir": "test-output/screenshots"
+  },
+  "logs": {
+    "outputDir": "test-output/logs",
+    "captureDeviceLogs": true,
+    "captureAppiumLogs": true
+  },
+  "reports": {
+    "outputDir": "test-output/reports",
+    "excelDir": "test-output/reports/Excel",
+    "htmlDir": "test-output/reports/HTML",
+    "jsonDir": "test-output/reports/JSON",
+    "summaryDir": "test-output/reports/Summary"
+  }
+}

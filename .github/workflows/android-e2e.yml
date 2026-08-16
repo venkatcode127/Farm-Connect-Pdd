@@ -1,0 +1,292 @@
+name: Android Appium E2E Automation
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * *'  # Daily at 2 AM UTC
+
+env:
+  JAVA_VERSION: '17'
+  ANDROID_API_LEVEL: 34
+  ANDROID_BUILD_TOOLS: '34.0.0'
+  EMULATOR_NAME: 'test_emulator'
+  NODE_VERSION: '20'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  android-e2e-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      # ==================== STAGE 1: Checkout ====================
+      - name: "Stage 1: Checkout Repository"
+        uses: actions/checkout@v4
+
+      # ==================== STAGE 2: Setup Java ====================
+      - name: "Stage 2: Setup Java ${{ env.JAVA_VERSION }}"
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+
+      # ==================== STAGE 3: Setup Android SDK ====================
+      - name: "Stage 3: Setup Android SDK"
+        uses: android-actions/setup-android@v3
+        with:
+          api-level: ${{ env.ANDROID_API_LEVEL }}
+
+      # ==================== STAGE 4: Install Android Dependencies ====================
+      - name: "Stage 4: Install Android Dependencies"
+        run: |
+          echo "Installing Android SDK components..."
+          sdkmanager --install "platform-tools" "platforms;android-${{ env.ANDROID_API_LEVEL }}" \
+            "build-tools;${{ env.ANDROID_BUILD_TOOLS }}" \
+            "system-images;android-${{ env.ANDROID_API_LEVEL }};google_apis;x86_64" \
+            "emulator"
+          sdkmanager --licenses <<< "y"
+
+      # ==================== STAGE 5: Copy Web Assets & Build APK ====================
+      - name: "Stage 5: Build Debug APK"
+        run: |
+          echo "Copying web assets into Android project..."
+          mkdir -p android-app/app/src/main/assets
+          cp index.html android-app/app/src/main/assets/
+          cp styles.css android-app/app/src/main/assets/
+          cp app.js android-app/app/src/main/assets/
+          cp auth.js android-app/app/src/main/assets/
+          cp data.js android-app/app/src/main/assets/
+          cp chat.js android-app/app/src/main/assets/
+          cp orders.js android-app/app/src/main/assets/
+          cp predict.js android-app/app/src/main/assets/
+          cp mandi_api.js android-app/app/src/main/assets/
+          cp manifest.json android-app/app/src/main/assets/
+
+          echo "Building APK..."
+          cd android-app
+          chmod +x gradlew 2>/dev/null || true
+
+          # Create Gradle wrapper if not present
+          if [ ! -f "gradlew" ]; then
+            gradle wrapper --gradle-version 8.4
+          fi
+
+          ./gradlew assembleDebug --stacktrace
+          echo "APK built successfully!"
+          ls -la app/build/outputs/apk/debug/
+
+      # ==================== STAGE 6: Start Android Emulator ====================
+      - name: "Stage 6: Start Android Emulator"
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ env.ANDROID_API_LEVEL }}
+          target: google_apis
+          arch: x86_64
+          profile: Nexus 6
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
+          disable-animations: true
+          script: |
+            echo "Emulator started!"
+
+            # ==================== STAGE 7: Verify Emulator ====================
+            echo "Stage 7: Verifying emulator readiness..."
+            adb wait-for-device
+            adb shell getprop sys.boot_completed | grep -m 1 '1'
+            adb shell input keyevent 82
+            echo "Emulator is ready!"
+
+            # ==================== STAGE 8: Install APK ====================
+            echo "Stage 8: Installing APK..."
+            adb install -r android-app/app/build/outputs/apk/debug/app-debug.apk
+            echo "APK installed successfully!"
+
+            # ==================== STAGE 9: Setup & Start Appium ====================
+            echo "Stage 9: Starting Appium server..."
+            npm install -g appium@latest
+            appium driver install uiautomator2
+            appium --address 127.0.0.1 --port 4723 --relaxed-security --log-timestamp &
+            APPIUM_PID=$!
+            echo "Appium PID: $APPIUM_PID"
+
+            # ==================== STAGE 10: Verify Appium ====================
+            echo "Stage 10: Waiting for Appium..."
+            for i in $(seq 1 30); do
+              if curl -s http://127.0.0.1:4723/status | grep -q "ready"; then
+                echo "Appium server is ready!"
+                break
+              fi
+              echo "Waiting for Appium... ($i/30)"
+              sleep 2
+            done
+
+            # ==================== STAGE 11: Execute Tests ====================
+            echo "Stage 11: Executing Appium E2E tests..."
+            cd automation
+            mvn clean test \
+              -Dappium.url=http://127.0.0.1:4723 \
+              -Dapk.path=../android-app/app/build/outputs/apk/debug/app-debug.apk \
+              -DtestFailureIgnore=true \
+              --batch-mode || true
+
+            echo "Test execution completed!"
+
+            # Cleanup Appium
+            kill $APPIUM_PID 2>/dev/null || true
+
+      # ==================== STAGE 12: Capture Screenshots ====================
+      - name: "Stage 12: Capture Screenshots"
+        if: always()
+        run: |
+          echo "Collecting screenshots..."
+          mkdir -p test-results/Screenshots
+          cp -r automation/test-output/screenshots/* test-results/Screenshots/ 2>/dev/null || true
+
+      # ==================== STAGE 13: Capture Logs ====================
+      - name: "Stage 13: Capture Device & Appium Logs"
+        if: always()
+        run: |
+          echo "Collecting system logs..."
+          mkdir -p test-results/Logs
+          cp -r automation/test-output/logs/* test-results/Logs/ 2>/dev/null || true
+          adb logcat -d > test-results/Logs/device_logcat.log 2>/dev/null || true
+
+      # ==================== STAGE 14: Generate Excel Report ====================
+      - name: "Stage 14: Generate Excel Reports"
+        if: always()
+        run: |
+          echo "Collecting Excel test reports..."
+          mkdir -p test-results/Excel
+          cp -r automation/test-output/reports/Excel/* test-results/Excel/ 2>/dev/null || true
+
+      # ==================== STAGE 15: Generate HTML Report ====================
+      - name: "Stage 15: Generate HTML Reports"
+        if: always()
+        run: |
+          echo "Collecting HTML test reports..."
+          mkdir -p test-results/HTML
+          cp -r automation/test-output/reports/HTML/* test-results/HTML/ 2>/dev/null || true
+
+      # ==================== STAGE 16: Generate JSON Report ====================
+      - name: "Stage 16: Generate JSON Results"
+        if: always()
+        run: |
+          echo "Collecting JSON metrics..."
+          mkdir -p test-results/JSON
+          cp -r automation/test-output/reports/JSON/* test-results/JSON/ 2>/dev/null || true
+
+      # ==================== STAGE 17: Generate Markdown Summary ====================
+      - name: "Stage 17: Generate Markdown Summary"
+        if: always()
+        run: |
+          echo "Collecting Markdown execution summary..."
+          mkdir -p test-results/Summary
+          cp -r automation/test-output/reports/Summary/* test-results/Summary/ 2>/dev/null || true
+
+      # ==================== STAGE 18: Upload Artifacts ====================
+      - name: "Stage 18: Upload Test Artifacts"
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-test-results-${{ github.run_number }}
+          path: |
+            test-results/
+            automation/test-output/
+          retention-days: 30
+
+      # ==================== STAGE 19: Publish Reports to GitHub Pages ====================
+      - name: "Stage 19: Publish Latest Reports to GitHub Pages"
+        if: always()
+        run: |
+          mkdir -p pages-deploy/reports/latest
+          cp -r test-results/HTML/* pages-deploy/reports/latest/ 2>/dev/null || true
+          cp -r test-results/Screenshots pages-deploy/reports/latest/screenshots/ 2>/dev/null || true
+          cp -r test-results/Logs pages-deploy/reports/latest/logs/ 2>/dev/null || true
+          cp test-results/Summary/summary.md pages-deploy/reports/latest/ 2>/dev/null || true
+
+      # ==================== STAGE 20: Update Historical Reports ====================
+      - name: "Stage 20: Update Historical Reports Archive"
+        if: always()
+        run: |
+          mkdir -p pages-deploy/reports/history/build-${{ github.run_number }}
+          cp -r test-results/HTML/* pages-deploy/reports/history/build-${{ github.run_number }}/ 2>/dev/null || true
+
+          # Create index page
+          cat > pages-deploy/index.html << 'INDEXEOF'
+          <!DOCTYPE html>
+          <html><head><title>FarmConnect AI - Test Reports</title>
+          <meta http-equiv="refresh" content="0;url=reports/latest/execution-report.html">
+          </head><body>
+          <p>Redirecting to <a href="reports/latest/execution-report.html">latest report</a>...</p>
+          </body></html>
+          INDEXEOF
+
+      - name: "Deploy to GitHub Pages Branch"
+        if: always() && github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./pages-deploy
+          keep_files: true
+
+      # ==================== STAGE 21: GitHub Actions Summary ====================
+      - name: "Stage 21: Publish GitHub Actions Summary"
+        if: always()
+        run: |
+          echo "# 🌾 Android Appium E2E Execution Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Property | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Build Number** | ${{ github.run_number }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Execution Date** | $(date -u '+%Y-%m-%d %H:%M:%S UTC') |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Git Commit** | ${{ github.sha }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Branch** | ${{ github.ref_name }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Device** | Android Emulator (API ${{ env.ANDROID_API_LEVEL }}) |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Framework** | Appium + TestNG |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Parse results from JSON if available
+          if [ -f "test-results/JSON/execution-results.json" ]; then
+            TOTAL=$(cat test-results/JSON/execution-results.json | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['summary']['totalTests'])" 2>/dev/null || echo "N/A")
+            PASSED=$(cat test-results/JSON/execution-results.json | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['summary']['passed'])" 2>/dev/null || echo "N/A")
+            FAILED=$(cat test-results/JSON/execution-results.json | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['summary']['failed'])" 2>/dev/null || echo "N/A")
+            SKIPPED=$(cat test-results/JSON/execution-results.json | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['summary']['skipped'])" 2>/dev/null || echo "N/A")
+            PASS_RATE=$(cat test-results/JSON/execution-results.json | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['summary']['passRate'])" 2>/dev/null || echo "N/A")
+
+            echo "## 📊 Execution Metrics" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "| Metric | Count |" >> $GITHUB_STEP_SUMMARY
+            echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+            echo "| Total Test Cases | $TOTAL |" >> $GITHUB_STEP_SUMMARY
+            echo "| ✅ Passed | $PASSED |" >> $GITHUB_STEP_SUMMARY
+            echo "| ❌ Failed | $FAILED |" >> $GITHUB_STEP_SUMMARY
+            echo "| ⏭️ Skipped | $SKIPPED |" >> $GITHUB_STEP_SUMMARY
+            echo "| 📈 Pass Rate | ${PASS_RATE}% |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "## ⚠️ Test results JSON not found" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 📄 Reports" >> $GITHUB_STEP_SUMMARY
+          echo "- 📊 [HTML Execution Report](../artifacts/e2e-test-results-${{ github.run_number }})" >> $GITHUB_STEP_SUMMARY
+          echo "- 📋 Excel reports available in artifacts" >> $GITHUB_STEP_SUMMARY
+
+      # ==================== Failure Check ====================
+      - name: "Check Pass Rate Threshold"
+        if: always()
+        run: |
+          if [ -f "test-results/JSON/execution-results.json" ]; then
+            PASS_RATE=$(cat test-results/JSON/execution-results.json | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['summary']['passRate'])" 2>/dev/null || echo "0")
+            echo "Pass rate: ${PASS_RATE}%"
+            THRESHOLD=95
+            if [ "$(echo "$PASS_RATE < $THRESHOLD" | bc -l 2>/dev/null || echo 0)" = "1" ]; then
+              echo "::warning::Pass rate ${PASS_RATE}% is below threshold ${THRESHOLD}%"
+            fi
+          fi

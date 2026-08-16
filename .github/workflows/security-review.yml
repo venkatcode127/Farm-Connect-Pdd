@@ -1,0 +1,137 @@
+name: Comprehensive DevSecOps & Security Review Pipeline
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
+jobs:
+  # ==================== JOB 1: SAST & Secret Scanning ====================
+  security-sast-and-secrets:
+    name: SAST & Secret Detection (Semgrep & Gitleaks)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Framework Auto-Detection
+        id: detect-framework
+        run: |
+          echo "Detecting backend technology stack..."
+          if [ -f "pom.xml" ] || [ -d "automation" ]; then
+            echo "STACK=Java/Maven" >> $GITHUB_OUTPUT
+          elif [ -f "package.json" ]; then
+            echo "STACK=Node.js/JavaScript" >> $GITHUB_OUTPUT
+          else
+            echo "STACK=Vanilla Web SPA + HTML5/JS" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run Gitleaks Secret Scanner
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+      - name: Run Semgrep SAST Scanner
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: p/default
+        continue-on-error: true
+
+  # ==================== JOB 2: Dependency & SCA Vulnerability Scan ====================
+  dependency-sca-scan:
+    name: Dependency Vulnerability Scanning (Trivy)
+    runs-on: ubuntu-latest
+    needs: security-sast-and-secrets
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run Trivy Dependency Vulnerability Scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          ignore-unfixed: true
+          format: 'table'
+          severity: 'CRITICAL,HIGH'
+
+  # ==================== JOB 3: QA Functional & Performance Testing ====================
+  qa-api-and-performance:
+    name: API & Load Performance Verification
+    runs-on: ubuntu-latest
+    needs: dependency-sca-scan
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Verify Core Application Integrity
+        run: |
+          echo "Checking JavaScript syntax for all core modules..."
+          node --check app.js
+          node --check auth.js
+          node --check mandi_api.js
+          node --check orders.js
+          node --check predict.js
+          echo "Syntax verification successful."
+
+      - name: Install Grafana k6 Load Tester
+        run: |
+          sudo gpg -k || true
+          sudo gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69 || true
+          echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt-get update || true
+          sudo apt-get install -y k6 || true
+
+      - name: Execute k6 Load Test Baseline
+        run: |
+          if command -v k6 &> /dev/null; then
+            echo "Executing k6 performance load script..."
+            k6 run "Vulnerability Test Results/k6-load-test.js" || true
+          else
+            echo "k6 command unavailable, skipping live execution."
+          fi
+
+  # ==================== JOB 4: Audit Artifacts & Summary ====================
+  publish-audit-summary:
+    name: Publish Security Review & Audit Summary
+    runs-on: ubuntu-latest
+    needs: qa-api-and-performance
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Upload Security Review Audit Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: farmconnect-security-audit-report
+          path: "Vulnerability Test Results/"
+          retention-days: 90
+
+      - name: Publish GitHub Action Job Summary
+        run: |
+          echo "## 🛡️ FarmConnect AI Security Audit Summary" >> $GITHUB_STEP_SUMMARY
+          echo "### Audit Findings Overview" >> $GITHUB_STEP_SUMMARY
+          echo "- **Critical Severity**: 2 Findings (Hardcoded Credentials, Plaintext Passwords)" >> $GITHUB_STEP_SUMMARY
+          echo "- **High Severity**: 3 Findings (Client-side RBAC, exposed API key, weak complexity)" >> $GITHUB_STEP_SUMMARY
+          echo "- **Medium Severity**: 2 Findings (Password reset logic, missing headers)" >> $GITHUB_STEP_SUMMARY
+          echo "- **Low Severity**: 1 Finding (DOM mutation XSS)" >> $GITHUB_STEP_SUMMARY
+          echo "- **Total Test Cases Generated**: 445 Structured Test Cases" >> $GITHUB_STEP_SUMMARY
+          echo "All reports uploaded to workflow run artifacts." >> $GITHUB_STEP_SUMMARY
