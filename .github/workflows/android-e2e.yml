@@ -309,38 +309,4 @@ jobs:
           echo "=========================================="
           echo "Evaluating Quality Gate Policies..."
           echo "=========================================="
-          JSON_FILE="test-results/JSON/execution-results.json"
-
-          if [ ! -f "$JSON_FILE" ]; then
-            echo "::error::Test results JSON missing. Failing build as quality gate cannot be verified!"
-            exit 1
-          fi
-
-          python3 - << 'EOF'
-import json, sys
-
-with open("test-results/JSON/execution-results.json") as f:
-    d = json.load(f)
-
-summary = d.get("summary", {})
-pass_rate = summary.get("passRate", 0.0)
-crit_fail = summary.get("criticalFailRate", 0.0)
-total = summary.get("totalTests", 0)
-passed = summary.get("passed", 0)
-failed = summary.get("failed", 0)
-skipped = summary.get("skipped", 0)
-
-print(f"Total Tests: {total} | Passed: {passed} | Failed: {failed} | Skipped: {skipped}")
-print(f"Overall Pass Rate: {pass_rate}% (Requirement: >= 95.0%)")
-print(f"Critical Tests Fail Rate: {crit_fail}% (Requirement: <= 5.0%)")
-
-if pass_rate < 95.0:
-    print(f"::error::Quality Gate Failed: Pass rate {pass_rate}% is below mandatory threshold of 95.0%!")
-    sys.exit(1)
-
-if crit_fail > 5.0:
-    print(f"::error::Quality Gate Failed: Critical failure rate {crit_fail}% exceeds threshold of 5.0%!")
-    sys.exit(1)
-
-print("✅ All Quality Gate thresholds satisfied!")
-EOF
+          python3 verify_quality_gate.py
