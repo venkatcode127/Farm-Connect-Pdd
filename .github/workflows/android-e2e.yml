@@ -85,7 +85,16 @@ jobs:
 
           echo "Configuring Android build environment..."
           cd android-app
+
+          # Verify JAVA_HOME is set to JDK 17 by setup-java action
+          echo "JAVA_HOME=$JAVA_HOME"
+          java -version
+
           echo "sdk.dir=${ANDROID_HOME:-/usr/local/lib/android/sdk}" > local.properties
+
+          # Set org.gradle.java.home to ensure Gradle uses JDK 17, not system JDK 25
+          echo "org.gradle.java.home=$JAVA_HOME" >> gradle.properties
+
           sed -i 's/\r$//' gradlew 2>/dev/null || true
           chmod +x gradlew 2>/dev/null || true
 
@@ -97,10 +106,7 @@ jobs:
           fi
 
           echo "Building APK via Gradle..."
-          if ! ./gradlew assembleDebug --stacktrace; then
-            echo "Gradle wrapper failed, attempting build with system gradle..."
-            gradle assembleDebug --stacktrace
-          fi
+          ./gradlew assembleDebug --stacktrace -Dorg.gradle.java.home="$JAVA_HOME"
 
           APK_PATH="app/build/outputs/apk/debug/app-debug.apk"
           if [ ! -f "$APK_PATH" ]; then
