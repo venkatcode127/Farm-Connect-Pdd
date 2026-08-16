@@ -86,16 +86,21 @@ jobs:
           echo "Configuring Android build environment..."
           cd android-app
           echo "sdk.dir=${ANDROID_HOME:-/usr/local/lib/android/sdk}" > local.properties
+          sed -i 's/\r$//' gradlew 2>/dev/null || true
           chmod +x gradlew 2>/dev/null || true
 
           if [ ! -f "gradlew" ]; then
             echo "Generating Gradle wrapper..."
             gradle wrapper --gradle-version 8.4
+            sed -i 's/\r$//' gradlew 2>/dev/null || true
             chmod +x gradlew
           fi
 
           echo "Building APK via Gradle..."
-          ./gradlew assembleDebug --stacktrace
+          if ! ./gradlew assembleDebug --stacktrace; then
+            echo "Gradle wrapper failed, attempting build with system gradle..."
+            gradle assembleDebug --stacktrace
+          fi
 
           APK_PATH="app/build/outputs/apk/debug/app-debug.apk"
           if [ ! -f "$APK_PATH" ]; then
