@@ -293,113 +293,13 @@ jobs:
       - name: "Stage 21: Publish GitHub Actions Job Summary"
         if: always()
         run: |
-          echo "# 🌾 FarmConnect AI — Android Appium E2E Automation Summary" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-          JSON_FILE="test-results/JSON/execution-results.json"
-          EXEC_DATE=$(date -u '+%Y-%m-%d %H:%M:%S UTC')
-
-          echo "### 📋 Pipeline & Environment Details" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "| Property | Value |" >> $GITHUB_STEP_SUMMARY
-          echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
-          echo "| **Build Number** | \`#${{ github.run_number }}\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Execution Date** | \`$EXEC_DATE\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Git Commit** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Branch** | \`${{ github.ref_name }}\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| **APK Version** | \`1.0.0\` (debug) |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Device** | \`Nexus 6 (Android Emulator)\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Android Version** | \`14 (API 34)\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Automation Framework** | \`Appium 9.1 + TestNG 7.9 + UiAutomator2\` |" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-          if [ -f "$JSON_FILE" ]; then
-            TOTAL=$(python3 -c "import json; d=json.load(open('$JSON_FILE')); print(d['summary'].get('totalTests', 0))" 2>/dev/null || echo "0")
-            EXECUTED=$(python3 -c "import json; d=json.load(open('$JSON_FILE')); print(d['summary'].get('executed', 0))" 2>/dev/null || echo "0")
-            PASSED=$(python3 -c "import json; d=json.load(open('$JSON_FILE')); print(d['summary'].get('passed', 0))" 2>/dev/null || echo "0")
-            FAILED=$(python3 -c "import json; d=json.load(open('$JSON_FILE')); print(d['summary'].get('failed', 0))" 2>/dev/null || echo "0")
-            SKIPPED=$(python3 -c "import json; d=json.load(open('$JSON_FILE')); print(d['summary'].get('skipped', 0))" 2>/dev/null || echo "0")
-            BLOCKED=$(python3 -c "import json; d=json.load(open('$JSON_FILE')); print(d['summary'].get('blocked', 0))" 2>/dev/null || echo "0")
-            PASS_RATE=$(python3 -c "import json; d=json.load(open('$JSON_FILE')); print(d['summary'].get('passRate', 0))" 2>/dev/null || echo "0")
-            FAIL_RATE=$(python3 -c "import json; d=json.load(open('$JSON_FILE')); print(d['summary'].get('failRate', 0))" 2>/dev/null || echo "0")
-            DURATION=$(python3 -c "import json; d=json.load(open('$JSON_FILE')); print(d['summary'].get('executionDurationSec', '0'))" 2>/dev/null || echo "0")
-
-            echo "### 📊 Execution Metrics" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "| Metric | Count / Value | Status |" >> $GITHUB_STEP_SUMMARY
-            echo "|--------|---------------|--------|" >> $GITHUB_STEP_SUMMARY
-            echo "| **Total Test Cases** | **$TOTAL** | 📦 |" >> $GITHUB_STEP_SUMMARY
-            echo "| **Executed** | **$EXECUTED** | ⚡ |" >> $GITHUB_STEP_SUMMARY
-            echo "| **Passed** | **$PASSED** | ✅ |" >> $GITHUB_STEP_SUMMARY
-            echo "| **Failed** | **$FAILED** | ❌ |" >> $GITHUB_STEP_SUMMARY
-            echo "| **Skipped** | **$SKIPPED** | ⏭️ |" >> $GITHUB_STEP_SUMMARY
-            echo "| **Blocked** | **$BLOCKED** | 🚫 |" >> $GITHUB_STEP_SUMMARY
-            echo "| **Pass Percentage** | **${PASS_RATE}%** | $( [ "$(echo "$PASS_RATE >= 95.0" | bc -l 2>/dev/null || echo 0)" = "1" ] && echo "🟢 Meets Quality Gate" || echo "🔴 Below Threshold" ) |" >> $GITHUB_STEP_SUMMARY
-            echo "| **Fail Percentage** | **${FAIL_RATE}%** | 📉 |" >> $GITHUB_STEP_SUMMARY
-            echo "| **Execution Duration** | **${DURATION}s** | ⏱️ |" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-
-            # Print passed test cases inside collapsible section
-            echo "<details><summary><b>✅ Passed Test Cases ($PASSED)</b></summary>" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            python3 -c "
-import json
-try:
-    d = json.load(open('$JSON_FILE'))
-    for t in d.get('testResults', []):
-        if t.get('status') == 'PASS':
-            print('- ✓ **' + str(t.get('testId','')) + '** - `' + str(t.get('testName','')) + '` (' + str(t.get('module','')) + ')')
-except Exception:
-    pass
-" >> $GITHUB_STEP_SUMMARY 2>/dev/null || true
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "</details>" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-
-            # Print failed test cases
-            echo "<details><summary><b>❌ Failed Test Cases ($FAILED)</b></summary>" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            if [ "$FAILED" = "0" ]; then
-              echo "*No test failures!*" >> $GITHUB_STEP_SUMMARY
-            else
-              python3 -c "
-import json
-try:
-    d = json.load(open('$JSON_FILE'))
-    for t in d.get('testResults', []):
-        if t.get('status') == 'FAIL':
-            print('- ✗ **' + str(t.get('testId','')) + '** - `' + str(t.get('testName','')) + '` (' + str(t.get('module','')) + ')')
-            print('  - Reason: `' + str(t.get('failureReason','Unknown')) + '`')
-except Exception:
-    pass
-" >> $GITHUB_STEP_SUMMARY 2>/dev/null || true
-            fi
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "</details>" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-
-            # Print skipped test cases
-            echo "<details><summary><b>⏭️ Skipped Test Cases ($SKIPPED)</b></summary>" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            if [ "$SKIPPED" = "0" ]; then
-              echo "*No skipped tests.*" >> $GITHUB_STEP_SUMMARY
-            else
-              python3 -c "
-import json
-try:
-    d = json.load(open('$JSON_FILE'))
-    for t in d.get('testResults', []):
-        if t.get('status') == 'SKIP':
-            print('- ⊘ **' + str(t.get('testId','')) + '** - `' + str(t.get('testName','')) + '` (' + str(t.get('module','')) + ')')
-except Exception:
-    pass
-" >> $GITHUB_STEP_SUMMARY 2>/dev/null || true
-            fi
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "</details>" >> $GITHUB_STEP_SUMMARY
-
+          SUMMARY_FILE="test-results/Summary/summary.md"
+          if [ -f "$SUMMARY_FILE" ]; then
+            cat "$SUMMARY_FILE" >> $GITHUB_STEP_SUMMARY
           else
-            echo "⚠️ \`execution-results.json\` was not found." >> $GITHUB_STEP_SUMMARY
+            echo "# 🌾 FarmConnect AI — Android Appium E2E Automation Summary" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "⚠️ Summary report was not found." >> $GITHUB_STEP_SUMMARY
           fi
 
       # ==================== STAGE 22: Quality Gate Enforcement ====================
@@ -410,32 +310,37 @@ except Exception:
           echo "Evaluating Quality Gate Policies..."
           echo "=========================================="
           JSON_FILE="test-results/JSON/execution-results.json"
-          
+
           if [ ! -f "$JSON_FILE" ]; then
             echo "::error::Test results JSON missing. Failing build as quality gate cannot be verified!"
             exit 1
           fi
 
-          PASS_RATE=$(python3 -c "import json; d=json.load(open('$JSON_FILE')); print(d['summary'].get('passRate', 0))" 2>/dev/null || echo "0")
-          CRITICAL_FAIL_RATE=$(python3 -c "import json; d=json.load(open('$JSON_FILE')); print(d['summary'].get('criticalFailRate', 0))" 2>/dev/null || echo "0")
-          
-          echo "Overall Pass Rate: ${PASS_RATE}% (Requirement: >= 95.0%)"
-          echo "Critical Tests Fail Rate: ${CRITICAL_FAIL_RATE}% (Requirement: <= 5.0%)"
+          python3 - << 'EOF'
+import json, sys
 
-          GATE_FAILED=false
+with open("test-results/JSON/execution-results.json") as f:
+    d = json.load(f)
 
-          if [ "$(echo "$PASS_RATE < 95.0" | bc -l 2>/dev/null || echo 0)" = "1" ]; then
-            echo "::error::Quality Gate Failed: Pass rate ${PASS_RATE}% is below mandatory threshold of 95.0%!"
-            GATE_FAILED=true
-          fi
+summary = d.get("summary", {})
+pass_rate = summary.get("passRate", 0.0)
+crit_fail = summary.get("criticalFailRate", 0.0)
+total = summary.get("totalTests", 0)
+passed = summary.get("passed", 0)
+failed = summary.get("failed", 0)
+skipped = summary.get("skipped", 0)
 
-          if [ "$(echo "$CRITICAL_FAIL_RATE > 5.0" | bc -l 2>/dev/null || echo 0)" = "1" ]; then
-            echo "::error::Quality Gate Failed: Critical failure rate ${CRITICAL_FAIL_RATE}% exceeds maximum allowable threshold of 5.0%!"
-            GATE_FAILED=true
-          fi
+print(f"Total Tests: {total} | Passed: {passed} | Failed: {failed} | Skipped: {skipped}")
+print(f"Overall Pass Rate: {pass_rate}% (Requirement: >= 95.0%)")
+print(f"Critical Tests Fail Rate: {crit_fail}% (Requirement: <= 5.0%)")
 
-          if [ "$GATE_FAILED" = "true" ]; then
-            exit 1
-          fi
+if pass_rate < 95.0:
+    print(f"::error::Quality Gate Failed: Pass rate {pass_rate}% is below mandatory threshold of 95.0%!")
+    sys.exit(1)
 
-          echo "✅ All Quality Gate thresholds satisfied!"
+if crit_fail > 5.0:
+    print(f"::error::Quality Gate Failed: Critical failure rate {crit_fail}% exceeds threshold of 5.0%!")
+    sys.exit(1)
+
+print("✅ All Quality Gate thresholds satisfied!")
+EOF
