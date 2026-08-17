@@ -121,12 +121,12 @@
                 <version>${surefire.version}</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>config/testng.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <properties>
                         <property>
                             <name>listener</name>
-                            <value>com.farmconnect.automation.listeners.TestListener,com.farmconnect.automation.listeners.ExtentReportListener,com.farmconnect.automation.listeners.ScreenshotListener</value>
+                            <value>com.farmconnect.automation.listeners.TestListener</value>
                         </property>
                     </properties>
                     <argLine>-Dfile.encoding=UTF-8</argLine>

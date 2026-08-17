@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Web Application E2E Suite" parallel="tests" thread-count="2">
+
+    <!-- Desktop Browser Tests -->
+    <test name="Selenium Desktop Tests">
+        <parameter name="browserType" value="desktop" />
+        <classes>
+            <class name="com.farmconnect.web.tests.WebE2ETestSuite" />
+        </classes>
+    </test>
+
+    <!-- Mobile Browser Tests -->
+    <test name="Appium Mobile Web Tests">
+        <parameter name="browserType" value="mobile" />
+        <parameter name="deviceName" value="emulator-5554" />
+        <classes>
+            <class name="com.farmconnect.web.tests.WebE2ETestSuite" />
+        </classes>
+    </test>
+</suite>
