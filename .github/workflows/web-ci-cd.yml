@@ -17,87 +17,75 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # ==================== JOB 1: Lint & Code Quality ====================
-  lint-and-validate:
-    name: Lint & Code Quality Verification
+  build-and-test:
+    name: Build React & Test FastAPI
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      # --- Setup Backend (Python/FastAPI) ---
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Backend Dependencies
+        run: |
+          cd backend
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install httpx pytest # For testing
+
+      - name: Verify FastAPI Syntax
+        run: |
+          cd backend
+          python -m py_compile main.py models.py database.py
+
+      # --- Setup Frontend (Node/React/Vite) ---
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache-dependency-path: '**/package-lock.json'
 
-      - name: Validate JavaScript Syntax
+      - name: Install Frontend Dependencies
         run: |
-          echo "Checking JavaScript syntax for errors..."
-          node --check app.js
-          node --check auth.js
-          node --check chat.js
-          node --check data.js
-          node --check mandi_api.js
-          node --check orders.js
-          node --check predict.js
-          echo "All JavaScript files passed syntax verification!"
+          cd frontend
+          npm install
 
-      - name: Validate HTML Structure
+      - name: Build React Application
         run: |
-          echo "Validating HTML structure..."
-          npx -y htmlhint index.html || true
-          echo "HTML validation check complete."
+          cd frontend
+          npm run build
 
-      - name: Verify Web Assets Integrity
+      - name: Verify Build Output
         run: |
-          echo "Verifying required web assets exist..."
-          for file in index.html styles.css app.js auth.js chat.js data.js mandi_api.js orders.js predict.js manifest.json; do
-            if [ ! -f "$file" ]; then
-              echo "Error: Required asset $file is missing!"
-              exit 1
-            fi
-            echo "✓ Found $file ($(wc -c < "$file") bytes)"
-          done
+          if [ ! -d "frontend/dist" ]; then
+            echo "Error: frontend/dist directory not found! Build failed."
+            exit 1
+          fi
+          echo "React build successful. Dist contents:"
+          ls -la frontend/dist/
 
-  # ==================== JOB 2: Build & Package ====================
-  build-web-package:
-    name: Build & Package Web Application
-    needs: lint-and-validate
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Create Web Distribution Bundle
-        run: |
-          echo "Packaging FarmConnect Web application..."
-          mkdir -p dist
-          cp index.html styles.css app.js auth.js chat.js data.js mandi_api.js orders.js predict.js manifest.json dist/
-          cp -r assets dist/ 2>/dev/null || true
-          cp -r icons dist/ 2>/dev/null || true
-          ls -la dist/
-
+      # --- Package and Upload ---
       - name: Upload Web Application Build Artifact
         uses: actions/upload-artifact@v4
         with:
           name: farmconnect-web-bundle-${{ github.sha }}
-          path: dist/
+          path: frontend/dist/
           retention-days: 30
 
       - name: Upload Pages Artifact
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./
+          path: frontend/dist/
 
-  # ==================== JOB 3: Deploy to GitHub Pages ====================
   deploy-github-pages:
     name: Deploy Web App to GitHub Pages
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-    needs: build-web-package
+    needs: build-and-test
     runs-on: ubuntu-latest
     environment:
       name: github-pages

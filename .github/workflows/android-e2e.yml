@@ -66,22 +66,18 @@ jobs:
           yes | sdkmanager --licenses 2>/dev/null || true
 
       # ==================== STAGE 6: Copy Web Assets & Build Debug APK ====================
-      - name: "Stage 6: Build Android APK from android-app"
+      - name: "Stage 6: Build Android APK from React frontend"
         run: |
           echo "=========================================="
-          echo "Copying web assets into Android project..."
+          echo "Building React frontend and copying assets..."
           echo "=========================================="
+          cd frontend
+          npm install
+          npm run build
+          cd ..
+          
           mkdir -p android-app/app/src/main/assets
-          cp index.html android-app/app/src/main/assets/
-          cp styles.css android-app/app/src/main/assets/
-          cp app.js android-app/app/src/main/assets/
-          cp auth.js android-app/app/src/main/assets/
-          cp data.js android-app/app/src/main/assets/
-          cp chat.js android-app/app/src/main/assets/
-          cp orders.js android-app/app/src/main/assets/
-          cp predict.js android-app/app/src/main/assets/
-          cp mandi_api.js android-app/app/src/main/assets/
-          cp manifest.json android-app/app/src/main/assets/
+          cp -r frontend/dist/* android-app/app/src/main/assets/
 
           echo "Configuring Android build environment..."
           cd android-app
