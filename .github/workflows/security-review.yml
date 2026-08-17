@@ -83,12 +83,9 @@ jobs:
 
       - name: Verify Core Application Integrity
         run: |
-          echo "Checking JavaScript syntax for all core modules..."
-          node --check app.js
-          node --check auth.js
-          node --check mandi_api.js
-          node --check orders.js
-          node --check predict.js
+          echo "Verifying application..."
+          cd backend && python -m py_compile main.py
+          cd ../frontend && npm install && npm run build
           echo "Syntax verification successful."
 
       - name: Install Grafana k6 Load Tester
