@@ -91,31 +91,27 @@ jobs:
             adb devices
             
             echo "Verifying boot status..."
-            BOOT_STATUS=$(adb shell getprop sys.boot_completed | tr -d '\r')
+            BOOT_STATUS="$(adb -s emulator-5554 shell getprop sys.boot_completed | tr -d '\r' | tail -n 1)"
             echo "sys.boot_completed = $BOOT_STATUS"
-            if [ "$BOOT_STATUS" = "1" ]; then
-              echo "Android emulator boot completed successfully."
-            else
-              echo "Android emulator boot failed. BOOT_STATUS=$BOOT_STATUS"
+            
+            test "$BOOT_STATUS" = "1" || {
+              echo "ERROR: Emulator boot verification FAILED. BOOT_STATUS=$BOOT_STATUS"
               exit 1
-            fi
+            }
+            echo "Emulator boot verification PASSED."
             echo "Emulator is verified and fully responsive."
             
             echo "Finding APK..."
             export ACTUAL_APK_PATH=$(find $GITHUB_WORKSPACE/android-app/app/build/outputs/apk/debug -name "*.apk" | head -n 1)
             echo "Found APK at: $ACTUAL_APK_PATH"
             
-            if [ -z "$ACTUAL_APK_PATH" ]; then
+            test -n "$ACTUAL_APK_PATH" || {
               echo "APK not found! Failing build."
               exit 1
-            fi
+            }
             
             echo "Running baseline load testing with k6..."
-            if [ -f "Vulnerability Test Results/k6-load-test.js" ]; then
-              k6 run "Vulnerability Test Results/k6-load-test.js"
-            else
-              echo "k6 load test script not found, skipping."
-            fi
+            test -f "Vulnerability Test Results/k6-load-test.js" && k6 run "Vulnerability Test Results/k6-load-test.js" || echo "k6 load test script not found, skipping."
             
             echo "Executing Maven E2E Test Suite..."
             cd automation
