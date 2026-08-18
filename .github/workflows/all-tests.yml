@@ -93,7 +93,7 @@ jobs:
           sudo apt-get install -y k6
           
           # Run local load test against FastAPI
-          k6 run --env BASE_URL=http://127.0.0.1:8080 "Vulnerability Test Results/k6-load-test.js"
+          k6 run "Vulnerability Test Results/k6-load-test.js"
           
           # Generate report
           python "Vulnerability Test Results/generate_load_test_csv.py"
