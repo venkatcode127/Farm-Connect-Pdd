@@ -144,7 +144,7 @@ jobs:
           
           echo "Executing Maven E2E Test Suite..."
           cd automation
-          mvn clean test -Dapk.path="$ACTUAL_APK_PATH" -Dappium.url="http://127.0.0.1:4723" -DdeviceName="emulator-5554" -Dudid="emulator-5554"
+          ./mvnw clean test -Dapk.path="$ACTUAL_APK_PATH" -Dappium.url="http://127.0.0.1:4723" -DdeviceName="emulator-5554" -Dudid="emulator-5554"
           
           # Generate 300-case report
           cd ..
