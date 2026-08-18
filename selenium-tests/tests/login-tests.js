@@ -1,0 +1,67 @@
+const { Builder, By, until } = require('selenium-webdriver');
+const assert = require('assert');
+
+describe('FarmConnect Web Frontend - Login E2E Tests', function() {
+    let driver;
+
+    before(async function() {
+        this.timeout(10000); // Set timeout to 10 seconds
+        const chrome = require('selenium-webdriver/chrome');
+        let options = new chrome.Options();
+        options.addArguments('--headless', '--no-sandbox', '--disable-dev-shm-usage');
+        
+        driver = await new Builder()
+            .forBrowser('chrome')
+            .setChromeOptions(options)
+            .build();
+    });
+
+    after(async function() {
+        if (driver) {
+            await driver.quit();
+        }
+    });
+
+    it('should successfully login with valid credentials', async function() {
+        // Navigate to login page
+        await driver.get('http://localhost:3000');
+        
+        // Find username and password fields and enter credentials
+        const usernameField = await driver.findElement(By.id('loginPhone'));
+        await usernameField.sendKeys('9347815378');
+        
+        const passwordField = await driver.findElement(By.id('loginPassword'));
+        await passwordField.sendKeys('FARMERuse9347@');
+        
+        // Click the login button
+        const loginBtn = await driver.findElement(By.id('loginBtn'));
+        await loginBtn.click();
+        
+        // Wait for user Profile to be visible on dashboard
+        const profileElement = await driver.wait(until.elementLocated(By.id('userProfile')), 5000);
+        assert.ok(await profileElement.isDisplayed());
+    });
+
+    it('should fail login with invalid credentials', async function() {
+        await driver.get('http://localhost:3000');
+        
+        await driver.findElement(By.id('loginPhone')).sendKeys('9999999999');
+        await driver.findElement(By.id('loginPassword')).sendKeys('wrongpass');
+        await driver.findElement(By.id('loginBtn')).click();
+        
+        // Wait for error message
+        const errorMsg = await driver.wait(until.elementLocated(By.id('loginError')), 5000);
+        const text = await errorMsg.getText();
+        assert.ok(text.includes('No account found') || text.includes('Incorrect password'));
+    });
+
+    it('should fail login with empty fields', async function() {
+        await driver.get('http://localhost:3000');
+        
+        await driver.findElement(By.id('loginBtn')).click();
+        
+        // Should show validation error
+        const errorMsg = await driver.wait(until.elementLocated(By.id('loginError')), 5000);
+        assert.ok(await errorMsg.isDisplayed());
+    });
+});

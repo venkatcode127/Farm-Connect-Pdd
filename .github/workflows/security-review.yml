@@ -1,8 +1,8 @@
-name: Comprehensive DevSecOps & Security Review Pipeline
+name: Security Review & SAST
 
 on:
   push:
-    branches: [ main, master, develop ]
+    branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
   workflow_dispatch:
@@ -10,127 +10,167 @@ on:
 permissions:
   contents: read
   security-events: write
-  actions: read
 
 jobs:
-  # ==================== JOB 1: SAST & Secret Scanning ====================
-  security-sast-and-secrets:
-    name: SAST & Secret Detection (Semgrep & Gitleaks)
+  security-scan:
+    name: Security Assessment
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
-      - name: Checkout Repository
+      - name: 1. Checkout Repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Framework Auto-Detection
-        id: detect-framework
+      - name: 2. Detect Backend Technology
+        id: detect
         run: |
-          echo "Detecting backend technology stack..."
-          if [ -f "pom.xml" ] || [ -d "automation" ]; then
-            echo "STACK=Java/Maven" >> $GITHUB_OUTPUT
+          echo "Detecting backend technology..."
+          if [ -f "backend/requirements.txt" ]; then
+            echo "BACKEND=python" >> $GITHUB_ENV
+            echo "Detected: Python/FastAPI backend"
           elif [ -f "package.json" ]; then
-            echo "STACK=Node.js/JavaScript" >> $GITHUB_OUTPUT
+            echo "BACKEND=node" >> $GITHUB_ENV
+            echo "Detected: Node.js backend"
           else
-            echo "STACK=Vanilla Web SPA + HTML5/JS" >> $GITHUB_OUTPUT
+            echo "BACKEND=unknown" >> $GITHUB_ENV
+            echo "Backend technology undetected"
           fi
 
-      - name: Run Gitleaks Secret Scanner
+      - name: 3. Setup Python
+        if: env.BACKEND == 'python'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 4. Python Dependency Audit (pip-audit)
+        if: env.BACKEND == 'python'
+        run: |
+          pip install pip-audit safety
+          cd backend
+          pip install -r requirements.txt || true
+          echo "=== pip-audit Results ===" >> $GITHUB_STEP_SUMMARY
+          pip-audit -r requirements.txt --format markdown >> $GITHUB_STEP_SUMMARY || echo "pip-audit found vulnerabilities" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+      - name: 5. Secret Detection with Gitleaks
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
         continue-on-error: true
 
-      - name: Run Semgrep SAST Scanner
+      - name: 6. Semgrep SAST Scan
         uses: semgrep/semgrep-action@v1
         with:
-          config: p/default
+          config: >-
+            p/python
+            p/security-audit
+            p/owasp-top-ten
+            p/javascript
+            p/secrets
+        env:
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
         continue-on-error: true
 
-  # ==================== JOB 2: Dependency & SCA Vulnerability Scan ====================
-  dependency-sca-scan:
-    name: Dependency Vulnerability Scanning (Trivy)
-    runs-on: ubuntu-latest
-    needs: security-sast-and-secrets
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Run Trivy Dependency Vulnerability Scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: 'fs'
-          ignore-unfixed: true
-          format: 'table'
-          severity: 'CRITICAL,HIGH'
-          exit-code: '0'
-
-  # ==================== JOB 3: QA Functional & Performance Testing ====================
-  qa-api-and-performance:
-    name: API & Load Performance Verification
-    runs-on: ubuntu-latest
-    needs: dependency-sca-scan
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js Environment
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Verify Core Application Integrity
+      - name: 7. Hardcoded Secrets Detection (manual grep)
         run: |
-          echo "Verifying application..."
-          cd backend && python -m py_compile main.py || true
-          cd ../frontend && npm install || true
-          npm run build || true
-          echo "Syntax verification successful."
+          echo "## 🔍 Hardcoded Secret Scan" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          
+          echo "=== Checking for hardcoded passwords ===" 
+          grep -rn "password\s*=\s*['\"][^'\"]*['\"]" --include="*.js" --include="*.py" . | grep -v ".git" | grep -v "node_modules" || echo "None found"
+          
+          echo "=== Checking for API keys ==="
+          grep -rn "api_key\|apikey\|API_KEY" --include="*.js" --include="*.py" . | grep -v ".git" | grep -v "node_modules" || echo "None found"
+          
+          echo "=== Checking for MongoDB connection strings ==="
+          grep -rn "mongodb+srv://" --include="*.py" --include="*.js" --include="*.env" . | grep -v ".git" || echo "None found"
+          
+          echo '```' >> $GITHUB_STEP_SUMMARY
 
-      - name: Install Grafana k6 Load Tester
+      - name: 8. CORS and Authentication Check
         run: |
-          sudo gpg -k || true
-          sudo gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69 || true
-          echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
-          sudo apt-get update || true
-          sudo apt-get install -y k6 || true
-
-      - name: Execute k6 Load Test Baseline
-        run: |
-          if command -v k6 &> /dev/null; then
-            echo "Executing k6 performance load script..."
-            k6 run "Vulnerability Test Results/k6-load-test.js" || true
-          else
-            echo "k6 command unavailable, skipping live execution."
+          echo "## 🔐 Security Configuration Checks" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Check for missing auth dependencies
+          if grep -q "allow_origins.*\*" backend/main.py 2>/dev/null; then
+            echo "⚠️ CORS wildcard origin detected" >> $GITHUB_STEP_SUMMARY
           fi
+          
+          if ! grep -q "Authorization\|Bearer\|JWT\|token" backend/main.py 2>/dev/null; then
+            echo "❌ No JWT/Token authentication found in backend/main.py" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if grep -q "password.*!=\|!= .*password" backend/main.py 2>/dev/null; then
+            echo "❌ CRITICAL: Plaintext password comparison detected!" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if grep -q "debug/clear\|delete_many" backend/main.py 2>/dev/null; then
+            echo "❌ CRITICAL: Dangerous debug/delete endpoint detected in production code!" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
 
-  # ==================== JOB 4: Audit Artifacts & Summary ====================
-  publish-audit-summary:
-    name: Publish Security Review & Audit Summary
-    runs-on: ubuntu-latest
-    needs: qa-api-and-performance
+      - name: 9. Generate Security Summary
+        run: |
+          echo "## 📊 Security Assessment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          
+          grep -q "password.*!=\|!= .*password" backend/main.py && \
+            echo "| Plaintext Password Comparison | ❌ CRITICAL |" >> $GITHUB_STEP_SUMMARY || \
+            echo "| Plaintext Password Comparison | ✅ OK |" >> $GITHUB_STEP_SUMMARY
+          
+          grep -q "mongodb+srv://" backend/.env && \
+            echo "| DB Credentials in .env | ❌ CRITICAL |" >> $GITHUB_STEP_SUMMARY || \
+            echo "| DB Credentials in .env | ✅ OK |" >> $GITHUB_STEP_SUMMARY
+          
+          grep -q "ADMIN_PASSWORD\|ADMIN_PHONE" auth.js && \
+            echo "| Hardcoded Admin Credentials | ❌ CRITICAL |" >> $GITHUB_STEP_SUMMARY || \
+            echo "| Hardcoded Admin Credentials | ✅ OK |" >> $GITHUB_STEP_SUMMARY
+          
+          grep -q "docs_url=None" backend/main.py && \
+            echo "| Swagger UI Disabled | ✅ OK |" >> $GITHUB_STEP_SUMMARY || \
+            echo "| Swagger UI Disabled | ⚠️ Exposed |" >> $GITHUB_STEP_SUMMARY
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - name: 10. Fail on Critical Security Violations
+        run: |
+          CRITICAL_FAILURES=0
+          
+          # Fail if plaintext password comparison found
+          if grep -q "password.*!=\|!= .*password" backend/main.py; then
+            echo "::error file=backend/main.py::CRITICAL: Plaintext password comparison detected!"
+            CRITICAL_FAILURES=$((CRITICAL_FAILURES + 1))
+          fi
+          
+          # Fail if hardcoded admin credentials in JS
+          if grep -q "ADMIN_PASSWORD" auth.js; then
+            echo "::error file=auth.js::CRITICAL: Hardcoded admin password in client-side JavaScript!"
+            CRITICAL_FAILURES=$((CRITICAL_FAILURES + 1))
+          fi
+          
+          # Fail if MongoDB credentials in .env
+          if grep -q "mongodb+srv://.*:.*@" backend/.env 2>/dev/null; then
+            echo "::error file=backend/.env::CRITICAL: MongoDB credentials with password found in .env file!"
+            CRITICAL_FAILURES=$((CRITICAL_FAILURES + 1))
+          fi
+          
+          if [ $CRITICAL_FAILURES -gt 0 ]; then
+            echo "::error::$CRITICAL_FAILURES critical security violation(s) found. Fix before merging!"
+            exit 1
+          fi
+          
+          echo "No critical violations found."
 
-      - name: Upload Security Review Audit Artifacts
+      - name: 11. Upload Security Artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: farmconnect-security-audit-report
-          path: "Vulnerability Test Results/"
-          retention-days: 90
-
-      - name: Publish GitHub Action Job Summary
-        run: |
-          echo "## 🛡️ FarmConnect AI Security Audit Summary" >> $GITHUB_STEP_SUMMARY
-          echo "### Audit Findings Overview" >> $GITHUB_STEP_SUMMARY
-          echo "- **Critical Severity**: 2 Findings (Hardcoded Credentials, Plaintext Passwords)" >> $GITHUB_STEP_SUMMARY
-          echo "- **High Severity**: 3 Findings (Client-side RBAC, exposed API key, weak complexity)" >> $GITHUB_STEP_SUMMARY
-          echo "- **Medium Severity**: 2 Findings (Password reset logic, missing headers)" >> $GITHUB_STEP_SUMMARY
-          echo "- **Low Severity**: 1 Finding (DOM mutation XSS)" >> $GITHUB_STEP_SUMMARY
-          echo "- **Total Test Cases Generated**: 445 Structured Test Cases" >> $GITHUB_STEP_SUMMARY
-          echo "All reports uploaded to workflow run artifacts." >> $GITHUB_STEP_SUMMARY
+          name: Security-Reports
+          path: |
+            Vulnerability Test Results/
+            semgrep-results.sarif
+          retention-days: 30
+          if-no-files-found: ignore

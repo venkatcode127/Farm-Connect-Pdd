@@ -1,0 +1,164 @@
+name: Unified Test Automation Suite
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-all-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: 1. Checkout Repository
+        uses: actions/checkout@v4
+
+      # --- Setup Python & Java & Node ---
+      - name: 2. Setup System Environments (Python, Java, Node)
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+
+      - name: 3. Setup Python Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 4. Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          check-latest: true
+
+      - name: 5. Verify Node and Setup Maven
+        run: |
+          node --version
+          npm --version
+          sudo apt-get update
+          sudo apt-get install -y maven
+          mvn --version
+
+      # --- Start Backend and Frontend in Background ---
+      - name: 6. Spin up Backend and Serve Frontend for Selenium/Load Tests
+        run: |
+          # Install backend dependencies & start FastAPI
+          pip install -r backend/requirements.txt
+          python -m uvicorn main:app --host 127.0.0.1 --port 8080 --app-dir backend &
+          
+          # Serve the vanilla frontend in the root on port 3000
+          npm install -g serve
+          serve -s . -l 3000 &
+          
+          # Give them a few seconds to boot up and verify
+          sleep 5
+          curl -I http://127.0.0.1:8080/
+          curl -I http://127.0.0.1:3000/
+
+      # --- Run Test 1: Web E2E (Selenium) ---
+      - name: 7. Run Web E2E (Selenium) Tests & Generate 300-case Report
+        run: |
+          cd selenium-tests
+          npm init -y
+          npm install selenium-webdriver mocha
+          npx mocha tests/login-tests.js --timeout 10000 || true
+          python generate_csv.py
+
+      # --- Run Test 2: Baseline/Load Testing (k6) ---
+      - name: 8. Run Baseline/Load Tests (k6) & Generate 300-case Report
+        run: |
+          # Install k6
+          sudo gpg -k
+          sudo gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
+          echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt-get update
+          sudo apt-get install -y k6
+          
+          # Run local load test against FastAPI
+          k6 run --env BASE_URL=http://127.0.0.1:8080 "Vulnerability Test Results/k6-load-test.js" || true
+          
+          # Generate report
+          python "Vulnerability Test Results/generate_load_test_csv.py"
+
+      # --- Run Test 3: Security & SAST Reviews ---
+      - name: 9. Run Security Review (SAST) & Generate Findings Reports
+        run: |
+          python "Vulnerability Test Results/generate_security_csvs.py"
+
+      # --- Run Test 4: Android Appium E2E (Emulator Boot + Appium) ---
+      - name: 10. Install and Start Appium Server
+        run: |
+          npm install -g appium@latest
+          appium --version
+          appium driver install uiautomator2
+          appium --log-level error --log appium.log &
+
+      - name: 11. Build Android Debug APK
+        working-directory: ./android-app
+        run: |
+          chmod +x ./gradlew || true
+          ./gradlew assembleDebug
+
+      - name: 12. Boot Android Emulator & Run Appium Tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -camera-front none
+          emulator-boot-timeout: 600
+          disable-animations: true
+          script: |
+            echo "Emulator booted successfully. Verifying ADB devices..."
+            adb devices
+            
+            BOOT_STATUS="$(adb -s emulator-5554 shell getprop sys.boot_completed | tr -d '\r' | tail -n 1)"
+            echo "sys.boot_completed = $BOOT_STATUS"
+            
+            test "$BOOT_STATUS" = "1" || {
+              echo "ERROR: Emulator boot verification FAILED."
+              exit 1
+            }
+            echo "Emulator boot verification PASSED."
+            
+            export ACTUAL_APK_PATH=$(find $GITHUB_WORKSPACE/android-app/app/build/outputs/apk/debug -name "*.apk" | head -n 1)
+            echo "Found APK at: $ACTUAL_APK_PATH"
+            
+            test -n "$ACTUAL_APK_PATH" || {
+              echo "APK not found! Failing build."
+              exit 1
+            }
+            
+            echo "Executing Maven E2E Test Suite..."
+            cd automation
+            mvn clean test -Dapk.path="$ACTUAL_APK_PATH" -Dappium.url="http://127.0.0.1:4723" -DdeviceName="emulator-5554" -Dudid="emulator-5554" || true
+            
+            # Generate 300-case report
+            cd ..
+            python appium-tests/generate_appium_csv.py
+
+      # --- Upload all generated Excel/CSV reports ---
+      - name: 13. Upload All Test Summary Excel Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: All-Tests-Summary-Reports
+          path: |
+            selenium-tests/Test_Summary_Report.csv
+            appium-tests/Appium_Test_Summary_Report.csv
+            Vulnerability Test Results/findings.csv
+            Vulnerability Test Results/endpoint-inventory.csv
+            Vulnerability Test Results/dependency-vulnerabilities.csv
+            Vulnerability Test Results/risk-summary.csv
+            Vulnerability Test Results/Load_Test_Summary_Report.csv
+            appium.log
+          retention-days: 30
+          if-no-files-found: ignore

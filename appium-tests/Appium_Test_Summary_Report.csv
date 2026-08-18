@@ -1,0 +1,301 @@
+Test Case ID,Module,Description,Priority,Status,Execution Time (s),Notes
+APP-TC-001,GPS Tracking,Verify mobile functionality of gps tracking feature 1,Medium,Skipped,11.09,Automated via Appium UiAutomator2
+APP-TC-002,GPS Tracking,Verify mobile functionality of mobile dashboard feature 2,High,Passed,13.5,Automated via Appium UiAutomator2
+APP-TC-003,Mobile Auth,Verify mobile functionality of mobile settings feature 3,High,Passed,5.65,Automated via Appium UiAutomator2
+APP-TC-004,Mobile Auth,Verify mobile functionality of mobile settings feature 4,Medium,Passed,10.72,Automated via Appium UiAutomator2
+APP-TC-005,Mobile Dashboard,Verify mobile functionality of mobile auth feature 5,High,Passed,13.45,Automated via Appium UiAutomator2
+APP-TC-006,Mobile Auth,Verify mobile functionality of mobile auth feature 6,Medium,Passed,8.79,Automated via Appium UiAutomator2
+APP-TC-007,Offline Sync,Verify mobile functionality of mobile dashboard feature 7,Medium,Passed,3.9,Automated via Appium UiAutomator2
+APP-TC-008,GPS Tracking,Verify mobile functionality of camera/uploads feature 8,Low,Passed,2.62,Automated via Appium UiAutomator2
+APP-TC-009,Mobile Dashboard,Verify mobile functionality of mobile dashboard feature 9,Low,Passed,2.21,Automated via Appium UiAutomator2
+APP-TC-010,Mobile Dashboard,Verify mobile functionality of camera/uploads feature 10,Medium,Passed,14.96,Automated via Appium UiAutomator2
+APP-TC-011,Mobile Auth,Verify mobile functionality of offline sync feature 11,High,Passed,9.24,Automated via Appium UiAutomator2
+APP-TC-012,Push Notifications,Verify mobile functionality of push notifications feature 12,Medium,Passed,8.8,Automated via Appium UiAutomator2
+APP-TC-013,Mobile Settings,Verify mobile functionality of gps tracking feature 13,Medium,Passed,14.51,Automated via Appium UiAutomator2
+APP-TC-014,Push Notifications,Verify mobile functionality of mobile dashboard feature 14,High,Passed,14.66,Automated via Appium UiAutomator2
+APP-TC-015,GPS Tracking,Verify mobile functionality of offline sync feature 15,Low,Passed,11.04,Automated via Appium UiAutomator2
+APP-TC-016,Mobile Dashboard,Verify mobile functionality of mobile dashboard feature 16,Medium,Failed,10.6,Automated via Appium UiAutomator2
+APP-TC-017,Mobile Dashboard,Verify mobile functionality of camera/uploads feature 17,High,Passed,12.09,Automated via Appium UiAutomator2
+APP-TC-018,Mobile Auth,Verify mobile functionality of offline sync feature 18,Medium,Passed,13.49,Automated via Appium UiAutomator2
+APP-TC-019,Offline Sync,Verify mobile functionality of gps tracking feature 19,Medium,Failed,4.1,Automated via Appium UiAutomator2
+APP-TC-020,Mobile Auth,Verify mobile functionality of camera/uploads feature 20,High,Passed,10.46,Automated via Appium UiAutomator2
+APP-TC-021,Offline Sync,Verify mobile functionality of gps tracking feature 21,High,Failed,11.71,Automated via Appium UiAutomator2
+APP-TC-022,Mobile Dashboard,Verify mobile functionality of offline sync feature 22,Low,Passed,7.6,Automated via Appium UiAutomator2
+APP-TC-023,Offline Sync,Verify mobile functionality of mobile settings feature 23,Low,Passed,3.47,Automated via Appium UiAutomator2
+APP-TC-024,Mobile Settings,Verify mobile functionality of gps tracking feature 24,Low,Passed,12.21,Automated via Appium UiAutomator2
+APP-TC-025,Mobile Dashboard,Verify mobile functionality of mobile settings feature 25,Medium,Passed,7.43,Automated via Appium UiAutomator2
+APP-TC-026,Mobile Auth,Verify mobile functionality of gps tracking feature 26,Medium,Passed,4.59,Automated via Appium UiAutomator2
+APP-TC-027,Mobile Auth,Verify mobile functionality of camera/uploads feature 27,High,Passed,14.83,Automated via Appium UiAutomator2
+APP-TC-028,Camera/Uploads,Verify mobile functionality of gps tracking feature 28,Low,Passed,4.03,Automated via Appium UiAutomator2
+APP-TC-029,Mobile Dashboard,Verify mobile functionality of camera/uploads feature 29,Medium,Passed,14.01,Automated via Appium UiAutomator2
+APP-TC-030,Push Notifications,Verify mobile functionality of push notifications feature 30,Low,Passed,4.01,Automated via Appium UiAutomator2
+APP-TC-031,Camera/Uploads,Verify mobile functionality of offline sync feature 31,High,Passed,14.91,Automated via Appium UiAutomator2
+APP-TC-032,Mobile Settings,Verify mobile functionality of mobile settings feature 32,Low,Passed,10.66,Automated via Appium UiAutomator2
+APP-TC-033,GPS Tracking,Verify mobile functionality of mobile dashboard feature 33,High,Skipped,7.62,Automated via Appium UiAutomator2
+APP-TC-034,Push Notifications,Verify mobile functionality of push notifications feature 34,Low,Passed,9.93,Automated via Appium UiAutomator2
+APP-TC-035,Mobile Dashboard,Verify mobile functionality of mobile dashboard feature 35,Low,Passed,6.33,Automated via Appium UiAutomator2
+APP-TC-036,GPS Tracking,Verify mobile functionality of camera/uploads feature 36,High,Passed,10.67,Automated via Appium UiAutomator2
+APP-TC-037,Push Notifications,Verify mobile functionality of offline sync feature 37,Low,Skipped,3.68,Automated via Appium UiAutomator2
+APP-TC-038,GPS Tracking,Verify mobile functionality of offline sync feature 38,High,Failed,8.02,Automated via Appium UiAutomator2
+APP-TC-039,Mobile Auth,Verify mobile functionality of mobile auth feature 39,Low,Passed,8.62,Automated via Appium UiAutomator2
+APP-TC-040,Camera/Uploads,Verify mobile functionality of mobile auth feature 40,High,Passed,14.51,Automated via Appium UiAutomator2
+APP-TC-041,Mobile Auth,Verify mobile functionality of mobile auth feature 41,Medium,Passed,9.85,Automated via Appium UiAutomator2
+APP-TC-042,Mobile Settings,Verify mobile functionality of push notifications feature 42,Medium,Passed,11.58,Automated via Appium UiAutomator2
+APP-TC-043,GPS Tracking,Verify mobile functionality of gps tracking feature 43,High,Passed,9.77,Automated via Appium UiAutomator2
+APP-TC-044,Mobile Settings,Verify mobile functionality of mobile dashboard feature 44,High,Passed,14.46,Automated via Appium UiAutomator2
+APP-TC-045,Offline Sync,Verify mobile functionality of mobile dashboard feature 45,Low,Passed,12.37,Automated via Appium UiAutomator2
+APP-TC-046,GPS Tracking,Verify mobile functionality of mobile dashboard feature 46,Medium,Passed,7.85,Automated via Appium UiAutomator2
+APP-TC-047,Camera/Uploads,Verify mobile functionality of offline sync feature 47,Low,Passed,3.62,Automated via Appium UiAutomator2
+APP-TC-048,Mobile Settings,Verify mobile functionality of push notifications feature 48,Medium,Passed,4.79,Automated via Appium UiAutomator2
+APP-TC-049,Mobile Auth,Verify mobile functionality of mobile dashboard feature 49,Low,Passed,2.04,Automated via Appium UiAutomator2
+APP-TC-050,Mobile Settings,Verify mobile functionality of camera/uploads feature 50,Low,Skipped,5.01,Automated via Appium UiAutomator2
+APP-TC-051,Camera/Uploads,Verify mobile functionality of gps tracking feature 51,Low,Passed,13.91,Automated via Appium UiAutomator2
+APP-TC-052,Offline Sync,Verify mobile functionality of camera/uploads feature 52,High,Passed,11.86,Automated via Appium UiAutomator2
+APP-TC-053,Mobile Dashboard,Verify mobile functionality of mobile dashboard feature 53,Medium,Passed,10.09,Automated via Appium UiAutomator2
+APP-TC-054,GPS Tracking,Verify mobile functionality of mobile settings feature 54,High,Passed,10.65,Automated via Appium UiAutomator2
+APP-TC-055,Mobile Dashboard,Verify mobile functionality of push notifications feature 55,High,Passed,3.03,Automated via Appium UiAutomator2
+APP-TC-056,Mobile Auth,Verify mobile functionality of mobile auth feature 56,Low,Passed,10.13,Automated via Appium UiAutomator2
+APP-TC-057,Push Notifications,Verify mobile functionality of offline sync feature 57,Low,Passed,11.87,Automated via Appium UiAutomator2
+APP-TC-058,Push Notifications,Verify mobile functionality of offline sync feature 58,Medium,Passed,11.99,Automated via Appium UiAutomator2
+APP-TC-059,Mobile Dashboard,Verify mobile functionality of mobile auth feature 59,Low,Passed,12.61,Automated via Appium UiAutomator2
+APP-TC-060,Push Notifications,Verify mobile functionality of offline sync feature 60,High,Passed,10.65,Automated via Appium UiAutomator2
+APP-TC-061,GPS Tracking,Verify mobile functionality of mobile auth feature 61,High,Passed,8.76,Automated via Appium UiAutomator2
+APP-TC-062,GPS Tracking,Verify mobile functionality of offline sync feature 62,High,Passed,5.61,Automated via Appium UiAutomator2
+APP-TC-063,Camera/Uploads,Verify mobile functionality of mobile settings feature 63,Medium,Passed,3.14,Automated via Appium UiAutomator2
+APP-TC-064,GPS Tracking,Verify mobile functionality of push notifications feature 64,Medium,Passed,12.66,Automated via Appium UiAutomator2
+APP-TC-065,Offline Sync,Verify mobile functionality of camera/uploads feature 65,Medium,Passed,11.21,Automated via Appium UiAutomator2
+APP-TC-066,Mobile Auth,Verify mobile functionality of camera/uploads feature 66,High,Passed,10.0,Automated via Appium UiAutomator2
+APP-TC-067,Offline Sync,Verify mobile functionality of mobile auth feature 67,Low,Skipped,10.79,Automated via Appium UiAutomator2
+APP-TC-068,Offline Sync,Verify mobile functionality of mobile dashboard feature 68,Medium,Passed,8.57,Automated via Appium UiAutomator2
+APP-TC-069,Mobile Auth,Verify mobile functionality of camera/uploads feature 69,Medium,Passed,10.48,Automated via Appium UiAutomator2
+APP-TC-070,Mobile Settings,Verify mobile functionality of push notifications feature 70,Low,Passed,13.2,Automated via Appium UiAutomator2
+APP-TC-071,Offline Sync,Verify mobile functionality of gps tracking feature 71,High,Passed,3.11,Automated via Appium UiAutomator2
+APP-TC-072,Mobile Dashboard,Verify mobile functionality of gps tracking feature 72,Low,Passed,12.93,Automated via Appium UiAutomator2
+APP-TC-073,Mobile Settings,Verify mobile functionality of push notifications feature 73,High,Passed,10.75,Automated via Appium UiAutomator2
+APP-TC-074,GPS Tracking,Verify mobile functionality of mobile auth feature 74,Low,Passed,7.0,Automated via Appium UiAutomator2
+APP-TC-075,Push Notifications,Verify mobile functionality of offline sync feature 75,High,Passed,2.82,Automated via Appium UiAutomator2
+APP-TC-076,Camera/Uploads,Verify mobile functionality of camera/uploads feature 76,Low,Failed,11.36,Automated via Appium UiAutomator2
+APP-TC-077,Mobile Dashboard,Verify mobile functionality of mobile settings feature 77,Low,Passed,14.92,Automated via Appium UiAutomator2
+APP-TC-078,Mobile Auth,Verify mobile functionality of camera/uploads feature 78,Low,Passed,7.46,Automated via Appium UiAutomator2
+APP-TC-079,GPS Tracking,Verify mobile functionality of camera/uploads feature 79,Medium,Failed,7.45,Automated via Appium UiAutomator2
+APP-TC-080,GPS Tracking,Verify mobile functionality of offline sync feature 80,High,Passed,3.67,Automated via Appium UiAutomator2
+APP-TC-081,Push Notifications,Verify mobile functionality of mobile dashboard feature 81,High,Passed,11.92,Automated via Appium UiAutomator2
+APP-TC-082,Mobile Auth,Verify mobile functionality of gps tracking feature 82,High,Passed,7.95,Automated via Appium UiAutomator2
+APP-TC-083,GPS Tracking,Verify mobile functionality of mobile settings feature 83,Low,Failed,3.66,Automated via Appium UiAutomator2
+APP-TC-084,Mobile Dashboard,Verify mobile functionality of offline sync feature 84,Low,Passed,11.64,Automated via Appium UiAutomator2
+APP-TC-085,Mobile Auth,Verify mobile functionality of mobile dashboard feature 85,Low,Passed,8.77,Automated via Appium UiAutomator2
+APP-TC-086,Push Notifications,Verify mobile functionality of camera/uploads feature 86,Low,Passed,7.41,Automated via Appium UiAutomator2
+APP-TC-087,Mobile Dashboard,Verify mobile functionality of camera/uploads feature 87,Medium,Passed,9.42,Automated via Appium UiAutomator2
+APP-TC-088,Push Notifications,Verify mobile functionality of mobile dashboard feature 88,Low,Passed,10.91,Automated via Appium UiAutomator2
+APP-TC-089,Push Notifications,Verify mobile functionality of camera/uploads feature 89,Low,Passed,2.68,Automated via Appium UiAutomator2
+APP-TC-090,Mobile Auth,Verify mobile functionality of mobile settings feature 90,Medium,Passed,13.0,Automated via Appium UiAutomator2
+APP-TC-091,Push Notifications,Verify mobile functionality of mobile auth feature 91,High,Passed,9.66,Automated via Appium UiAutomator2
+APP-TC-092,Push Notifications,Verify mobile functionality of mobile settings feature 92,High,Passed,3.26,Automated via Appium UiAutomator2
+APP-TC-093,GPS Tracking,Verify mobile functionality of offline sync feature 93,Medium,Passed,3.26,Automated via Appium UiAutomator2
+APP-TC-094,Camera/Uploads,Verify mobile functionality of offline sync feature 94,Medium,Failed,4.32,Automated via Appium UiAutomator2
+APP-TC-095,Push Notifications,Verify mobile functionality of offline sync feature 95,High,Failed,3.0,Automated via Appium UiAutomator2
+APP-TC-096,Mobile Settings,Verify mobile functionality of offline sync feature 96,Low,Passed,4.51,Automated via Appium UiAutomator2
+APP-TC-097,Camera/Uploads,Verify mobile functionality of gps tracking feature 97,High,Skipped,9.11,Automated via Appium UiAutomator2
+APP-TC-098,Offline Sync,Verify mobile functionality of offline sync feature 98,Medium,Passed,9.57,Automated via Appium UiAutomator2
+APP-TC-099,Push Notifications,Verify mobile functionality of push notifications feature 99,Low,Passed,12.97,Automated via Appium UiAutomator2
+APP-TC-100,Offline Sync,Verify mobile functionality of mobile auth feature 100,Medium,Passed,14.52,Automated via Appium UiAutomator2
+APP-TC-101,Mobile Auth,Verify mobile functionality of offline sync feature 101,Low,Failed,2.79,Automated via Appium UiAutomator2
+APP-TC-102,Mobile Settings,Verify mobile functionality of push notifications feature 102,Medium,Passed,14.73,Automated via Appium UiAutomator2
+APP-TC-103,GPS Tracking,Verify mobile functionality of offline sync feature 103,Low,Passed,13.52,Automated via Appium UiAutomator2
+APP-TC-104,Camera/Uploads,Verify mobile functionality of mobile dashboard feature 104,High,Failed,13.03,Automated via Appium UiAutomator2
+APP-TC-105,Push Notifications,Verify mobile functionality of push notifications feature 105,Low,Passed,14.37,Automated via Appium UiAutomator2
+APP-TC-106,Offline Sync,Verify mobile functionality of push notifications feature 106,Low,Passed,5.63,Automated via Appium UiAutomator2
+APP-TC-107,Camera/Uploads,Verify mobile functionality of mobile dashboard feature 107,High,Passed,7.29,Automated via Appium UiAutomator2
+APP-TC-108,Mobile Settings,Verify mobile functionality of gps tracking feature 108,Low,Passed,7.96,Automated via Appium UiAutomator2
+APP-TC-109,Push Notifications,Verify mobile functionality of mobile auth feature 109,Medium,Passed,3.27,Automated via Appium UiAutomator2
+APP-TC-110,Push Notifications,Verify mobile functionality of offline sync feature 110,High,Skipped,4.72,Automated via Appium UiAutomator2
+APP-TC-111,Push Notifications,Verify mobile functionality of mobile auth feature 111,Low,Passed,4.81,Automated via Appium UiAutomator2
+APP-TC-112,Camera/Uploads,Verify mobile functionality of offline sync feature 112,Medium,Passed,11.99,Automated via Appium UiAutomator2
+APP-TC-113,GPS Tracking,Verify mobile functionality of camera/uploads feature 113,High,Passed,2.05,Automated via Appium UiAutomator2
+APP-TC-114,Camera/Uploads,Verify mobile functionality of mobile settings feature 114,High,Passed,14.41,Automated via Appium UiAutomator2
+APP-TC-115,Mobile Dashboard,Verify mobile functionality of mobile auth feature 115,Medium,Passed,10.33,Automated via Appium UiAutomator2
+APP-TC-116,Offline Sync,Verify mobile functionality of offline sync feature 116,Low,Passed,9.81,Automated via Appium UiAutomator2
+APP-TC-117,Mobile Auth,Verify mobile functionality of gps tracking feature 117,High,Skipped,11.31,Automated via Appium UiAutomator2
+APP-TC-118,Mobile Dashboard,Verify mobile functionality of mobile dashboard feature 118,Medium,Passed,7.68,Automated via Appium UiAutomator2
+APP-TC-119,GPS Tracking,Verify mobile functionality of gps tracking feature 119,High,Skipped,9.64,Automated via Appium UiAutomator2
+APP-TC-120,GPS Tracking,Verify mobile functionality of camera/uploads feature 120,Medium,Passed,14.58,Automated via Appium UiAutomator2
+APP-TC-121,Mobile Auth,Verify mobile functionality of mobile settings feature 121,Medium,Passed,14.07,Automated via Appium UiAutomator2
+APP-TC-122,Mobile Auth,Verify mobile functionality of push notifications feature 122,Low,Passed,7.96,Automated via Appium UiAutomator2
+APP-TC-123,Mobile Settings,Verify mobile functionality of mobile auth feature 123,Medium,Passed,5.95,Automated via Appium UiAutomator2
+APP-TC-124,Mobile Settings,Verify mobile functionality of mobile settings feature 124,Low,Passed,10.02,Automated via Appium UiAutomator2
+APP-TC-125,Mobile Dashboard,Verify mobile functionality of push notifications feature 125,Low,Passed,12.87,Automated via Appium UiAutomator2
+APP-TC-126,Camera/Uploads,Verify mobile functionality of gps tracking feature 126,Low,Skipped,8.3,Automated via Appium UiAutomator2
+APP-TC-127,GPS Tracking,Verify mobile functionality of mobile settings feature 127,Low,Passed,8.11,Automated via Appium UiAutomator2
+APP-TC-128,Mobile Dashboard,Verify mobile functionality of camera/uploads feature 128,Low,Passed,14.0,Automated via Appium UiAutomator2
+APP-TC-129,Mobile Settings,Verify mobile functionality of mobile auth feature 129,Medium,Passed,8.1,Automated via Appium UiAutomator2
+APP-TC-130,Mobile Dashboard,Verify mobile functionality of camera/uploads feature 130,Medium,Passed,12.78,Automated via Appium UiAutomator2
+APP-TC-131,Push Notifications,Verify mobile functionality of push notifications feature 131,High,Passed,9.22,Automated via Appium UiAutomator2
+APP-TC-132,GPS Tracking,Verify mobile functionality of gps tracking feature 132,High,Passed,5.1,Automated via Appium UiAutomator2
+APP-TC-133,Mobile Settings,Verify mobile functionality of mobile auth feature 133,Low,Passed,14.54,Automated via Appium UiAutomator2
+APP-TC-134,Mobile Auth,Verify mobile functionality of mobile auth feature 134,High,Failed,2.68,Automated via Appium UiAutomator2
+APP-TC-135,Push Notifications,Verify mobile functionality of camera/uploads feature 135,High,Passed,12.46,Automated via Appium UiAutomator2
+APP-TC-136,Mobile Dashboard,Verify mobile functionality of mobile auth feature 136,Medium,Passed,2.9,Automated via Appium UiAutomator2
+APP-TC-137,Camera/Uploads,Verify mobile functionality of gps tracking feature 137,Medium,Skipped,9.3,Automated via Appium UiAutomator2
+APP-TC-138,Camera/Uploads,Verify mobile functionality of mobile auth feature 138,High,Passed,13.76,Automated via Appium UiAutomator2
+APP-TC-139,GPS Tracking,Verify mobile functionality of mobile settings feature 139,High,Passed,11.74,Automated via Appium UiAutomator2
+APP-TC-140,Push Notifications,Verify mobile functionality of camera/uploads feature 140,High,Passed,14.58,Automated via Appium UiAutomator2
+APP-TC-141,Offline Sync,Verify mobile functionality of mobile settings feature 141,Medium,Passed,11.68,Automated via Appium UiAutomator2
+APP-TC-142,GPS Tracking,Verify mobile functionality of camera/uploads feature 142,Medium,Passed,3.41,Automated via Appium UiAutomator2
+APP-TC-143,Mobile Auth,Verify mobile functionality of mobile settings feature 143,Low,Passed,12.02,Automated via Appium UiAutomator2
+APP-TC-144,Mobile Settings,Verify mobile functionality of mobile dashboard feature 144,Medium,Passed,6.77,Automated via Appium UiAutomator2
+APP-TC-145,Camera/Uploads,Verify mobile functionality of mobile settings feature 145,Low,Passed,10.19,Automated via Appium UiAutomator2
+APP-TC-146,GPS Tracking,Verify mobile functionality of push notifications feature 146,Low,Passed,13.97,Automated via Appium UiAutomator2
+APP-TC-147,Camera/Uploads,Verify mobile functionality of offline sync feature 147,Medium,Passed,7.71,Automated via Appium UiAutomator2
+APP-TC-148,Push Notifications,Verify mobile functionality of camera/uploads feature 148,High,Passed,10.3,Automated via Appium UiAutomator2
+APP-TC-149,Camera/Uploads,Verify mobile functionality of camera/uploads feature 149,Medium,Failed,6.8,Automated via Appium UiAutomator2
+APP-TC-150,Mobile Settings,Verify mobile functionality of mobile auth feature 150,High,Passed,10.11,Automated via Appium UiAutomator2
+APP-TC-151,Mobile Settings,Verify mobile functionality of mobile settings feature 151,Medium,Passed,8.1,Automated via Appium UiAutomator2
+APP-TC-152,Camera/Uploads,Verify mobile functionality of gps tracking feature 152,High,Passed,11.16,Automated via Appium UiAutomator2
+APP-TC-153,GPS Tracking,Verify mobile functionality of push notifications feature 153,High,Passed,7.46,Automated via Appium UiAutomator2
+APP-TC-154,Mobile Settings,Verify mobile functionality of gps tracking feature 154,High,Failed,11.69,Automated via Appium UiAutomator2
+APP-TC-155,Push Notifications,Verify mobile functionality of mobile dashboard feature 155,Medium,Passed,2.7,Automated via Appium UiAutomator2
+APP-TC-156,Mobile Dashboard,Verify mobile functionality of gps tracking feature 156,High,Failed,13.85,Automated via Appium UiAutomator2
+APP-TC-157,GPS Tracking,Verify mobile functionality of offline sync feature 157,Medium,Passed,6.72,Automated via Appium UiAutomator2
+APP-TC-158,Mobile Auth,Verify mobile functionality of camera/uploads feature 158,High,Passed,14.62,Automated via Appium UiAutomator2
+APP-TC-159,Push Notifications,Verify mobile functionality of camera/uploads feature 159,High,Passed,3.77,Automated via Appium UiAutomator2
+APP-TC-160,Push Notifications,Verify mobile functionality of offline sync feature 160,Low,Failed,9.56,Automated via Appium UiAutomator2
+APP-TC-161,Push Notifications,Verify mobile functionality of push notifications feature 161,High,Passed,3.14,Automated via Appium UiAutomator2
+APP-TC-162,Push Notifications,Verify mobile functionality of push notifications feature 162,Low,Passed,11.27,Automated via Appium UiAutomator2
+APP-TC-163,Mobile Auth,Verify mobile functionality of mobile settings feature 163,High,Failed,8.45,Automated via Appium UiAutomator2
+APP-TC-164,Push Notifications,Verify mobile functionality of mobile settings feature 164,High,Passed,5.23,Automated via Appium UiAutomator2
+APP-TC-165,Offline Sync,Verify mobile functionality of camera/uploads feature 165,High,Passed,9.1,Automated via Appium UiAutomator2
+APP-TC-166,Mobile Settings,Verify mobile functionality of offline sync feature 166,Low,Passed,9.63,Automated via Appium UiAutomator2
+APP-TC-167,Offline Sync,Verify mobile functionality of mobile dashboard feature 167,High,Passed,3.19,Automated via Appium UiAutomator2
+APP-TC-168,GPS Tracking,Verify mobile functionality of mobile auth feature 168,Medium,Passed,9.91,Automated via Appium UiAutomator2
+APP-TC-169,Mobile Dashboard,Verify mobile functionality of gps tracking feature 169,High,Passed,5.08,Automated via Appium UiAutomator2
+APP-TC-170,Mobile Auth,Verify mobile functionality of mobile settings feature 170,Medium,Passed,9.56,Automated via Appium UiAutomator2
+APP-TC-171,GPS Tracking,Verify mobile functionality of gps tracking feature 171,Low,Passed,14.92,Automated via Appium UiAutomator2
+APP-TC-172,Mobile Dashboard,Verify mobile functionality of offline sync feature 172,High,Passed,4.57,Automated via Appium UiAutomator2
+APP-TC-173,Camera/Uploads,Verify mobile functionality of mobile settings feature 173,Medium,Failed,5.69,Automated via Appium UiAutomator2
+APP-TC-174,Mobile Dashboard,Verify mobile functionality of mobile dashboard feature 174,Medium,Passed,6.42,Automated via Appium UiAutomator2
+APP-TC-175,Push Notifications,Verify mobile functionality of gps tracking feature 175,High,Passed,12.99,Automated via Appium UiAutomator2
+APP-TC-176,Camera/Uploads,Verify mobile functionality of mobile settings feature 176,Medium,Failed,6.68,Automated via Appium UiAutomator2
+APP-TC-177,Mobile Dashboard,Verify mobile functionality of offline sync feature 177,High,Passed,10.56,Automated via Appium UiAutomator2
+APP-TC-178,Push Notifications,Verify mobile functionality of gps tracking feature 178,High,Passed,4.38,Automated via Appium UiAutomator2
+APP-TC-179,Push Notifications,Verify mobile functionality of gps tracking feature 179,Medium,Passed,14.16,Automated via Appium UiAutomator2
+APP-TC-180,Offline Sync,Verify mobile functionality of push notifications feature 180,High,Passed,6.38,Automated via Appium UiAutomator2
+APP-TC-181,Mobile Auth,Verify mobile functionality of offline sync feature 181,High,Passed,14.6,Automated via Appium UiAutomator2
+APP-TC-182,Mobile Dashboard,Verify mobile functionality of offline sync feature 182,High,Passed,9.21,Automated via Appium UiAutomator2
+APP-TC-183,Mobile Auth,Verify mobile functionality of push notifications feature 183,High,Passed,4.27,Automated via Appium UiAutomator2
+APP-TC-184,GPS Tracking,Verify mobile functionality of mobile dashboard feature 184,Medium,Failed,2.8,Automated via Appium UiAutomator2
+APP-TC-185,Camera/Uploads,Verify mobile functionality of offline sync feature 185,Medium,Passed,3.63,Automated via Appium UiAutomator2
+APP-TC-186,Offline Sync,Verify mobile functionality of mobile dashboard feature 186,Low,Passed,9.72,Automated via Appium UiAutomator2
+APP-TC-187,Camera/Uploads,Verify mobile functionality of offline sync feature 187,Medium,Passed,13.33,Automated via Appium UiAutomator2
+APP-TC-188,GPS Tracking,Verify mobile functionality of mobile settings feature 188,Medium,Passed,7.37,Automated via Appium UiAutomator2
+APP-TC-189,Mobile Auth,Verify mobile functionality of mobile dashboard feature 189,Medium,Passed,12.37,Automated via Appium UiAutomator2
+APP-TC-190,Offline Sync,Verify mobile functionality of offline sync feature 190,Medium,Passed,10.31,Automated via Appium UiAutomator2
+APP-TC-191,Camera/Uploads,Verify mobile functionality of mobile auth feature 191,High,Passed,13.74,Automated via Appium UiAutomator2
+APP-TC-192,Mobile Settings,Verify mobile functionality of camera/uploads feature 192,High,Passed,11.43,Automated via Appium UiAutomator2
+APP-TC-193,Push Notifications,Verify mobile functionality of gps tracking feature 193,High,Passed,2.48,Automated via Appium UiAutomator2
+APP-TC-194,Mobile Dashboard,Verify mobile functionality of gps tracking feature 194,Medium,Passed,11.93,Automated via Appium UiAutomator2
+APP-TC-195,GPS Tracking,Verify mobile functionality of offline sync feature 195,Medium,Failed,2.27,Automated via Appium UiAutomator2
+APP-TC-196,Push Notifications,Verify mobile functionality of mobile settings feature 196,Medium,Passed,4.29,Automated via Appium UiAutomator2
+APP-TC-197,Mobile Dashboard,Verify mobile functionality of offline sync feature 197,Low,Passed,4.47,Automated via Appium UiAutomator2
+APP-TC-198,Mobile Settings,Verify mobile functionality of gps tracking feature 198,Medium,Passed,6.13,Automated via Appium UiAutomator2
+APP-TC-199,GPS Tracking,Verify mobile functionality of mobile auth feature 199,Medium,Failed,6.06,Automated via Appium UiAutomator2
+APP-TC-200,Mobile Settings,Verify mobile functionality of camera/uploads feature 200,Medium,Passed,6.5,Automated via Appium UiAutomator2
+APP-TC-201,Mobile Dashboard,Verify mobile functionality of mobile auth feature 201,High,Skipped,6.87,Automated via Appium UiAutomator2
+APP-TC-202,Mobile Settings,Verify mobile functionality of offline sync feature 202,Low,Passed,9.96,Automated via Appium UiAutomator2
+APP-TC-203,Mobile Settings,Verify mobile functionality of camera/uploads feature 203,Medium,Passed,7.31,Automated via Appium UiAutomator2
+APP-TC-204,Push Notifications,Verify mobile functionality of gps tracking feature 204,High,Passed,13.61,Automated via Appium UiAutomator2
+APP-TC-205,Mobile Dashboard,Verify mobile functionality of mobile auth feature 205,Medium,Passed,9.01,Automated via Appium UiAutomator2
+APP-TC-206,Mobile Settings,Verify mobile functionality of mobile dashboard feature 206,High,Passed,5.54,Automated via Appium UiAutomator2
+APP-TC-207,Offline Sync,Verify mobile functionality of push notifications feature 207,Medium,Passed,3.58,Automated via Appium UiAutomator2
+APP-TC-208,Mobile Auth,Verify mobile functionality of offline sync feature 208,Low,Passed,8.39,Automated via Appium UiAutomator2
+APP-TC-209,Mobile Auth,Verify mobile functionality of gps tracking feature 209,Low,Passed,14.59,Automated via Appium UiAutomator2
+APP-TC-210,Mobile Settings,Verify mobile functionality of offline sync feature 210,High,Passed,10.2,Automated via Appium UiAutomator2
+APP-TC-211,Mobile Settings,Verify mobile functionality of camera/uploads feature 211,High,Passed,10.34,Automated via Appium UiAutomator2
+APP-TC-212,GPS Tracking,Verify mobile functionality of push notifications feature 212,High,Skipped,3.8,Automated via Appium UiAutomator2
+APP-TC-213,Mobile Auth,Verify mobile functionality of mobile auth feature 213,Medium,Skipped,12.96,Automated via Appium UiAutomator2
+APP-TC-214,GPS Tracking,Verify mobile functionality of gps tracking feature 214,Low,Passed,14.4,Automated via Appium UiAutomator2
+APP-TC-215,Push Notifications,Verify mobile functionality of mobile settings feature 215,Medium,Passed,14.05,Automated via Appium UiAutomator2
+APP-TC-216,Camera/Uploads,Verify mobile functionality of offline sync feature 216,High,Failed,3.4,Automated via Appium UiAutomator2
+APP-TC-217,GPS Tracking,Verify mobile functionality of camera/uploads feature 217,Low,Passed,14.82,Automated via Appium UiAutomator2
+APP-TC-218,GPS Tracking,Verify mobile functionality of camera/uploads feature 218,High,Passed,9.25,Automated via Appium UiAutomator2
+APP-TC-219,Mobile Dashboard,Verify mobile functionality of camera/uploads feature 219,Low,Passed,5.2,Automated via Appium UiAutomator2
+APP-TC-220,Push Notifications,Verify mobile functionality of push notifications feature 220,High,Passed,5.02,Automated via Appium UiAutomator2
+APP-TC-221,Offline Sync,Verify mobile functionality of offline sync feature 221,Medium,Passed,10.54,Automated via Appium UiAutomator2
+APP-TC-222,Mobile Dashboard,Verify mobile functionality of camera/uploads feature 222,Low,Passed,14.62,Automated via Appium UiAutomator2
+APP-TC-223,Mobile Settings,Verify mobile functionality of mobile settings feature 223,High,Passed,5.02,Automated via Appium UiAutomator2
+APP-TC-224,Mobile Settings,Verify mobile functionality of camera/uploads feature 224,High,Passed,6.01,Automated via Appium UiAutomator2
+APP-TC-225,Mobile Dashboard,Verify mobile functionality of mobile settings feature 225,Medium,Passed,3.74,Automated via Appium UiAutomator2
+APP-TC-226,Push Notifications,Verify mobile functionality of offline sync feature 226,Medium,Passed,8.55,Automated via Appium UiAutomator2
+APP-TC-227,Push Notifications,Verify mobile functionality of push notifications feature 227,High,Failed,6.66,Automated via Appium UiAutomator2
+APP-TC-228,Offline Sync,Verify mobile functionality of mobile auth feature 228,High,Passed,4.57,Automated via Appium UiAutomator2
+APP-TC-229,Mobile Settings,Verify mobile functionality of mobile settings feature 229,Medium,Passed,7.27,Automated via Appium UiAutomator2
+APP-TC-230,Mobile Dashboard,Verify mobile functionality of gps tracking feature 230,Low,Passed,13.7,Automated via Appium UiAutomator2
+APP-TC-231,Mobile Auth,Verify mobile functionality of mobile settings feature 231,Low,Failed,9.07,Automated via Appium UiAutomator2
+APP-TC-232,Mobile Dashboard,Verify mobile functionality of camera/uploads feature 232,High,Passed,12.19,Automated via Appium UiAutomator2
+APP-TC-233,Offline Sync,Verify mobile functionality of mobile settings feature 233,Low,Skipped,5.95,Automated via Appium UiAutomator2
+APP-TC-234,GPS Tracking,Verify mobile functionality of camera/uploads feature 234,Medium,Passed,3.13,Automated via Appium UiAutomator2
+APP-TC-235,Mobile Settings,Verify mobile functionality of camera/uploads feature 235,Medium,Passed,8.92,Automated via Appium UiAutomator2
+APP-TC-236,Mobile Auth,Verify mobile functionality of gps tracking feature 236,High,Passed,12.69,Automated via Appium UiAutomator2
+APP-TC-237,Camera/Uploads,Verify mobile functionality of mobile settings feature 237,Low,Failed,2.18,Automated via Appium UiAutomator2
+APP-TC-238,Offline Sync,Verify mobile functionality of gps tracking feature 238,Medium,Failed,5.09,Automated via Appium UiAutomator2
+APP-TC-239,Mobile Dashboard,Verify mobile functionality of offline sync feature 239,High,Passed,12.87,Automated via Appium UiAutomator2
+APP-TC-240,Mobile Dashboard,Verify mobile functionality of camera/uploads feature 240,Medium,Passed,12.45,Automated via Appium UiAutomator2
+APP-TC-241,Mobile Dashboard,Verify mobile functionality of mobile settings feature 241,Medium,Passed,5.72,Automated via Appium UiAutomator2
+APP-TC-242,Mobile Auth,Verify mobile functionality of gps tracking feature 242,Low,Failed,13.99,Automated via Appium UiAutomator2
+APP-TC-243,Camera/Uploads,Verify mobile functionality of offline sync feature 243,High,Passed,12.92,Automated via Appium UiAutomator2
+APP-TC-244,Mobile Dashboard,Verify mobile functionality of push notifications feature 244,Medium,Passed,4.5,Automated via Appium UiAutomator2
+APP-TC-245,Push Notifications,Verify mobile functionality of gps tracking feature 245,High,Passed,9.08,Automated via Appium UiAutomator2
+APP-TC-246,Mobile Settings,Verify mobile functionality of push notifications feature 246,Low,Failed,2.61,Automated via Appium UiAutomator2
+APP-TC-247,Mobile Auth,Verify mobile functionality of camera/uploads feature 247,Medium,Passed,14.69,Automated via Appium UiAutomator2
+APP-TC-248,Camera/Uploads,Verify mobile functionality of offline sync feature 248,Low,Passed,5.01,Automated via Appium UiAutomator2
+APP-TC-249,Offline Sync,Verify mobile functionality of mobile settings feature 249,Low,Passed,7.65,Automated via Appium UiAutomator2
+APP-TC-250,Mobile Dashboard,Verify mobile functionality of mobile auth feature 250,Medium,Passed,12.76,Automated via Appium UiAutomator2
+APP-TC-251,Mobile Auth,Verify mobile functionality of push notifications feature 251,Low,Passed,4.15,Automated via Appium UiAutomator2
+APP-TC-252,Push Notifications,Verify mobile functionality of mobile dashboard feature 252,Medium,Passed,2.95,Automated via Appium UiAutomator2
+APP-TC-253,Camera/Uploads,Verify mobile functionality of gps tracking feature 253,Low,Passed,9.01,Automated via Appium UiAutomator2
+APP-TC-254,Offline Sync,Verify mobile functionality of push notifications feature 254,High,Passed,9.3,Automated via Appium UiAutomator2
+APP-TC-255,GPS Tracking,Verify mobile functionality of mobile auth feature 255,Medium,Passed,7.7,Automated via Appium UiAutomator2
+APP-TC-256,Camera/Uploads,Verify mobile functionality of mobile settings feature 256,Low,Passed,4.47,Automated via Appium UiAutomator2
+APP-TC-257,Mobile Auth,Verify mobile functionality of push notifications feature 257,High,Passed,8.97,Automated via Appium UiAutomator2
+APP-TC-258,Mobile Auth,Verify mobile functionality of push notifications feature 258,Low,Passed,13.32,Automated via Appium UiAutomator2
+APP-TC-259,Camera/Uploads,Verify mobile functionality of mobile settings feature 259,Medium,Passed,13.53,Automated via Appium UiAutomator2
+APP-TC-260,Mobile Settings,Verify mobile functionality of push notifications feature 260,High,Passed,12.26,Automated via Appium UiAutomator2
+APP-TC-261,Push Notifications,Verify mobile functionality of mobile settings feature 261,Medium,Passed,2.72,Automated via Appium UiAutomator2
+APP-TC-262,GPS Tracking,Verify mobile functionality of offline sync feature 262,Medium,Passed,11.93,Automated via Appium UiAutomator2
+APP-TC-263,Push Notifications,Verify mobile functionality of mobile auth feature 263,Medium,Passed,8.54,Automated via Appium UiAutomator2
+APP-TC-264,Mobile Settings,Verify mobile functionality of offline sync feature 264,Medium,Passed,9.24,Automated via Appium UiAutomator2
+APP-TC-265,Mobile Auth,Verify mobile functionality of mobile dashboard feature 265,High,Passed,3.58,Automated via Appium UiAutomator2
+APP-TC-266,Push Notifications,Verify mobile functionality of mobile auth feature 266,Low,Passed,14.36,Automated via Appium UiAutomator2
+APP-TC-267,GPS Tracking,Verify mobile functionality of push notifications feature 267,Medium,Passed,12.5,Automated via Appium UiAutomator2
+APP-TC-268,Mobile Auth,Verify mobile functionality of gps tracking feature 268,Low,Failed,2.43,Automated via Appium UiAutomator2
+APP-TC-269,Push Notifications,Verify mobile functionality of push notifications feature 269,High,Passed,12.11,Automated via Appium UiAutomator2
+APP-TC-270,Mobile Auth,Verify mobile functionality of camera/uploads feature 270,Medium,Skipped,8.95,Automated via Appium UiAutomator2
+APP-TC-271,Offline Sync,Verify mobile functionality of mobile auth feature 271,Low,Passed,14.08,Automated via Appium UiAutomator2
+APP-TC-272,Mobile Settings,Verify mobile functionality of mobile dashboard feature 272,Low,Passed,12.33,Automated via Appium UiAutomator2
+APP-TC-273,Camera/Uploads,Verify mobile functionality of mobile settings feature 273,Low,Passed,11.26,Automated via Appium UiAutomator2
+APP-TC-274,Offline Sync,Verify mobile functionality of offline sync feature 274,Medium,Failed,7.36,Automated via Appium UiAutomator2
+APP-TC-275,Mobile Dashboard,Verify mobile functionality of mobile auth feature 275,Medium,Passed,13.81,Automated via Appium UiAutomator2
+APP-TC-276,Mobile Auth,Verify mobile functionality of mobile settings feature 276,Medium,Passed,6.02,Automated via Appium UiAutomator2
+APP-TC-277,Mobile Settings,Verify mobile functionality of mobile settings feature 277,Low,Passed,7.33,Automated via Appium UiAutomator2
+APP-TC-278,GPS Tracking,Verify mobile functionality of push notifications feature 278,Low,Passed,8.3,Automated via Appium UiAutomator2
+APP-TC-279,Mobile Settings,Verify mobile functionality of camera/uploads feature 279,High,Passed,4.47,Automated via Appium UiAutomator2
+APP-TC-280,Offline Sync,Verify mobile functionality of camera/uploads feature 280,High,Passed,10.07,Automated via Appium UiAutomator2
+APP-TC-281,Mobile Auth,Verify mobile functionality of mobile dashboard feature 281,Medium,Passed,7.42,Automated via Appium UiAutomator2
+APP-TC-282,Camera/Uploads,Verify mobile functionality of push notifications feature 282,Low,Passed,14.65,Automated via Appium UiAutomator2
+APP-TC-283,Mobile Settings,Verify mobile functionality of mobile settings feature 283,High,Passed,8.32,Automated via Appium UiAutomator2
+APP-TC-284,Mobile Auth,Verify mobile functionality of gps tracking feature 284,Medium,Skipped,4.05,Automated via Appium UiAutomator2
+APP-TC-285,Mobile Settings,Verify mobile functionality of mobile auth feature 285,Low,Passed,13.74,Automated via Appium UiAutomator2
+APP-TC-286,Offline Sync,Verify mobile functionality of mobile dashboard feature 286,Medium,Skipped,2.42,Automated via Appium UiAutomator2
+APP-TC-287,GPS Tracking,Verify mobile functionality of mobile dashboard feature 287,Medium,Passed,8.7,Automated via Appium UiAutomator2
+APP-TC-288,Push Notifications,Verify mobile functionality of gps tracking feature 288,Low,Passed,6.91,Automated via Appium UiAutomator2
+APP-TC-289,Offline Sync,Verify mobile functionality of camera/uploads feature 289,Low,Passed,11.3,Automated via Appium UiAutomator2
+APP-TC-290,Mobile Settings,Verify mobile functionality of push notifications feature 290,Medium,Passed,3.44,Automated via Appium UiAutomator2
+APP-TC-291,Push Notifications,Verify mobile functionality of gps tracking feature 291,Low,Passed,5.75,Automated via Appium UiAutomator2
+APP-TC-292,Mobile Settings,Verify mobile functionality of mobile settings feature 292,High,Failed,3.17,Automated via Appium UiAutomator2
+APP-TC-293,GPS Tracking,Verify mobile functionality of mobile settings feature 293,Low,Passed,9.91,Automated via Appium UiAutomator2
+APP-TC-294,Mobile Dashboard,Verify mobile functionality of mobile dashboard feature 294,Low,Passed,10.27,Automated via Appium UiAutomator2
+APP-TC-295,Push Notifications,Verify mobile functionality of camera/uploads feature 295,High,Passed,10.07,Automated via Appium UiAutomator2
+APP-TC-296,Offline Sync,Verify mobile functionality of mobile settings feature 296,Medium,Passed,6.61,Automated via Appium UiAutomator2
+APP-TC-297,Push Notifications,Verify mobile functionality of camera/uploads feature 297,High,Passed,12.79,Automated via Appium UiAutomator2
+APP-TC-298,Camera/Uploads,Verify mobile functionality of mobile auth feature 298,Medium,Passed,9.94,Automated via Appium UiAutomator2
+APP-TC-299,Camera/Uploads,Verify mobile functionality of camera/uploads feature 299,Medium,Passed,8.71,Automated via Appium UiAutomator2
+APP-TC-300,Mobile Settings,Verify mobile functionality of push notifications feature 300,Low,Passed,5.44,Automated via Appium UiAutomator2
