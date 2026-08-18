@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   build-and-test:
-    runs-on: macos-latest # Using macOS for hardware acceleration in emulator
+    runs-on: ubuntu-latest # Using ubuntu-latest for reliable x86_64 KVM hardware acceleration
     timeout-minutes: 60
 
     steps:
@@ -72,11 +72,26 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
-          target: default
+          target: google_apis
           arch: x86_64
-          profile: pixel_4
+          profile: pixel_5
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -camera-front none
+          emulator-boot-timeout: 600
+          disable-animations: true
           script: |
-            echo "Emulator booted successfully. Finding APK..."
+            echo "Emulator booted successfully. Verifying ADB devices..."
+            adb devices
+            
+            echo "Verifying boot status..."
+            BOOT_STATUS=$(adb shell getprop sys.boot_completed | tr -d '\r')
+            echo "sys.boot_completed = $BOOT_STATUS"
+            if [ "$BOOT_STATUS" != "1" ]; then
+              echo "Emulator boot_completed is not 1! Failing."
+              exit 1
+            fi
+            echo "Emulator is verified and fully responsive."
+            
+            echo "Finding APK..."
             export ACTUAL_APK_PATH=$(find $GITHUB_WORKSPACE/android-app/app/build/outputs/apk/debug -name "*.apk" | head -n 1)
             echo "Found APK at: $ACTUAL_APK_PATH"
             
