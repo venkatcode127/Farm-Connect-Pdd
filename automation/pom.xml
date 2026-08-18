@@ -130,7 +130,7 @@
                         </property>
                     </properties>
                     <argLine>-Dfile.encoding=UTF-8</argLine>
-                    <testFailureIgnore>true</testFailureIgnore>
+                    <testFailureIgnore>false</testFailureIgnore>
                     <reportsDirectory>${project.basedir}/test-output</reportsDirectory>
                 </configuration>
             </plugin>

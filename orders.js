@@ -277,10 +277,6 @@ function renderOrders() {
       </div>
       
       <div class="amz-order-body">
-        <div class="amz-order-status ${statusClass}">
-           <h3>${statusInfo.icon} ${hi ? statusInfo.labelHi : statusInfo.label}</h3>
-           <p>${statusDesc}</p>
-        </div>
         
         <div class="amz-order-content">
            <div class="amz-order-image">${listing.emoji}</div>
@@ -403,7 +399,6 @@ function viewOrderDetail(orderId) {
     <div class="order-detail-header-info">
       <div>
         <span class="order-detail-id">${hi ? 'ऑर्डर' : 'Order'} #${order.id}</span>
-        <span class="order-status-badge ${isCancelled ? 'status-cancelled' : order.status === 'delivered' ? 'status-delivered' : 'status-active'}">${statusInfo.icon} ${hi ? statusInfo.labelHi : statusInfo.label}</span>
         ${roleLabel ? `<span style="font-size:0.8rem;color:var(--text-muted);margin-left:8px">${roleLabel}</span>` : ''}
       </div>
       <span class="order-detail-date">${new Date(order.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
@@ -430,10 +425,6 @@ function viewOrderDetail(orderId) {
       <div class="order-detail-field">
         <span class="odf-label">${hi ? 'कुल राशि' : 'Total Amount'}</span>
         <span class="odf-value" style="color:var(--primary-glow);font-size:1.2rem">₹${order.totalPrice.toLocaleString()}</span>
-      </div>
-      <div class="order-detail-field">
-        <span class="odf-label">${hi ? 'भुगतान' : 'Payment'}</span>
-        <span class="odf-value">${order.paymentMethod}</span>
       </div>
     </div>
 

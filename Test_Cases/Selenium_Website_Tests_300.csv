@@ -1,0 +1,901 @@
+Test Case ID,Module,Description,Steps to Execute,Expected Result,Status
+WEB-001,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-002,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,FAIL
+WEB-003,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,FAIL
+WEB-004,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,NOT RUN
+WEB-005,Navigate,Verify navigate functionality under edge case conditions,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-006,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-007,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-008,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-009,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-010,Filter,Verify filter by location functionality under edge case conditions,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-011,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-012,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-013,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-014,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-015,Register,Verify register functionality under edge case conditions,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-016,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-017,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,FAIL
+WEB-018,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-019,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-020,Add,Verify add listing functionality under edge case conditions,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-021,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-022,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,PASS
+WEB-023,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-024,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-025,Navigate,Verify navigate functionality under edge case conditions,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-026,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-027,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-028,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-029,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-030,View,Verify view order functionality under edge case conditions,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-031,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,FAIL
+WEB-032,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-033,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-034,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-035,Add,Verify add listing functionality under edge case conditions,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-036,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-037,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-038,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-039,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,FAIL
+WEB-040,Search,Verify search crop functionality under edge case conditions,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-041,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-042,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-043,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-044,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-045,Login,Verify login functionality under edge case conditions,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-046,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-047,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-048,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-049,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-050,Add,Verify add listing functionality under edge case conditions,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-051,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,PASS
+WEB-052,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-053,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-054,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,FAIL
+WEB-055,Navigate,Verify navigate functionality under edge case conditions,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-056,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-057,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,FAIL
+WEB-058,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,FAIL
+WEB-059,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-060,Add,Verify add listing functionality under edge case conditions,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters. Handles edge cases gracefully.,FAIL
+WEB-061,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,NOT RUN
+WEB-062,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-063,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-064,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-065,Filter,Verify filter by location functionality under edge case conditions,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters. Handles edge cases gracefully.,NOT RUN
+WEB-066,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,NOT RUN
+WEB-067,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-068,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-069,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,PASS
+WEB-070,Register,Verify register functionality under edge case conditions,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-071,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-072,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-073,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,NOT RUN
+WEB-074,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-075,Login,Verify login functionality under edge case conditions,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters. Handles edge cases gracefully.,FAIL
+WEB-076,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-077,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,PASS
+WEB-078,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,FAIL
+WEB-079,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-080,Navigate,Verify navigate functionality under edge case conditions,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-081,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-082,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-083,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-084,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-085,Add,Verify add listing functionality under edge case conditions,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-086,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-087,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-088,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-089,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-090,Register,Verify register functionality under edge case conditions,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-091,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-092,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-093,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-094,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-095,View,Verify view order functionality under edge case conditions,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-096,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,NOT RUN
+WEB-097,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-098,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-099,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-100,Login,Verify login functionality under edge case conditions,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-101,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-102,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-103,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-104,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-105,Update,Verify update profile functionality under edge case conditions,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-106,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-107,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,NOT RUN
+WEB-108,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-109,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-110,View,Verify view order functionality under edge case conditions,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-111,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-112,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-113,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-114,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-115,Navigate,Verify navigate functionality under edge case conditions,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters. Handles edge cases gracefully.,FAIL
+WEB-116,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-117,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-118,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-119,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-120,Register,Verify register functionality under edge case conditions,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-121,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-122,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-123,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-124,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-125,Update,Verify update profile functionality under edge case conditions,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-126,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,FAIL
+WEB-127,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-128,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-129,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-130,Login,Verify login functionality under edge case conditions,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters. Handles edge cases gracefully.,NOT RUN
+WEB-131,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-132,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-133,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-134,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-135,Update,Verify update profile functionality under edge case conditions,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-136,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-137,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-138,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-139,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,PASS
+WEB-140,Search,Verify search crop functionality under edge case conditions,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-141,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-142,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-143,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-144,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-145,Navigate,Verify navigate functionality under edge case conditions,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-146,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-147,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-148,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-149,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-150,Login,Verify login functionality under edge case conditions,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-151,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,FAIL
+WEB-152,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-153,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-154,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-155,Login,Verify login functionality under edge case conditions,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-156,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-157,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-158,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,PASS
+WEB-159,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-160,Search,Verify search crop functionality under edge case conditions,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-161,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-162,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-163,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-164,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,FAIL
+WEB-165,Search,Verify search crop functionality under edge case conditions,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-166,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-167,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-168,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-169,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-170,Filter,Verify filter by location functionality under edge case conditions,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-171,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-172,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-173,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-174,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-175,Search,Verify search crop functionality under edge case conditions,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-176,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-177,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-178,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-179,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-180,Update,Verify update profile functionality under edge case conditions,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-181,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,NOT RUN
+WEB-182,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-183,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,FAIL
+WEB-184,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-185,View,Verify view order functionality under edge case conditions,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-186,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-187,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,NOT RUN
+WEB-188,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-189,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-190,Login,Verify login functionality under edge case conditions,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-191,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,FAIL
+WEB-192,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-193,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-194,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-195,Navigate,Verify navigate functionality under edge case conditions,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-196,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-197,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,FAIL
+WEB-198,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-199,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-200,View,Verify view order functionality under edge case conditions,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-201,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-202,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,NOT RUN
+WEB-203,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,PASS
+WEB-204,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-205,Navigate,Verify navigate functionality under edge case conditions,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters. Handles edge cases gracefully.,FAIL
+WEB-206,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-207,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,PASS
+WEB-208,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,PASS
+WEB-209,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-210,Add,Verify add listing functionality under edge case conditions,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-211,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,FAIL
+WEB-212,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,NOT RUN
+WEB-213,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-214,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-215,Add,Verify add listing functionality under edge case conditions,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-216,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-217,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-218,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-219,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-220,Login,Verify login functionality under edge case conditions,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters. Handles edge cases gracefully.,FAIL
+WEB-221,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-222,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-223,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-224,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,FAIL
+WEB-225,Filter,Verify filter by location functionality under edge case conditions,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-226,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,PASS
+WEB-227,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-228,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-229,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-230,Login,Verify login functionality under edge case conditions,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-231,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-232,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,FAIL
+WEB-233,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-234,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-235,Add,Verify add listing functionality under edge case conditions,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-236,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-237,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,PASS
+WEB-238,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-239,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-240,Login,Verify login functionality under edge case conditions,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-241,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-242,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-243,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-244,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-245,Add,Verify add listing functionality under edge case conditions,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-246,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-247,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,FAIL
+WEB-248,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,FAIL
+WEB-249,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-250,Filter,Verify filter by location functionality under edge case conditions,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-251,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-252,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-253,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-254,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,NOT RUN
+WEB-255,Navigate,Verify navigate functionality under edge case conditions,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-256,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-257,Add,Verify add listing functionality,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters.,PASS
+WEB-258,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-259,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-260,Add,Verify add listing functionality under edge case conditions,"1. Setup environment
+2. Execute Add Listing
+3. Validate response/UI",Add Listing executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-261,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-262,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-263,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-264,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-265,Filter,Verify filter by location functionality under edge case conditions,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-266,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-267,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-268,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-269,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,FAIL
+WEB-270,Register,Verify register functionality under edge case conditions,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-271,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-272,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-273,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-274,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,PASS
+WEB-275,Update,Verify update profile functionality under edge case conditions,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-276,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,PASS
+WEB-277,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-278,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,PASS
+WEB-279,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-280,Login,Verify login functionality under edge case conditions,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-281,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-282,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,PASS
+WEB-283,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-284,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-285,Update,Verify update profile functionality under edge case conditions,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-286,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,FAIL
+WEB-287,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-288,Update,Verify update profile functionality,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters.,PASS
+WEB-289,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,PASS
+WEB-290,Update,Verify update profile functionality under edge case conditions,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-291,View,Verify view order functionality,"1. Setup environment
+2. Execute View Order
+3. Validate response/UI",View Order executes successfully within acceptable parameters.,FAIL
+WEB-292,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,PASS
+WEB-293,Navigate,Verify navigate functionality,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters.,FAIL
+WEB-294,Login,Verify login functionality,"1. Setup environment
+2. Execute Login
+3. Validate response/UI",Login executes successfully within acceptable parameters.,PASS
+WEB-295,Navigate,Verify navigate functionality under edge case conditions,"1. Setup environment
+2. Execute Navigate
+3. Validate response/UI",Navigate executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+WEB-296,Filter,Verify filter by location functionality,"1. Setup environment
+2. Execute Filter by Location
+3. Validate response/UI",Filter by Location executes successfully within acceptable parameters.,PASS
+WEB-297,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,FAIL
+WEB-298,Search,Verify search crop functionality,"1. Setup environment
+2. Execute Search Crop
+3. Validate response/UI",Search Crop executes successfully within acceptable parameters.,NOT RUN
+WEB-299,Register,Verify register functionality,"1. Setup environment
+2. Execute Register
+3. Validate response/UI",Register executes successfully within acceptable parameters.,NOT RUN
+WEB-300,Update,Verify update profile functionality under edge case conditions,"1. Setup environment
+2. Execute Update Profile
+3. Validate response/UI",Update Profile executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS

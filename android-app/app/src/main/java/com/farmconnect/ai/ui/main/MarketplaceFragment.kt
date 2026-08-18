@@ -32,7 +32,18 @@ class MarketplaceFragment : Fragment() {
 
     private fun setupRecyclerView() {
         adapter = ListingAdapter(emptyList()) { listing ->
-            Toast.makeText(context, "Clicked: ${listing.crop}", Toast.LENGTH_SHORT).show()
+            val intent = Intent(context, ListingDetailActivity::class.java).apply {
+                putExtra("ID", listing.id)
+                putExtra("CROP", listing.crop)
+                putExtra("EMOJI", listing.emoji)
+                putExtra("SELLER", listing.name)
+                putExtra("SELLER_PHONE", listing.contact)
+                putExtra("PRICE", listing.price)
+                putExtra("QTY", listing.qty)
+                putExtra("LOCATION", listing.location)
+                putExtra("DESC", listing.desc)
+            }
+            startActivity(intent)
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = adapter
@@ -50,7 +61,7 @@ class MarketplaceFragment : Fragment() {
         
         lifecycleScope.launch {
             try {
-                val response = RetrofitClient.apiService.getListings()
+                val response = RetrofitClient.getApiService(requireContext()).getListings()
                 if (response.isSuccessful && response.body() != null) {
                     adapter.updateData(response.body()!!)
                     binding.recyclerView.visibility = View.VISIBLE

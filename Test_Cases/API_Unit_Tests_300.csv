@@ -1,0 +1,901 @@
+Test Case ID,Module,Description,Steps to Execute,Expected Result,Status
+API-001,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-002,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-003,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-004,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-005,PUT,Verify put /orders functionality under edge case conditions,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-006,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-007,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-008,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,FAIL
+API-009,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-010,POST,Verify post /register functionality under edge case conditions,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-011,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-012,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-013,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-014,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-015,GET,Verify get /profile functionality under edge case conditions,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-016,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-017,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-018,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-019,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-020,POST,Verify post /register functionality under edge case conditions,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-021,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-022,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-023,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-024,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-025,POST,Verify post /register functionality under edge case conditions,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-026,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,PASS
+API-027,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,FAIL
+API-028,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,NOT RUN
+API-029,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-030,DELETE,Verify delete /session functionality under edge case conditions,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-031,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,FAIL
+API-032,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-033,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-034,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-035,GET,Verify get /listings functionality under edge case conditions,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-036,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,PASS
+API-037,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,PASS
+API-038,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-039,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-040,GET,Verify get /listings functionality under edge case conditions,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-041,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-042,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-043,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-044,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,FAIL
+API-045,POST,Verify post /login functionality under edge case conditions,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-046,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,FAIL
+API-047,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,NOT RUN
+API-048,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-049,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-050,GET,Verify get /profile functionality under edge case conditions,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-051,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-052,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-053,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-054,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-055,GET,Verify get /listings functionality under edge case conditions,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-056,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,PASS
+API-057,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-058,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-059,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-060,POST,Verify post /register functionality under edge case conditions,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-061,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-062,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-063,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-064,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,FAIL
+API-065,POST,Verify post /register functionality under edge case conditions,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-066,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-067,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-068,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-069,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-070,POST,Verify post /listings functionality under edge case conditions,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-071,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-072,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-073,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-074,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-075,GET,Verify get /profile functionality under edge case conditions,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-076,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,PASS
+API-077,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-078,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-079,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-080,POST,Verify post /register functionality under edge case conditions,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-081,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,FAIL
+API-082,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-083,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-084,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-085,POST,Verify post /register functionality under edge case conditions,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-086,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-087,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-088,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,NOT RUN
+API-089,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-090,PUT,Verify put /orders functionality under edge case conditions,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-091,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-092,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,NOT RUN
+API-093,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-094,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-095,GET,Verify get /orders functionality under edge case conditions,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-096,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-097,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-098,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-099,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-100,GET,Verify get /profile functionality under edge case conditions,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-101,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,FAIL
+API-102,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-103,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-104,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-105,PUT,Verify put /orders functionality under edge case conditions,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-106,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-107,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-108,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-109,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-110,DELETE,Verify delete /session functionality under edge case conditions,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-111,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-112,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-113,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-114,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-115,GET,Verify get /listings functionality under edge case conditions,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-116,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-117,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-118,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-119,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-120,GET,Verify get /profile functionality under edge case conditions,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-121,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-122,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-123,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-124,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-125,GET,Verify get /profile functionality under edge case conditions,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters. Handles edge cases gracefully.,FAIL
+API-126,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,PASS
+API-127,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-128,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-129,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,NOT RUN
+API-130,PUT,Verify put /orders functionality under edge case conditions,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-131,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-132,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-133,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-134,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,FAIL
+API-135,DELETE,Verify delete /session functionality under edge case conditions,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-136,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-137,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-138,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-139,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-140,POST,Verify post /listings functionality under edge case conditions,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-141,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-142,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-143,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-144,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-145,PUT,Verify put /orders functionality under edge case conditions,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-146,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-147,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-148,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,FAIL
+API-149,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-150,PUT,Verify put /orders functionality under edge case conditions,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-151,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,FAIL
+API-152,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-153,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-154,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-155,GET,Verify get /listings functionality under edge case conditions,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-156,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-157,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-158,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-159,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-160,GET,Verify get /listings functionality under edge case conditions,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-161,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-162,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-163,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-164,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-165,GET,Verify get /orders functionality under edge case conditions,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters. Handles edge cases gracefully.,FAIL
+API-166,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,PASS
+API-167,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-168,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-169,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-170,POST,Verify post /register functionality under edge case conditions,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-171,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,NOT RUN
+API-172,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,PASS
+API-173,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-174,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-175,PUT,Verify put /orders functionality under edge case conditions,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-176,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-177,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-178,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-179,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-180,PUT,Verify put /orders functionality under edge case conditions,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters. Handles edge cases gracefully.,FAIL
+API-181,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-182,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,FAIL
+API-183,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-184,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-185,GET,Verify get /profile functionality under edge case conditions,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-186,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-187,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,FAIL
+API-188,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-189,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,PASS
+API-190,POST,Verify post /listings functionality under edge case conditions,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-191,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,FAIL
+API-192,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-193,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,FAIL
+API-194,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,FAIL
+API-195,POST,Verify post /login functionality under edge case conditions,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-196,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-197,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-198,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-199,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-200,GET,Verify get /profile functionality under edge case conditions,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-201,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-202,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-203,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-204,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-205,POST,Verify post /login functionality under edge case conditions,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-206,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,PASS
+API-207,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-208,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-209,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,FAIL
+API-210,POST,Verify post /login functionality under edge case conditions,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-211,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-212,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-213,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-214,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-215,PUT,Verify put /orders functionality under edge case conditions,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters. Handles edge cases gracefully.,NOT RUN
+API-216,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,FAIL
+API-217,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-218,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-219,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-220,GET,Verify get /listings functionality under edge case conditions,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-221,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,PASS
+API-222,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-223,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-224,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,NOT RUN
+API-225,GET,Verify get /orders functionality under edge case conditions,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-226,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,FAIL
+API-227,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-228,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-229,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-230,PUT,Verify put /orders functionality under edge case conditions,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-231,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-232,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-233,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,PASS
+API-234,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-235,GET,Verify get /listings functionality under edge case conditions,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-236,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,FAIL
+API-237,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-238,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,PASS
+API-239,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-240,POST,Verify post /register functionality under edge case conditions,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-241,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-242,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,FAIL
+API-243,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-244,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-245,POST,Verify post /register functionality under edge case conditions,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-246,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-247,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-248,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-249,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,NOT RUN
+API-250,POST,Verify post /listings functionality under edge case conditions,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-251,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-252,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,FAIL
+API-253,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-254,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-255,GET,Verify get /listings functionality under edge case conditions,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-256,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-257,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,PASS
+API-258,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-259,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-260,PUT,Verify put /orders functionality under edge case conditions,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-261,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-262,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-263,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-264,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-265,GET,Verify get /listings functionality under edge case conditions,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters. Handles edge cases gracefully.,FAIL
+API-266,GET,Verify get /profile functionality,"1. Setup environment
+2. Execute GET /profile
+3. Validate response/UI",GET /profile executes successfully within acceptable parameters.,PASS
+API-267,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,NOT RUN
+API-268,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-269,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-270,POST,Verify post /listings functionality under edge case conditions,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-271,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,PASS
+API-272,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-273,DELETE,Verify delete /session functionality,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters.,PASS
+API-274,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-275,GET,Verify get /listings functionality under edge case conditions,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-276,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-277,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,PASS
+API-278,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-279,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-280,GET,Verify get /listings functionality under edge case conditions,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters. Handles edge cases gracefully.,FAIL
+API-281,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-282,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-283,GET,Verify get /orders functionality,"1. Setup environment
+2. Execute GET /orders
+3. Validate response/UI",GET /orders executes successfully within acceptable parameters.,PASS
+API-284,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,PASS
+API-285,POST,Verify post /register functionality under edge case conditions,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-286,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-287,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-288,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,NOT RUN
+API-289,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-290,POST,Verify post /login functionality under edge case conditions,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters. Handles edge cases gracefully.,PASS
+API-291,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,PASS
+API-292,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,FAIL
+API-293,POST,Verify post /login functionality,"1. Setup environment
+2. Execute POST /login
+3. Validate response/UI",POST /login executes successfully within acceptable parameters.,PASS
+API-294,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-295,DELETE,Verify delete /session functionality under edge case conditions,"1. Setup environment
+2. Execute DELETE /session
+3. Validate response/UI",DELETE /session executes successfully within acceptable parameters. Handles edge cases gracefully.,NOT RUN
+API-296,GET,Verify get /listings functionality,"1. Setup environment
+2. Execute GET /listings
+3. Validate response/UI",GET /listings executes successfully within acceptable parameters.,PASS
+API-297,PUT,Verify put /orders functionality,"1. Setup environment
+2. Execute PUT /orders
+3. Validate response/UI",PUT /orders executes successfully within acceptable parameters.,PASS
+API-298,POST,Verify post /register functionality,"1. Setup environment
+2. Execute POST /register
+3. Validate response/UI",POST /register executes successfully within acceptable parameters.,PASS
+API-299,POST,Verify post /listings functionality,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters.,PASS
+API-300,POST,Verify post /listings functionality under edge case conditions,"1. Setup environment
+2. Execute POST /listings
+3. Validate response/UI",POST /listings executes successfully within acceptable parameters. Handles edge cases gracefully.,FAIL
