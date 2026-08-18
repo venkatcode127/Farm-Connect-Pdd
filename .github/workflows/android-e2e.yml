@@ -26,25 +26,35 @@ jobs:
           java-version: '17'
           cache: 'maven'
 
-      - name: 3. Setup Node.js
+      - name: 3. Install System Dependencies (Maven & k6)
+        run: |
+          brew install maven
+          brew install k6
+          mvn --version
+
+      - name: 4. Setup Node.js 22
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+          check-latest: true
 
-      - name: 3.1 Verify Node and Install Maven
+      - name: 5. Verify Node 22 Environment
         run: |
+          echo "Node version:"
           node --version
+          echo "NPM version:"
           npm --version
-          brew install maven
-          mvn --version
+          echo "Node path:"
+          which node
 
-      - name: 4. Install k6 (Load Testing)
-        run: |
-          brew install k6
-
-      - name: 5. Install and Verify Appium
+      - name: 6. Install and Verify Appium
         run: |
           npm install -g appium@latest
+          echo "Appium path:"
+          which appium
+          echo "Appium shebang:"
+          head -n 1 "$(which appium)" || true
+          echo "Appium version:"
           appium --version
           appium driver install uiautomator2
 
