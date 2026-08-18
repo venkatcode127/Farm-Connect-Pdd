@@ -49,18 +49,29 @@ jobs:
       # --- Start Backend and Frontend in Background ---
       - name: 6. Spin up Backend and Serve Frontend for Selenium/Load Tests
         run: |
-          # Install backend dependencies & start FastAPI
+          # Install backend dependencies & start FastAPI in background
           pip install -r backend/requirements.txt
-          python -m uvicorn main:app --host 127.0.0.1 --port 8080 --app-dir backend &
+          python -m uvicorn main:app --host 127.0.0.1 --port 8080 --app-dir backend > uvicorn.log 2>&1 &
           
-          # Serve the vanilla frontend in the root on port 3000
-          npm install -g serve
-          serve -s . -l 3000 &
+          # Serve the vanilla frontend in the root on port 3000 in background
+          npx serve -s . -l 3000 > serve.log 2>&1 &
           
           # Give them a few seconds to boot up and verify
-          sleep 5
-          curl -I http://127.0.0.1:8080/
-          curl -I http://127.0.0.1:3000/
+          sleep 8
+          
+          echo "Checking Backend Connection..."
+          curl -I http://127.0.0.1:8080/ || {
+            echo "=== FastAPI Backend Logs ==="
+            cat uvicorn.log
+            exit 1
+          }
+          
+          echo "Checking Frontend Connection..."
+          curl -I http://127.0.0.1:3000/ || {
+            echo "=== Frontend Serve Logs ==="
+            cat serve.log
+            exit 1
+          }
 
       # --- Run Test 1: Web E2E (Selenium) ---
       - name: 7. Run Web E2E (Selenium) Tests & Generate 300-case Report
