@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_dashboard"
+        android:icon="@drawable/ic_dashboard"
+        android:title="Dashboard" />
+    <item
+        android:id="@+id/nav_ai"
+        android:icon="@drawable/ic_ai"
+        android:title="AI Prediction" />
+    <item
+        android:id="@+id/nav_market"
+        android:icon="@drawable/ic_market"
+        android:title="Market" />
+    <item
+        android:id="@+id/nav_orders"
+        android:icon="@drawable/ic_orders"
+        android:title="Orders" />
+</menu>

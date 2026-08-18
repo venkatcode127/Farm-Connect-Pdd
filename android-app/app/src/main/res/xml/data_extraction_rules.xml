@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-extraction-rules>
+    <cloud-backup>
+        <!-- TODO: Add <include> and <exclude> elements to customize your cloud backup -->
+        <include domain="file" path="."/>
+    </cloud-backup>
+    <device-transfer>
+        <!-- TODO: Add <include> and <exclude> elements to customize your device transfer -->
+        <include domain="file" path="."/>
+    </device-transfer>
+</data-extraction-rules>
