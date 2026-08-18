@@ -68,10 +68,12 @@ async def register(user: UserRegister):
     created_user = await user_collection.find_one({"_id": new_user.inserted_id})
     return user_helper(created_user)
 
+import secrets
+
 @app.post("/api/auth/login")
 async def login(user: UserLogin):
     db_user = await user_collection.find_one({"phone": user.phone})
-    if not db_user or user.password != db_user["password"]:
+    if not db_user or not secrets.compare_digest(user.password, db_user.get("password", "")):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Incorrect phone number or password"

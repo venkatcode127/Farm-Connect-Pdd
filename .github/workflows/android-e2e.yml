@@ -72,6 +72,14 @@ jobs:
         run: |
           npx appium --log-level error --log appium.log &
 
+      - name: 7.5 Start Backend and Frontend
+        run: |
+          pip install -r backend/requirements.txt
+          python -m uvicorn main:app --host 127.0.0.1 --port 8080 --app-dir backend > uvicorn.log 2>&1 &
+          npx serve -s . -l 3000 > serve.log 2>&1 &
+          sleep 8
+          curl -I http://127.0.0.1:8080/ || { echo "FastAPI failed to start"; cat uvicorn.log; exit 1; }
+
       - name: 7.9 Create Test Script
         run: |
           cat << 'EOF' > run_tests.sh

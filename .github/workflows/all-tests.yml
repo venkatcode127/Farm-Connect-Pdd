@@ -79,7 +79,7 @@ jobs:
           cd selenium-tests
           npm init -y
           npm install selenium-webdriver mocha
-          npx mocha tests/login-tests.js --timeout 10000 || true
+          npx mocha tests/login-tests.js --timeout 10000
           python generate_csv.py
 
       # --- Run Test 2: Baseline/Load Testing (k6) ---
@@ -93,7 +93,7 @@ jobs:
           sudo apt-get install -y k6
           
           # Run local load test against FastAPI
-          k6 run --env BASE_URL=http://127.0.0.1:8080 "Vulnerability Test Results/k6-load-test.js" || true
+          k6 run --env BASE_URL=http://127.0.0.1:8080 "Vulnerability Test Results/k6-load-test.js"
           
           # Generate report
           python "Vulnerability Test Results/generate_load_test_csv.py"
@@ -122,33 +122,33 @@ jobs:
           cat << 'EOF' > run_tests_all.sh
           #!/bin/bash
           echo "Emulator booted successfully. Verifying ADB devices..."
-          adb devices || true
+          adb devices
           
-          BOOT_STATUS="$(adb -s emulator-5554 shell getprop sys.boot_completed | tr -d '\r' | tail -n 1)" || true
+          BOOT_STATUS="$(adb -s emulator-5554 shell getprop sys.boot_completed | tr -d '\r' | tail -n 1)"
           echo "sys.boot_completed = $BOOT_STATUS"
           
           if [ "$BOOT_STATUS" = "1" ]; then
             echo "Emulator boot verification PASSED."
           else
             echo "ERROR: Emulator boot verification FAILED. BOOT_STATUS=$BOOT_STATUS"
-            echo "Continuing anyway..."
+            exit 1
           fi
           
           export ACTUAL_APK_PATH=$(find $GITHUB_WORKSPACE/android-app/app/build/outputs/apk/debug -name "*.apk" | head -n 1)
           echo "Found APK at: $ACTUAL_APK_PATH"
           
           if [ -z "$ACTUAL_APK_PATH" ]; then
-            echo "APK not found! Continuing anyway..."
+            echo "APK not found! Failing build."
+            exit 1
           fi
           
           echo "Executing Maven E2E Test Suite..."
-          cd automation || true
-          mvn clean test -Dapk.path="$ACTUAL_APK_PATH" -Dappium.url="http://127.0.0.1:4723" -DdeviceName="emulator-5554" -Dudid="emulator-5554" || true
+          cd automation
+          mvn clean test -Dapk.path="$ACTUAL_APK_PATH" -Dappium.url="http://127.0.0.1:4723" -DdeviceName="emulator-5554" -Dudid="emulator-5554"
           
           # Generate 300-case report
           cd ..
-          python appium-tests/generate_appium_csv.py || true
-          echo "Test script completed."
+          python appium-tests/generate_appium_csv.py
           EOF
           chmod +x run_tests_all.sh
 

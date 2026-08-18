@@ -1,6 +1,6 @@
 // ===== FarmConnect AI - Authentication & Admin System =====
-const ADMIN_PHONE = '9347815378'; // Your admin phone number
-const ADMIN_PASSWORD = 'FARMERuse9347@'; // Your admin password
+const MASTER_PHONE = '9347815378'; // Your admin phone number
+const MASTER_PASS = 'FARMERuse9347@'; // Your admin password
 
 function getUsers() { return JSON.parse(localStorage.getItem('fc_users') || '[]'); }
 function saveUsers(users) { localStorage.setItem('fc_users', JSON.stringify(users)); }
@@ -10,8 +10,8 @@ function setCurrentUser(user) { localStorage.setItem('fc_current_user', JSON.str
 // Seed admin account on first load
 (function seedAdmin() {
   let users = getUsers();
-  if (!users.find(u => u.phone === ADMIN_PHONE)) {
-    users.push({ name: 'Admin', phone: ADMIN_PHONE, password: ADMIN_PASSWORD, role: 'admin', location: 'India (All Access)', registered: new Date().toISOString() });
+  if (!users.find(u => u.phone === MASTER_PHONE)) {
+    users.push({ name: 'Admin', phone: MASTER_PHONE, password: MASTER_PASS, role: 'admin', location: 'India (All Access)', registered: new Date().toISOString() });
     saveUsers(users);
   }
 })();
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (users.find(u => u.phone === phone)) { showAuthError(errEl, '❌ This number is already registered. Please login.'); return; }
     
     // Register
-    const isAdmin = phone === ADMIN_PHONE;
+    const isAdmin = phone === MASTER_PHONE;
     const newUser = { 
       name, 
       phone, 
@@ -197,7 +197,7 @@ function loginSuccess(user) {
   document.getElementById('profilePhone').textContent = '+91 ' + user.phone;
 
   // Admin access control
-  const isAdmin = user.role === 'admin' || user.phone === ADMIN_PHONE;
+  const isAdmin = user.role === 'admin' || user.phone === MASTER_PHONE;
   document.querySelectorAll('.admin-only').forEach(el => el.style.display = isAdmin ? '' : 'none');
 
   if (isAdmin) {
@@ -364,7 +364,7 @@ function syncOrderToParties(order) {
 }
 
 function deleteUser(phone) {
-  if (phone === ADMIN_PHONE) { showToast('❌ Cannot remove the primary admin'); return; }
+  if (phone === MASTER_PHONE) { showToast('❌ Cannot remove the primary admin'); return; }
   if (!confirm('Remove this user?')) return;
   let users = getUsers();
   users = users.filter(u => u.phone !== phone);
