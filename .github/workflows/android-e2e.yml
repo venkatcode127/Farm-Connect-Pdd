@@ -57,14 +57,10 @@ jobs:
 
       - name: 6. Install and Verify Appium
         run: |
-          npm install -g appium@latest
-          echo "Appium path:"
-          which appium
-          echo "Appium shebang:"
-          head -n 1 "$(which appium)" || true
+          npm install appium@latest
           echo "Appium version:"
-          appium --version
-          appium driver install uiautomator2
+          npx appium --version
+          npx appium driver install uiautomator2
 
       - name: 6. Build REAL APK
         working-directory: ./android-app
@@ -74,7 +70,7 @@ jobs:
 
       - name: 7. Start Appium Server
         run: |
-          appium --log-level error --log appium.log &
+          npx appium --log-level error --log appium.log &
 
       - name: 7.9 Create Test Script
         run: |

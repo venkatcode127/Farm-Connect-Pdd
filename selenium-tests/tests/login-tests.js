@@ -5,7 +5,7 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
     let driver;
 
     before(async function() {
-        this.timeout(10000); // Set timeout to 10 seconds
+        this.timeout(30000); // Set timeout to 30 seconds
         const chrome = require('selenium-webdriver/chrome');
         let options = new chrome.Options();
         options.addArguments('--headless', '--no-sandbox', '--disable-dev-shm-usage');

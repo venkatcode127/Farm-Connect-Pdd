@@ -106,10 +106,10 @@ jobs:
       # --- Run Test 4: Android Appium E2E (Emulator Boot + Appium) ---
       - name: 10. Install and Start Appium Server
         run: |
-          npm install -g appium@latest
-          appium --version
-          appium driver install uiautomator2
-          appium --log-level error --log appium.log &
+          npm install appium@latest
+          npx appium --version
+          npx appium driver install uiautomator2
+          npx appium --log-level error --log appium.log &
 
       - name: 11. Build Android Debug APK
         working-directory: ./android-app
