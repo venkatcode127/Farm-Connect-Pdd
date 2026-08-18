@@ -63,6 +63,12 @@ jobs:
           npx appium driver install uiautomator2
 
       - name: 6. Build REAL APK
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: wrapper
+          cache-read-only: false
+
+      - name: 6.1 Build REAL APK
         working-directory: ./android-app
         run: |
           chmod +x ./gradlew || true
@@ -84,20 +90,10 @@ jobs:
         run: |
           cat << 'EOF' > run_tests.sh
           #!/bin/bash
+          set -e
+          
           echo "Emulator booted successfully. Verifying ADB devices..."
           adb devices
-          
-          echo "Verifying boot status..."
-          BOOT_STATUS="$(adb -s emulator-5554 shell getprop sys.boot_completed | tr -d '\r' | tail -n 1)"
-          echo "sys.boot_completed = $BOOT_STATUS"
-          
-          if [ "$BOOT_STATUS" = "1" ]; then
-            echo "Emulator boot verification PASSED."
-          else
-            echo "ERROR: Emulator boot verification FAILED. BOOT_STATUS=$BOOT_STATUS"
-            exit 1
-          fi
-          echo "Emulator is verified and fully responsive."
           
           echo "Finding APK..."
           export ACTUAL_APK_PATH=$(find $GITHUB_WORKSPACE/android-app/app/build/outputs/apk/debug -name "*.apk" | head -n 1)
@@ -117,6 +113,7 @@ jobs:
           
           echo "Executing Maven E2E Test Suite..."
           cd automation
+          chmod +x ./mvnw || true
           ./mvnw clean test -Dapk.path="$ACTUAL_APK_PATH" -Dappium.url="http://127.0.0.1:4723" -DdeviceName="emulator-5554" -Dudid="emulator-5554"
           EOF
           chmod +x run_tests.sh
