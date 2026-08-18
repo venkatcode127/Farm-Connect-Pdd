@@ -93,8 +93,10 @@ jobs:
             echo "Verifying boot status..."
             BOOT_STATUS=$(adb shell getprop sys.boot_completed | tr -d '\r')
             echo "sys.boot_completed = $BOOT_STATUS"
-            if [ "$BOOT_STATUS" != "1" ]; then
-              echo "Emulator boot_completed is not 1! Failing."
+            if [ "$BOOT_STATUS" = "1" ]; then
+              echo "Android emulator boot completed successfully."
+            else
+              echo "Android emulator boot failed. BOOT_STATUS=$BOOT_STATUS"
               exit 1
             fi
             echo "Emulator is verified and fully responsive."
