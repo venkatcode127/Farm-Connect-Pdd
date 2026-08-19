@@ -52,10 +52,10 @@ jobs:
           
           # Install backend dependencies & start FastAPI in background
           pip install -r backend/requirements.txt
-          python -m uvicorn main:app --host 127.0.0.1 --port 8080 --app-dir backend > uvicorn.log 2>&1 &
+          nohup python -m uvicorn main:app --host 127.0.0.1 --port 8080 --app-dir backend > uvicorn.log 2>&1 &
           
           # Serve the vanilla frontend in the root on port 3000 in background
-          serve -s . -l 3000 > serve.log 2>&1 &
+          nohup serve -s . -l 3000 > serve.log 2>&1 &
           
           echo "Checking Backend Connection..."
           timeout 30 bash -c 'until curl -s -f http://127.0.0.1:8080/ > /dev/null; do sleep 2; done' || {
@@ -102,7 +102,7 @@ jobs:
           npm install appium@latest
           npx appium --version
           npx appium driver install uiautomator2
-          npx appium --log-level error --log appium.log &
+          nohup npx appium --log-level error --log appium.log > /dev/null 2>&1 &
           
           echo "Waiting for Appium server to start..."
           timeout 30 bash -c 'until curl -s http://127.0.0.1:4723/status; do sleep 2; done' || { echo "Appium failed to start"; cat appium.log; exit 1; }
@@ -111,14 +111,23 @@ jobs:
       - name: 11. Build Android Debug APK
         working-directory: ./android-app
         run: |
+          rm -f local.properties || true
           chmod +x ./gradlew || true
-          ./gradlew assembleDebug
+          ./gradlew assembleDebug --no-daemon
 
       - name: 11.9 Create Test Script
         run: |
           cat << 'EOF' > run_tests_all.sh
           #!/bin/bash
           set -e
+          
+          echo "Verifying Appium server..."
+          if ! curl -s http://127.0.0.1:4723/status > /dev/null 2>&1; then
+            echo "Starting Appium server inside test runner..."
+            nohup npx appium --log-level error --log appium.log > /dev/null 2>&1 &
+            timeout 30 bash -c 'until curl -s http://127.0.0.1:4723/status; do sleep 2; done'
+          fi
+          echo "Appium server is verified active."
           
           echo "Emulator booted successfully. Verifying ADB devices..."
           adb devices
