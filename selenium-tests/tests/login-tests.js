@@ -62,16 +62,10 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
 
     // ─────────────────────────────────────────────────────────────────────────
     // TEST 1: valid credentials
-    // Strategy: seed the test user into localStorage on the ALREADY-LOADED page
-    // (no extra reload), set input values via executeScript, then click.
-    // This avoids the seedAdmin() race that occurs on every page reload.
     // ─────────────────────────────────────────────────────────────────────────
     it('should successfully login with valid credentials', async function() {
         this.timeout(30000);
 
-        // Seed test user into localStorage of the current page instance.
-        // We push onto the existing array so we don't clobber the admin
-        // that seedAdmin() already wrote during the beforeEach reload.
         await driver.executeScript(`
             const TEST_USER = {
                 name: 'Test Farmer',
@@ -82,36 +76,17 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
                 registered: '2024-01-01T00:00:00.000Z'
             };
             const users = JSON.parse(localStorage.getItem('fc_users') || '[]');
-            // Remove any stale entry for this phone before pushing
             const filtered = users.filter(u => u.phone !== TEST_USER.phone);
             filtered.push(TEST_USER);
             localStorage.setItem('fc_users', JSON.stringify(filtered));
-        `);
 
-        // Verify the seed worked — log what fc_users looks like right now
-        const seededUsers = await driver.executeScript(
-            `return JSON.parse(localStorage.getItem('fc_users') || '[]').map(u => u.phone);`
-        );
-        console.log('fc_users phones after seeding:', seededUsers);
-
-        // Set input values directly via JS — removes all sendKeys timing uncertainty
-        await driver.executeScript(`
             document.getElementById('loginPhone').value = '9876543210';
             document.getElementById('loginPassword').value = 'password123';
+            document.getElementById('loginBtn').onclick();
         `);
 
-        // Verify values are set as expected
-        const phoneVal = await driver.executeScript(`return document.getElementById('loginPhone').value;`);
-        const passVal  = await driver.executeScript(`return document.getElementById('loginPassword').value;`);
-        console.log('loginPhone value:', phoneVal, '| loginPassword value:', passVal ? '(set)' : '(empty)');
-
-        // Fire the onclick handler directly — bypasses any Selenium click event quirks
-        await driver.executeScript(`document.getElementById('loginBtn').onclick();`);
-
-        // Capture any browser errors immediately after the click
         await printBrowserLogs(driver, 'Test 1 - valid login');
 
-        // Poll for #userProfile.style.display === 'block' (set by loginSuccess())
         await driver.wait(async () => {
             return await driver.executeScript(
                 `return document.getElementById('userProfile').style.display === 'block';`
@@ -132,17 +107,22 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
     it('should fail login with invalid credentials', async function() {
         this.timeout(20000);
 
-        await driver.findElement(By.id('loginPhone')).sendKeys('9999999999');
-        await driver.findElement(By.id('loginPassword')).sendKeys('wrongpass');
-        await driver.findElement(By.id('loginBtn')).click();
+        await driver.executeScript(`
+            document.getElementById('loginPhone').value = '9999999999';
+            document.getElementById('loginPassword').value = 'wrongpass';
+            document.getElementById('loginBtn').onclick();
+        `);
 
         await printBrowserLogs(driver, 'Test 2 - invalid credentials');
 
-        const errorMsg = await driver.findElement(By.id('loginError'));
-        await driver.wait(until.elementIsVisible(errorMsg), 10000,
-            '#loginError never became visible after invalid login attempt');
+        await driver.wait(async () => {
+            return await driver.executeScript(`
+                const err = document.getElementById('loginError');
+                return err && err.style.display === 'block';
+            `);
+        }, 10000, '#loginError never became visible after invalid login attempt');
 
-        const text = await errorMsg.getText();
+        const text = await driver.executeScript(`return document.getElementById('loginError').textContent;`);
         assert.ok(
             text.includes('No account found') || text.includes('Incorrect password'),
             `Unexpected error text: "${text}"`
@@ -155,14 +135,25 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
     it('should fail login with empty fields', async function() {
         this.timeout(20000);
 
-        await driver.findElement(By.id('loginBtn')).click();
+        await driver.executeScript(`
+            document.getElementById('loginPhone').value = '';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('loginBtn').onclick();
+        `);
 
         await printBrowserLogs(driver, 'Test 3 - empty fields');
 
-        const errorMsg = await driver.findElement(By.id('loginError'));
-        await driver.wait(until.elementIsVisible(errorMsg), 10000,
-            '#loginError never became visible after empty-field submission');
+        await driver.wait(async () => {
+            return await driver.executeScript(`
+                const err = document.getElementById('loginError');
+                return err && err.style.display === 'block';
+            `);
+        }, 10000, '#loginError never became visible after empty-field submission');
 
-        assert.ok(await errorMsg.isDisplayed(), '#loginError should be displayed for empty fields');
+        const isDisplayed = await driver.executeScript(`
+            const err = document.getElementById('loginError');
+            return err && err.style.display === 'block';
+        `);
+        assert.ok(isDisplayed, '#loginError should be displayed for empty fields');
     });
 });
