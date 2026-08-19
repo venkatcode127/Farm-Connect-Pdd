@@ -1,5 +1,8 @@
 // ===== FarmConnect AI - Order Tracking System =====
 
+// Admin phone — must match MASTER_PHONE in auth.js
+const ADMIN_PHONE = '9347815378';
+
 const ORDER_STATUSES = [
   { key: 'placed', label: 'Order Placed', labelHi: 'ऑर्डर दिया गया', icon: '📋', color: 'var(--blue)' },
   { key: 'confirmed', label: 'Confirmed', labelHi: 'पुष्टि हो गई', icon: '✅', color: 'var(--green)' },
