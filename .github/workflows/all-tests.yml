@@ -77,7 +77,6 @@ jobs:
       - name: 7. Run Web E2E (Selenium) Tests & Generate 300-case Report
         run: |
           cd selenium-tests
-          npm init -y
           npm install selenium-webdriver mocha
           npx mocha tests/login-tests.js --timeout 10000
           python generate_csv.py

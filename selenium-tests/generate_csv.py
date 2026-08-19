@@ -6,7 +6,7 @@ modules = ['Authentication', 'Dashboard', 'Crop Management', 'Market Insights', 
 statuses = ['Passed', 'Failed', 'Skipped']
 priorities = ['High', 'Medium', 'Low']
 
-with open('c:/farm app/selenium-tests/Test_Summary_Report.csv', 'w', newline='') as file:
+with open('Test_Summary_Report.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(['Test Case ID', 'Module', 'Description', 'Priority', 'Status', 'Execution Time (s)', 'Notes'])
     

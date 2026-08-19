@@ -77,6 +77,10 @@ jobs:
       - name: 7. Start Appium Server
         run: |
           npx appium --log-level error --log appium.log &
+          
+          echo "Waiting for Appium server to start..."
+          timeout 30 bash -c 'until curl -s http://127.0.0.1:4723/status; do sleep 2; done' || { echo "Appium failed to start"; cat appium.log; exit 1; }
+          echo "Appium server is ready."
 
       - name: 7.5 Start Backend and Frontend
         run: |
@@ -94,6 +98,18 @@ jobs:
           
           echo "Emulator booted successfully. Verifying ADB devices..."
           adb devices
+          
+          echo "Waiting for Android system to be fully ready..."
+          WAIT_TIMEOUT=120
+          while [ "$(adb shell getprop sys.boot_completed | tr -d '\r')" != "1" ]; do
+            WAIT_TIMEOUT=$((WAIT_TIMEOUT-1))
+            if [ $WAIT_TIMEOUT -eq 0 ]; then
+              echo "ERROR: Android emulator failed to become fully ready in time!"
+              exit 1
+            fi
+            sleep 1
+          done
+          echo "Android system is ready!"
           
           echo "Finding APK..."
           export ACTUAL_APK_PATH=$(find $GITHUB_WORKSPACE/android-app/app/build/outputs/apk/debug -name "*.apk" | head -n 1)
@@ -120,6 +136,7 @@ jobs:
 
       - name: 8. Boot Emulator & Run Real Tests
         uses: reactivecircus/android-emulator-runner@v2
+        timeout-minutes: 25
         with:
           api-level: 29
           target: google_apis
