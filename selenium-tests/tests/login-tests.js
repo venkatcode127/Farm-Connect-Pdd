@@ -96,11 +96,16 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
         // --- Capture browser console output immediately after click ---
         await printBrowserLogs(driver, 'Test 1 - valid login');
 
-        // Wait until #userProfile is visible (auth.js sets display:block on success)
-        const profileElement = await driver.findElement(By.id('userProfile'));
-        await driver.wait(until.elementIsVisible(profileElement), 10000,
-            '#userProfile never became visible after login');
+        // Poll directly on the style.display property via JS — more reliable than
+        // elementIsVisible in headless Chrome where layout may not reflow immediately
+        await driver.wait(async () => {
+            const display = await driver.executeScript(
+                `return document.getElementById('userProfile').style.display;`
+            );
+            return display === 'block';
+        }, 10000, '#userProfile style.display never became "block" after login');
 
+        const profileElement = await driver.findElement(By.id('userProfile'));
         assert.ok(await profileElement.isDisplayed(), 'profileElement should be displayed');
     });
 
