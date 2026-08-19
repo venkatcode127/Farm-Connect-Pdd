@@ -103,6 +103,10 @@ jobs:
           npx appium --version
           npx appium driver install uiautomator2
           npx appium --log-level error --log appium.log &
+          
+          echo "Waiting for Appium server to start..."
+          timeout 30 bash -c 'until curl -s http://127.0.0.1:4723/status; do sleep 2; done' || { echo "Appium failed to start"; cat appium.log; exit 1; }
+          echo "Appium server is ready."
 
       - name: 11. Build Android Debug APK
         working-directory: ./android-app
@@ -114,18 +118,22 @@ jobs:
         run: |
           cat << 'EOF' > run_tests_all.sh
           #!/bin/bash
+          set -e
+          
           echo "Emulator booted successfully. Verifying ADB devices..."
           adb devices
           
-          BOOT_STATUS="$(adb -s emulator-5554 shell getprop sys.boot_completed | tr -d '\r' | tail -n 1)"
-          echo "sys.boot_completed = $BOOT_STATUS"
-          
-          if [ "$BOOT_STATUS" = "1" ]; then
-            echo "Emulator boot verification PASSED."
-          else
-            echo "ERROR: Emulator boot verification FAILED. BOOT_STATUS=$BOOT_STATUS"
-            exit 1
-          fi
+          echo "Waiting for Android system to be fully ready..."
+          WAIT_TIMEOUT=120
+          while [ "$(adb shell getprop sys.boot_completed | tr -d '\r')" != "1" ]; do
+            WAIT_TIMEOUT=$((WAIT_TIMEOUT-1))
+            if [ $WAIT_TIMEOUT -eq 0 ]; then
+              echo "ERROR: Android emulator failed to become fully ready in time!"
+              exit 1
+            fi
+            sleep 1
+          done
+          echo "Android system is ready!"
           
           export ACTUAL_APK_PATH=$(find $GITHUB_WORKSPACE/android-app/app/build/outputs/apk/debug -name "*.apk" | head -n 1)
           echo "Found APK at: $ACTUAL_APK_PATH"
@@ -137,6 +145,7 @@ jobs:
           
           echo "Executing Maven E2E Test Suite..."
           cd automation
+          chmod +x ./mvnw || true
           ./mvnw clean test -Dapk.path="$ACTUAL_APK_PATH" -Dappium.url="http://127.0.0.1:4723" -DdeviceName="emulator-5554" -Dudid="emulator-5554"
           
           # Generate 300-case report
@@ -147,6 +156,7 @@ jobs:
 
       - name: 12. Boot Android Emulator & Run Appium Tests
         uses: reactivecircus/android-emulator-runner@v2
+        timeout-minutes: 25
         with:
           api-level: 29
           target: google_apis

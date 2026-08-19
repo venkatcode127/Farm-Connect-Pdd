@@ -34,7 +34,7 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
         prefs.setLevel(logging.Type.BROWSER, logging.Level.ALL);
 
         let options = new chrome.Options();
-        options.addArguments('--headless', '--no-sandbox', '--disable-dev-shm-usage');
+        options.addArguments('--headless=new', '--no-sandbox', '--disable-dev-shm-usage', '--window-size=1920,1080');
 
         driver = await new Builder()
             .forBrowser('chrome')
@@ -118,8 +118,12 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
             );
         }, 10000, '#userProfile never became display:block — loginSuccess() did not complete');
 
-        const profileElement = await driver.findElement(By.id('userProfile'));
-        assert.ok(await profileElement.isDisplayed(), '#userProfile should be displayed after login');
+        const isSuccess = await driver.executeScript(`
+            const profile = document.getElementById('userProfile');
+            const currentUser = JSON.parse(localStorage.getItem('fc_current_user') || 'null');
+            return profile && profile.style.display === 'block' && currentUser && currentUser.phone === '9876543210';
+        `);
+        assert.ok(isSuccess, '#userProfile should be display:block and fc_current_user set');
     });
 
     // ─────────────────────────────────────────────────────────────────────────

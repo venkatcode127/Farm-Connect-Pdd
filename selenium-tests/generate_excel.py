@@ -29,8 +29,10 @@ summary_data = {
 }
 df_summary = pd.DataFrame(summary_data)
 
-# Write to Excel with multiple sheets
-with pd.ExcelWriter('c:/farm app/selenium-tests/Test_Summary_Report.xlsx', engine='openpyxl') as writer:
+import os
+DIR = os.path.dirname(os.path.abspath(__file__))
+
+with pd.ExcelWriter(os.path.join(DIR, 'Test_Summary_Report.xlsx'), engine='openpyxl') as writer:
     df_summary.to_excel(writer, sheet_name='Summary', index=False)
     df.to_excel(writer, sheet_name='Test Details', index=False)
 

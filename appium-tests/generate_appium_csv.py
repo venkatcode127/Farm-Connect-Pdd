@@ -1,12 +1,8 @@
-import csv
-import random
+import os
 
-test_cases = []
-modules = ['Mobile Auth', 'Mobile Dashboard', 'Offline Sync', 'Push Notifications', 'Camera/Uploads', 'GPS Tracking', 'Mobile Settings']
-statuses = ['Passed', 'Failed', 'Skipped']
-priorities = ['High', 'Medium', 'Low']
+DIR = os.path.dirname(os.path.abspath(__file__))
 
-with open('c:/farm app/appium-tests/Appium_Test_Summary_Report.csv', 'w', newline='') as file:
+with open(os.path.join(DIR, 'Appium_Test_Summary_Report.csv'), 'w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
     writer.writerow(['Test Case ID', 'Module', 'Description', 'Priority', 'Status', 'Execution Time (s)', 'Notes'])
     
