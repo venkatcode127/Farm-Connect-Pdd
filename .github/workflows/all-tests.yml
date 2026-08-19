@@ -135,7 +135,11 @@ jobs:
           done
           echo "Android system is ready!"
           
-          export ACTUAL_APK_PATH=$(find $GITHUB_WORKSPACE/android-app/app/build/outputs/apk/debug -name "*.apk" | head -n 1)
+          echo "Finding APK..."
+          export ACTUAL_APK_PATH=$(find "$GITHUB_WORKSPACE" -name "*debug.apk" | head -n 1)
+          if [ -z "$ACTUAL_APK_PATH" ]; then
+            export ACTUAL_APK_PATH=$(find "$GITHUB_WORKSPACE" -name "*.apk" | head -n 1)
+          fi
           echo "Found APK at: $ACTUAL_APK_PATH"
           
           if [ -z "$ACTUAL_APK_PATH" ]; then
@@ -146,7 +150,7 @@ jobs:
           echo "Executing Maven E2E Test Suite..."
           cd automation
           chmod +x ./mvnw || true
-          ./mvnw clean test -Dapk.path="$ACTUAL_APK_PATH" -Dappium.url="http://127.0.0.1:4723" -DdeviceName="emulator-5554" -Dudid="emulator-5554"
+          mvn clean test -Dapk.path="$ACTUAL_APK_PATH" -Dappium.url="http://127.0.0.1:4723" -DdeviceName="emulator-5554" -Dudid="emulator-5554" || ./mvnw clean test -Dapk.path="$ACTUAL_APK_PATH" -Dappium.url="http://127.0.0.1:4723" -DdeviceName="emulator-5554" -Dudid="emulator-5554"
           
           # Generate 300-case report
           cd ..
