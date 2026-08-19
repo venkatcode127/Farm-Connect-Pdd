@@ -29,17 +29,29 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
     });
 
     it('should successfully login with valid credentials', async function() {
-        // Navigate to login page
+        // Option B: Seed localStorage with a valid normal user object first
+        const testUser = {
+            name: 'Test Farmer',
+            phone: '9876543210',
+            password: 'password123',
+            role: 'farmer',
+            location: 'India',
+            registered: new Date().toISOString()
+        };
+        await driver.get('http://127.0.0.1:3000');
+        await driver.executeScript(`window.localStorage.setItem('fc_users', JSON.stringify([arguments[0]]));`, testUser);
+        
+        // Navigate to login page again to load the fresh state
         await driver.get('http://127.0.0.1:3000');
         console.log("Navigated to:", await driver.getCurrentUrl());
         console.log("Page Title:", await driver.getTitle());
         
-        // Find username and password fields and enter credentials
+        // Find username and password fields and enter the seeded credentials
         const usernameField = await driver.findElement(By.id('loginPhone'));
-        await usernameField.sendKeys('9347815378');
+        await usernameField.sendKeys('9876543210');
         
         const passwordField = await driver.findElement(By.id('loginPassword'));
-        await passwordField.sendKeys('FARMERuse9347@');
+        await passwordField.sendKeys('password123');
         
         // Click the login button
         const loginBtn = await driver.findElement(By.id('loginBtn'));
