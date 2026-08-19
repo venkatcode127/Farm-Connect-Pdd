@@ -1,5 +1,8 @@
-# Enforce LF line endings for shell scripts and gradlew
+# Enforce LF line endings for shell scripts, gradlew and mvnw
 * text=auto
 *.sh text eol=lf
 gradlew text eol=lf
 android-app/gradlew text eol=lf
+mvnw text eol=lf
+automation/mvnw text eol=lf
+
