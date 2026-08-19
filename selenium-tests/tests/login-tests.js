@@ -49,10 +49,13 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
         await driver.get('http://127.0.0.1:3000');
         // 4. Drain any startup browser logs so they don't bleed into per-click captures
         await driver.manage().logs().get('browser');
-        // 5. Wait for login form to be visible before any test interaction
-        await driver.wait(until.elementIsVisible(
-            await driver.findElement(By.id('loginForm'))
-        ), 10000, 'Login form did not become visible in time');
+        // 5. Wait for document fully loaded AND auth.js loginBtn handler attached
+        await driver.wait(async () => {
+            const ready = await driver.executeScript(
+                `return document.readyState === 'complete' && !!document.getElementById('loginBtn').onclick;`
+            );
+            return ready === true;
+        }, 10000, 'Page not ready or loginBtn handler not attached in beforeEach');
     });
 
     it('should successfully login with valid credentials', async function() {
@@ -78,10 +81,13 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
         // Drain startup logs produced during this reload
         await driver.manage().logs().get('browser');
 
-        // Wait for login form to be ready after reload
-        await driver.wait(until.elementIsVisible(
-            await driver.findElement(By.id('loginForm'))
-        ), 10000, 'Login form not visible after seeding user');
+        // Wait for document fully loaded AND auth.js DOMContentLoaded handler attached
+        await driver.wait(async () => {
+            const ready = await driver.executeScript(
+                `return document.readyState === 'complete' && !!document.getElementById('loginBtn').onclick;`
+            );
+            return ready === true;
+        }, 10000, 'Page not ready or loginBtn handler not attached after reload');
 
         console.log('Navigated to:', await driver.getCurrentUrl());
         console.log('Page Title:', await driver.getTitle());
