@@ -73,11 +73,24 @@ jobs:
 
       - name: 7.5 Start Backend and Frontend
         run: |
+          npm install -g serve
           pip install -r backend/requirements.txt
           python -m uvicorn main:app --host 127.0.0.1 --port 8080 --app-dir backend > uvicorn.log 2>&1 &
-          npx serve -s . -l 3000 > serve.log 2>&1 &
-          sleep 8
-          curl -I http://127.0.0.1:8080/ || { echo "FastAPI failed to start"; cat uvicorn.log; exit 1; }
+          serve -s . -l 3000 > serve.log 2>&1 &
+          
+          echo "Checking Backend Connection..."
+          timeout 30 bash -c 'until curl -s -f http://127.0.0.1:8080/ > /dev/null; do sleep 2; done' || {
+            echo "=== FastAPI Backend Logs ==="
+            cat uvicorn.log
+            exit 1
+          }
+          
+          echo "Checking Frontend Connection..."
+          timeout 30 bash -c 'until curl -s -f http://127.0.0.1:3000/ > /dev/null; do sleep 2; done' || {
+            echo "=== Frontend Serve Logs ==="
+            cat serve.log
+            exit 1
+          }
 
       - name: 7.9 Create Test Script
         run: |
