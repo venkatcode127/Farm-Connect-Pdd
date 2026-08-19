@@ -22,6 +22,12 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
         }
     });
 
+    beforeEach(async function() {
+        // Clear local storage before each test to prevent state leakage
+        await driver.get('http://127.0.0.1:3000');
+        await driver.executeScript('window.localStorage.clear();');
+    });
+
     it('should successfully login with valid credentials', async function() {
         // Navigate to login page
         await driver.get('http://127.0.0.1:3000');

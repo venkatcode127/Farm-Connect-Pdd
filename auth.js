@@ -180,14 +180,16 @@ function showAuthScreen() {
   document.getElementById('authScreen').style.display = 'flex';
   document.getElementById('navbar').style.display = 'none';
   document.querySelector('.main-content').style.display = 'none';
-  document.querySelector('.footer').style.display = 'none';
+  const footer = document.querySelector('.footer');
+  if (footer) footer.style.display = 'none';
 }
 
 function loginSuccess(user) {
   document.getElementById('authScreen').style.display = 'none';
   document.getElementById('navbar').style.display = '';
   document.querySelector('.main-content').style.display = '';
-  document.querySelector('.footer').style.display = '';
+  const footer = document.querySelector('.footer');
+  if (footer) footer.style.display = '';
 
   // Show user profile in navbar
   document.getElementById('userProfile').style.display = 'block';
