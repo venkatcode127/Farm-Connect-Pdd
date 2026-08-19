@@ -76,6 +76,9 @@ jobs:
       # --- Run Test 1: Web E2E (Selenium) ---
       - name: 7. Run Web E2E (Selenium) Tests & Generate 300-case Report
         run: |
+          echo "=== Debugging Frontend Response ==="
+          curl -v http://127.0.0.1:3000/ || true
+          echo "==================================="
           cd selenium-tests
           npm install selenium-webdriver mocha
           npx mocha tests/login-tests.js --timeout 10000

@@ -24,7 +24,9 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
 
     it('should successfully login with valid credentials', async function() {
         // Navigate to login page
-        await driver.get('http://localhost:3000');
+        await driver.get('http://127.0.0.1:3000');
+        console.log("Navigated to:", await driver.getCurrentUrl());
+        console.log("Page Title:", await driver.getTitle());
         
         // Find username and password fields and enter credentials
         const usernameField = await driver.findElement(By.id('loginPhone'));
@@ -43,7 +45,8 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
     });
 
     it('should fail login with invalid credentials', async function() {
-        await driver.get('http://localhost:3000');
+        await driver.get('http://127.0.0.1:3000');
+        console.log("Navigated to:", await driver.getCurrentUrl());
         
         await driver.findElement(By.id('loginPhone')).sendKeys('9999999999');
         await driver.findElement(By.id('loginPassword')).sendKeys('wrongpass');
@@ -56,7 +59,8 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
     });
 
     it('should fail login with empty fields', async function() {
-        await driver.get('http://localhost:3000');
+        await driver.get('http://127.0.0.1:3000');
+        console.log("Navigated to:", await driver.getCurrentUrl());
         
         await driver.findElement(By.id('loginBtn')).click();
         
