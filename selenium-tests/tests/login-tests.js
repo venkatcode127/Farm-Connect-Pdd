@@ -1,18 +1,36 @@
 const { Builder, By, until } = require('selenium-webdriver');
 const assert = require('assert');
 
+// Helper: flush and print browser console logs with a test-specific label
+async function printBrowserLogs(driver, label) {
+    const logs = await driver.manage().logs().get('browser');
+    console.log(`\n=== CONSOLE LOGS AFTER LOGIN CLICK (${label}) ===`);
+    if (logs.length === 0) {
+        console.log('  (no browser console output)');
+    } else {
+        logs.forEach(entry => console.log(`  [${entry.level.name}] ${entry.message}`));
+    }
+    console.log(`=== END (${label}) ===\n`);
+}
+
 describe('FarmConnect Web Frontend - Login E2E Tests', function() {
     let driver;
 
     before(async function() {
-        this.timeout(30000); // Set timeout to 30 seconds
+        this.timeout(30000);
         const chrome = require('selenium-webdriver/chrome');
         let options = new chrome.Options();
+        // Enable browser log capture
         options.addArguments('--headless', '--no-sandbox', '--disable-dev-shm-usage');
-        
+
+        const logging = require('selenium-webdriver/lib/logging');
+        const prefs = new logging.Preferences();
+        prefs.setLevel(logging.Type.BROWSER, logging.Level.ALL);
+
         driver = await new Builder()
             .forBrowser('chrome')
             .setChromeOptions(options)
+            .setLoggingPrefs(prefs)
             .build();
     });
 
@@ -23,13 +41,15 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
     });
 
     beforeEach(async function() {
-        // 1. Navigate to the page first so we have a JS context for localStorage
+        // 1. Navigate to the page so we have a JS context
         await driver.get('http://127.0.0.1:3000');
         // 2. Clear any leftover state from the previous test
         await driver.executeScript('window.localStorage.clear();');
-        // 3. Reload after clearing so auth.js starts fresh with empty storage
+        // 3. Reload so auth.js re-initializes with empty storage
         await driver.get('http://127.0.0.1:3000');
-        // 4. Wait explicitly for the login form to be visible before any test interaction
+        // 4. Drain any startup browser logs so they don't bleed into per-click captures
+        await driver.manage().logs().get('browser');
+        // 5. Wait for login form to be visible before any test interaction
         await driver.wait(until.elementIsVisible(
             await driver.findElement(By.id('loginForm'))
         ), 10000, 'Login form did not become visible in time');
@@ -38,8 +58,7 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
     it('should successfully login with valid credentials', async function() {
         this.timeout(30000);
 
-        // Seed a normal user into localStorage (do this BEFORE the page loads
-        // the auth logic, by injecting and reloading)
+        // Seed a normal (non-admin) user directly into localStorage
         const testUser = {
             name: 'Test Farmer',
             phone: '9876543210',
@@ -53,35 +72,31 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
             testUser
         );
 
-        // Reload so auth.js picks up the newly seeded user in localStorage
+        // Reload so auth.js reads the newly seeded fc_users array
         await driver.get('http://127.0.0.1:3000');
 
-        // Wait for the login form to be ready after reload
-        const loginForm = await driver.findElement(By.id('loginForm'));
-        await driver.wait(until.elementIsVisible(loginForm), 10000,
-            'Login form not visible after seeding user');
+        // Drain startup logs produced during this reload
+        await driver.manage().logs().get('browser');
 
-        console.log("Navigated to:", await driver.getCurrentUrl());
-        console.log("Page Title:", await driver.getTitle());
+        // Wait for login form to be ready after reload
+        await driver.wait(until.elementIsVisible(
+            await driver.findElement(By.id('loginForm'))
+        ), 10000, 'Login form not visible after seeding user');
+
+        console.log('Navigated to:', await driver.getCurrentUrl());
+        console.log('Page Title:', await driver.getTitle());
 
         // Enter seeded credentials
-        const usernameField = await driver.findElement(By.id('loginPhone'));
-        await usernameField.sendKeys('9876543210');
+        await driver.findElement(By.id('loginPhone')).sendKeys('9876543210');
+        await driver.findElement(By.id('loginPassword')).sendKeys('password123');
 
-        const passwordField = await driver.findElement(By.id('loginPassword'));
-        await passwordField.sendKeys('password123');
-
-        // Click login — then capture any browser console errors to CI output
+        // Click login
         await driver.findElement(By.id('loginBtn')).click();
 
-        const browserLogs = await driver.manage().logs().get('browser');
-        if (browserLogs.length > 0) {
-            console.log('=== BROWSER CONSOLE LOGS ===');
-            browserLogs.forEach(entry => console.log(`[${entry.level.name}] ${entry.message}`));
-            console.log('============================');
-        }
+        // --- Capture browser console output immediately after click ---
+        await printBrowserLogs(driver, 'Test 1 - valid login');
 
-        // Wait explicitly until #userProfile is visible (auth.js sets display:block on success)
+        // Wait until #userProfile is visible (auth.js sets display:block on success)
         const profileElement = await driver.findElement(By.id('userProfile'));
         await driver.wait(until.elementIsVisible(profileElement), 10000,
             '#userProfile never became visible after login');
@@ -92,14 +107,17 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
     it('should fail login with invalid credentials', async function() {
         this.timeout(20000);
 
-        console.log("Navigated to:", await driver.getCurrentUrl());
+        console.log('Navigated to:', await driver.getCurrentUrl());
 
         // Type an unrecognised phone number and wrong password
         await driver.findElement(By.id('loginPhone')).sendKeys('9999999999');
         await driver.findElement(By.id('loginPassword')).sendKeys('wrongpass');
         await driver.findElement(By.id('loginBtn')).click();
 
-        // Wait explicitly until the error element is visible (auth.js sets display:block on error)
+        // --- Capture browser console output immediately after click ---
+        await printBrowserLogs(driver, 'Test 2 - invalid credentials');
+
+        // Wait until #loginError is visible (auth.js sets display:block on error)
         const errorMsg = await driver.findElement(By.id('loginError'));
         await driver.wait(until.elementIsVisible(errorMsg), 10000,
             '#loginError never became visible after invalid login attempt');
@@ -114,12 +132,15 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
     it('should fail login with empty fields', async function() {
         this.timeout(20000);
 
-        console.log("Navigated to:", await driver.getCurrentUrl());
+        console.log('Navigated to:', await driver.getCurrentUrl());
 
         // Click submit with empty fields
         await driver.findElement(By.id('loginBtn')).click();
 
-        // Wait explicitly until the error element is visible
+        // --- Capture browser console output immediately after click ---
+        await printBrowserLogs(driver, 'Test 3 - empty fields');
+
+        // Wait until #loginError is visible
         const errorMsg = await driver.findElement(By.id('loginError'));
         await driver.wait(until.elementIsVisible(errorMsg), 10000,
             '#loginError never became visible after empty-field submission');
