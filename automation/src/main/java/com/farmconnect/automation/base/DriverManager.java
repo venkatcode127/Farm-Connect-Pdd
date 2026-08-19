@@ -83,10 +83,10 @@ public class DriverManager {
             // Timeouts
             int implicitWait = getIntOrDefault(timeouts, "implicitWait", 15);
 
-            options.setCapability("uiautomator2ServerLaunchTimeout", getLongOrDefault(caps, "uiautomator2ServerLaunchTimeout", 120000));
-            options.setCapability("uiautomator2ServerInstallTimeout", getLongOrDefault(caps, "uiautomator2ServerInstallTimeout", 120000));
-            options.setCapability("androidInstallTimeout", getLongOrDefault(caps, "androidInstallTimeout", 120000));
-            options.setCapability("adbExecTimeout", getLongOrDefault(caps, "adbExecTimeout", 120000));
+            options.setUiautomator2ServerLaunchTimeout(Duration.ofMillis(getLongOrDefault(caps, "uiautomator2ServerLaunchTimeout", 180000)));
+            options.setUiautomator2ServerInstallTimeout(Duration.ofMillis(getLongOrDefault(caps, "uiautomator2ServerInstallTimeout", 180000)));
+            options.setAndroidInstallTimeout(Duration.ofMillis(getLongOrDefault(caps, "androidInstallTimeout", 180000)));
+            options.setAdbExecTimeout(Duration.ofMillis(getLongOrDefault(caps, "adbExecTimeout", 180000)));
 
             // Build server URL
             String serverUrl = System.getProperty("appium.url",

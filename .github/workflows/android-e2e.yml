@@ -127,6 +127,10 @@ jobs:
           done
           echo "Android system is ready!"
           
+          echo "Waiting for PackageManagerService to be ready..."
+          timeout 60 bash -c 'until adb shell pm path android > /dev/null 2>&1; do sleep 2; done'
+          echo "PackageManagerService is ready."
+          
           echo "Finding APK..."
           export ACTUAL_APK_PATH=$(find "$GITHUB_WORKSPACE" -name "*debug.apk" | head -n 1)
           if [ -z "$ACTUAL_APK_PATH" ]; then
@@ -138,6 +142,10 @@ jobs:
             echo "APK not found! Failing build."
             exit 1
           fi
+          
+          echo "Pre-installing test APK and UiAutomator2 server..."
+          adb install -r "$ACTUAL_APK_PATH" || true
+          find "$HOME" "$GITHUB_WORKSPACE" -name "appium-uiautomator2-server*.apk" -exec adb install -r {} + 2>/dev/null || true
           
           echo "Running baseline load testing with k6..."
           if [ -f "Vulnerability Test Results/k6-load-test.js" ]; then
