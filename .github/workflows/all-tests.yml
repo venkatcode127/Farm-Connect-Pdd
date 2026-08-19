@@ -49,25 +49,25 @@ jobs:
       # --- Start Backend and Frontend in Background ---
       - name: 6. Spin up Backend and Serve Frontend for Selenium/Load Tests
         run: |
+          # Pre-install serve to avoid npx download delays
+          npm install -g serve
+          
           # Install backend dependencies & start FastAPI in background
           pip install -r backend/requirements.txt
           python -m uvicorn main:app --host 127.0.0.1 --port 8080 --app-dir backend > uvicorn.log 2>&1 &
           
           # Serve the vanilla frontend in the root on port 3000 in background
-          npx serve -s . -l 3000 > serve.log 2>&1 &
-          
-          # Give them a few seconds to boot up and verify
-          sleep 8
+          serve -s . -l 3000 > serve.log 2>&1 &
           
           echo "Checking Backend Connection..."
-          curl -I http://127.0.0.1:8080/ || {
+          timeout 30 bash -c 'until curl -s -f http://127.0.0.1:8080/ > /dev/null; do sleep 2; done' || {
             echo "=== FastAPI Backend Logs ==="
             cat uvicorn.log
             exit 1
           }
           
           echo "Checking Frontend Connection..."
-          curl -I http://127.0.0.1:3000/ || {
+          timeout 30 bash -c 'until curl -s -f http://127.0.0.1:3000/ > /dev/null; do sleep 2; done' || {
             echo "=== Frontend Serve Logs ==="
             cat serve.log
             exit 1
