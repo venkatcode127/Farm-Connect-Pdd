@@ -71,8 +71,15 @@ describe('FarmConnect Web Frontend - Login E2E Tests', function() {
         const passwordField = await driver.findElement(By.id('loginPassword'));
         await passwordField.sendKeys('password123');
 
-        // Click login
+        // Click login — then capture any browser console errors to CI output
         await driver.findElement(By.id('loginBtn')).click();
+
+        const browserLogs = await driver.manage().logs().get('browser');
+        if (browserLogs.length > 0) {
+            console.log('=== BROWSER CONSOLE LOGS ===');
+            browserLogs.forEach(entry => console.log(`[${entry.level.name}] ${entry.message}`));
+            console.log('============================');
+        }
 
         // Wait explicitly until #userProfile is visible (auth.js sets display:block on success)
         const profileElement = await driver.findElement(By.id('userProfile'));
