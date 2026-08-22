@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import { MARKETS, WEATHER_DATA, CROP_ADVISORIES } from '../data';
 
 const Weather = () => {
@@ -6,6 +7,7 @@ const Weather = () => {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const { t } = useLanguage();
 
   const fetchLiveWeather = () => {
     setLoading(true);
@@ -80,8 +82,8 @@ const Weather = () => {
     <section className="section active" id="weather">
       <div className="section-banner banner-weather">
         <div className="section-banner-content">
-          <h2 className="section-banner-title">Weather & Crop Advisory</h2>
-          <p className="section-banner-desc">Weather-based recommendations for your region</p>
+          <h2 className="section-banner-title">{t('weather.title')}</h2>
+          <p className="section-banner-desc">{t('weather.description')}</p>
         </div>
         <div className="section-banner-icon">🌤️</div>
       </div>
@@ -99,7 +101,7 @@ const Weather = () => {
         <div className="card glass weather-current">
           {loading || !weather ? (
             <div style={{ padding: '40px', textAlign: 'center' }}>
-              <p>Locating & Fetching Live Weather...</p>
+              <p>{t('weather.loading')}</p>
             </div>
           ) : (
             <>
@@ -107,9 +109,9 @@ const Weather = () => {
               <div className="weather-temp">{weather.temp}°C</div>
               <div className="weather-desc">{weather.condition}</div>
               <div className="weather-details">
-                <span>💧 Humidity: {weather.humidity}%</span>
-                <span>💨 Wind: {weather.wind} km/h</span>
-                <span>🌡️ H:{weather.high}° L:{weather.low}°</span>
+                <span>💧 {t('weather.humidity')}: {weather.humidity}%</span>
+                <span>💨 {t('weather.wind')}: {weather.wind} km/h</span>
+                <span>🌡️ {t('weather.highLow')}: H:{weather.high}° L:{weather.low}°</span>
               </div>
             </>
           )}
@@ -130,7 +132,7 @@ const Weather = () => {
 
       <div className="weather-advisories">
         <div className="card glass">
-          <h3>Crop Advisory</h3>
+          <h3>{t('weather.cropAdvisory')}</h3>
           <div className="advisory-list">
             {advisories.map((a, i) => (
               <div className="advisory-item" key={i}>
@@ -142,12 +144,12 @@ const Weather = () => {
         </div>
         
         <div className="card glass">
-          <h3>Soil & Moisture</h3>
+          <h3>{t('weather.soilMoisture')}</h3>
           {weather && (
             <>
               <div className="indicator-bar">
                 <div className="indicator-label">
-                  <span>Soil Moisture</span>
+                  <span>{t('weather.soilMoistureLabel')}</span>
                   <span>{weather.soil_moisture}%</span>
                 </div>
                 <div className="indicator-track">
@@ -156,7 +158,7 @@ const Weather = () => {
               </div>
               <div className="indicator-bar" style={{ marginTop: '16px' }}>
                 <div className="indicator-label">
-                  <span>Rainfall Level</span>
+                  <span>{t('weather.rainfallLevel')}</span>
                   <span>{weather.rainfall}mm</span>
                 </div>
                 <div className="indicator-track">

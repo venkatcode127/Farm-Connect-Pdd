@@ -1,0 +1,51 @@
+{
+  "name": "react-native-appium-automation",
+  "version": "2.0.0",
+  "description": "Enterprise Appium 2.x E2E Automation Framework for React Native Android with AI Screen Exploration & 300-case Excel Reports",
+  "main": "src/tests/e2eRegression300.spec.js",
+  "scripts": {
+    "test": "mocha --config .mocharc.json src/tests/**/*.spec.js",
+    "test:auth": "mocha --config .mocharc.json src/tests/auth.spec.js",
+    "test:forms": "mocha --config .mocharc.json src/tests/forms.spec.js",
+    "test:components": "mocha --config .mocharc.json src/tests/uiComponents.spec.js",
+    "test:gestures": "mocha --config .mocharc.json src/tests/gestures.spec.js",
+    "test:navigation": "mocha --config .mocharc.json src/tests/navigation.spec.js",
+    "test:ai": "mocha --config .mocharc.json src/tests/aiExplorer.spec.js",
+    "test:300": "mocha --config .mocharc.json src/tests/e2eRegression300.spec.js",
+    "report:excel": "node src/utils/generateFull300Report.js",
+    "clean": "rimraf reports/screenshots reports/failures reports/mochawesome-report reports/*.xlsx"
+  },
+  "keywords": [
+    "appium2",
+    "react-native",
+    "uiautomator2",
+    "mocha",
+    "chai",
+    "exceljs",
+    "winston",
+    "mochawesome",
+    "ci-cd",
+    "github-actions"
+  ],
+  "author": "Senior QA Automation Architect",
+  "license": "MIT",
+  "dependencies": {
+    "appium": "^2.11.0",
+    "appium-uiautomator2-driver": "^3.7.0",
+    "axios": "^1.7.2",
+    "chai": "^4.4.1",
+    "dotenv": "^16.4.5",
+    "exceljs": "^4.4.0",
+    "mocha": "^10.4.0",
+    "mochawesome": "^7.1.3",
+    "mochawesome-report-generator": "^6.2.0",
+    "rimraf": "^5.0.7",
+    "webdriverio": "^8.38.0",
+    "winston": "^3.13.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.16",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.14.0"
+  }
+}

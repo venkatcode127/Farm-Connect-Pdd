@@ -1,0 +1,19 @@
+{
+  "diff": true,
+  "extension": ["js"],
+  "package": "./package.json",
+  "reporter": "mochawesome",
+  "reporter-option": [
+    "reportDir=reports/mochawesome-report",
+    "reportFilename=index",
+    "html=true",
+    "json=true",
+    "overwrite=true",
+    "charts=true",
+    "inline=true"
+  ],
+  "slow": "75",
+  "timeout": "120000",
+  "ui": "bdd",
+  "exit": true
+}

@@ -8,7 +8,9 @@
   --bg: #f8fafc; /* Slate 50 */
   --bg-card: rgba(255, 255, 255, 0.85); 
   --bg-card-solid: #ffffff;
+  --surface: #ffffff;
   --text: #0f172a; /* Slate 900 */
+  --text-primary: #0f172a;
   --text-secondary: #475569; /* Slate 600 */
   --text-muted: #94a3b8; /* Slate 400 */
   --border: #e2e8f0; /* Slate 200 */
@@ -24,7 +26,8 @@
   --bg: #0f172a; /* Slate 900 */
   --bg-card: rgba(30, 41, 59, 0.75); 
   --bg-card-solid: #1e293b;
-  --text: #f8fafc; --text-secondary: #cbd5e1; --text-muted: #64748b;
+  --surface: #1e293b;
+  --text: #f8fafc; --text-primary: #f8fafc; --text-secondary: #cbd5e1; --text-muted: #64748b;
   --border: #334155; --shadow: rgba(0,0,0,0.4);
   --glass-bg: rgba(30, 41, 59, 0.65); --glass-border: rgba(255, 255, 255, 0.1);
 }
@@ -38,13 +41,13 @@ h1,h2,h3,h4 { font-family: var(--font-heading); font-weight: 700; letter-spacing
 
 /* ===== Navbar ===== */
 .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--glass-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); transition: all var(--transition); }
-.nav-container { max-width: 1320px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.nav-container { width: 100%; max-width: none; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
 .nav-brand { display: flex; align-items: center; gap: 10px; }
 .nav-logo { width: 36px; height: 36px; }
 .brand-text { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; }
 .brand-accent { color: var(--primary-glow); }
 .nav-links { display: flex; gap: 4px; }
-.nav-link { padding: 8px 16px; border-radius: var(--radius-sm); color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: all var(--transition); }
+.nav-link { padding: 8px 16px; border-radius: var(--radius-sm); color: var(--text-secondary); text-decoration: none; font-size: 1.05rem; font-weight: 500; transition: all var(--transition); }
 .nav-link:hover, .nav-link.active { color: var(--primary-glow); background: rgba(46,204,113,0.1); }
 .nav-actions { display: flex; align-items: center; gap: 8px; }
 .btn-icon { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg-card); color: var(--text); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all var(--transition); font-weight: 600; font-size: 0.8rem; }
@@ -52,7 +55,7 @@ h1,h2,h3,h4 { font-family: var(--font-heading); font-weight: 700; letter-spacing
 .mobile-menu { display: none; }
 
 /* ===== Main Content ===== */
-.main-content { max-width: 1320px; margin: 0 auto; padding: 80px 24px 40px; min-height: 100vh; }
+.main-content { width: 100%; max-width: none; margin: 0 auto; padding: 80px 24px 40px; min-height: 100vh; }
 .section { display: none; animation: fadeIn 0.4s ease; }
 .section.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
@@ -217,7 +220,7 @@ h1,h2,h3,h4 { font-family: var(--font-heading); font-weight: 700; letter-spacing
 
 /* ===== Footer ===== */
 .footer { background: var(--text); color: rgba(255,255,255,0.85); margin-top: 60px; position: relative; border-top: 4px solid var(--primary); }
-.footer-content { max-width: 1320px; margin: 0 auto; padding: 64px 24px 32px; }
+.footer-content { width: 100%; max-width: none; margin: 0 auto; padding: 64px 24px 32px; }
 .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 48px; }
 .footer-col h4 { color: #fff; margin-bottom: 20px; font-size: 1.15rem; font-weight: 700; letter-spacing: -0.5px; }
 .footer-col p { font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); }
@@ -363,10 +366,169 @@ h1,h2,h3,h4 { font-family: var(--font-heading); font-weight: 700; letter-spacing
 .amz-qty-info { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px; }
 
 .amz-order-actions { display: flex; flex-direction: column; gap: 8px; min-width: 180px; }
-.btn-amz-primary { width: 100%; padding: 8px 16px; background: #FFD814; border: 1px solid #FCD200; border-radius: 20px; color: #0F1111; font-size: 0.85rem; cursor: pointer; transition: background 0.2s; }
+.btn-amz-primary { width: 100%; padding: 8px 16px; background: #FFD814; border: 1px solid #FCD200; border-radius: 20px; color: #0F1111; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
 .btn-amz-primary:hover { background: #F7CA00; }
-.btn-amz-secondary { width: 100%; padding: 8px 16px; background: #fff; border: 1px solid #D5D9D9; border-radius: 20px; color: #0F1111; font-size: 0.85rem; cursor: pointer; transition: background 0.2s; box-shadow: 0 2px 5px rgba(213,217,217,0.5); }
+.btn-amz-secondary { width: 100%; padding: 8px 16px; background: #fff; border: 1px solid #D5D9D9; border-radius: 20px; color: #0F1111; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: background 0.2s; box-shadow: 0 2px 5px rgba(213,217,217,0.5); }
 .btn-amz-secondary:hover { background: #F7FAFA; }
+
+/* Professional Compact Call Buttons & Contact Box */
+.order-contact-box {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.order-contact-box.farmer-box {
+  background: rgba(16, 185, 129, 0.05);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+.order-contact-box.buyer-box {
+  background: rgba(59, 130, 246, 0.05);
+  border-color: rgba(59, 130, 246, 0.25);
+}
+.order-contact-header {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+.order-contact-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.order-contact-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.order-contact-subtext {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.btn-call-compact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 4px 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  line-height: 1.2;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.btn-call-compact.call-farmer {
+  background: #E8F5E9;
+  border: 1px solid #A5D6A7;
+  color: #1B5E20;
+}
+.btn-call-compact.call-farmer:hover {
+  background: #C8E6C9;
+  border-color: #81C784;
+  color: #1B5E20;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(46, 125, 50, 0.15);
+}
+.btn-call-compact.call-buyer {
+  background: #E3F2FD;
+  border: 1px solid #90CAF9;
+  color: #0D47A1;
+}
+.btn-call-compact.call-buyer:hover {
+  background: #BBDEFB;
+  border-color: #64B5F6;
+  color: #0D47A1;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(21, 101, 192, 0.15);
+}
+
+.btn-amz-call {
+  width: 100%;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.btn-amz-call.call-farmer {
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  color: #166534;
+}
+.btn-amz-call.call-farmer:hover {
+  background: #DCFCE7;
+  border-color: #86EFAC;
+  color: #14532D;
+}
+.btn-amz-call.call-buyer {
+  background: #EFF6FF;
+  border: 1px solid #BFDBFE;
+  color: #1E40AF;
+}
+.btn-amz-call.call-buyer:hover {
+  background: #DBEAFE;
+  border-color: #93C5FD;
+  color: #1E3A8A;
+}
+
+[data-theme="dark"] .order-contact-box {
+  background: rgba(255, 255, 255, 0.03);
+}
+[data-theme="dark"] .order-contact-box.farmer-box {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+[data-theme="dark"] .order-contact-box.buyer-box {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+[data-theme="dark"] .btn-call-compact.call-farmer,
+[data-theme="dark"] .btn-amz-call.call-farmer {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.5);
+  color: #6EE7B7;
+}
+[data-theme="dark"] .btn-call-compact.call-farmer:hover,
+[data-theme="dark"] .btn-amz-call.call-farmer:hover {
+  background: rgba(16, 185, 129, 0.3);
+  border-color: #34D399;
+  color: #A7F3D0;
+}
+[data-theme="dark"] .btn-call-compact.call-buyer,
+[data-theme="dark"] .btn-amz-call.call-buyer {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.5);
+  color: #93C5FD;
+}
+[data-theme="dark"] .btn-call-compact.call-buyer:hover,
+[data-theme="dark"] .btn-amz-call.call-buyer:hover {
+  background: rgba(59, 130, 246, 0.3);
+  border-color: #60A5FA;
+  color: #BFDBFE;
+}
 
 @media (max-width: 600px) {
   .amz-order-header { gap: 12px; }
@@ -701,3 +863,58 @@ body {
 }
 .language-toggle button { background:none; border:none; font-size:0.9rem; padding:4px 8px; }
 .language-toggle button.active { font-weight:700; text-decoration:underline; }
+
+/* ===== MEDIA & MUTUAL RATING STYLES ===== */
+.modern-media-card {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border-color, #e0e0e0);
+  background: var(--card-bg, #ffffff);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modern-media-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.modern-media-card:hover .listing-hero-img {
+  transform: scale(1.04);
+}
+
+.btn-tag {
+  background: rgba(0,0,0,0.05);
+  border: 1px solid var(--border-color, #e0e0e0);
+  color: var(--text-primary, #333);
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-tag:hover {
+  background: rgba(26, 122, 74, 0.1);
+  border-color: var(--accent-gain, #1a7a4a);
+  color: var(--accent-gain, #1a7a4a);
+}
+
+.btn-tag.active {
+  background: var(--accent-gain, #1a7a4a);
+  border-color: var(--accent-gain, #1a7a4a);
+  color: #fff;
+  font-weight: 600;
+}
+
+.video-preview-badge:hover {
+  background: rgba(26, 122, 74, 0.95) !important;
+  transform: scale(1.05);
+}
+
+.farmer-rating-btn:hover {
+  background: #FFF3CD !important;
+  border-color: #FFC107 !important;
+}
+

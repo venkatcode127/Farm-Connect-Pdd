@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="FarmConnect AI - AI-Driven Agricultural Price Prediction and Distribution Platform for Indian Farmers">
+    <title>FarmConnect AI - Smart Agricultural Price Prediction</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="manifest" href="/assets/manifest-BiiY4ceL.json">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Leaflet CSS for Live Tracking Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- Chart.js for Analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DWZaGFV3.css">
+</head>
+
+<body>
+    <!-- Login/Register Screen -->
+    <div class="auth-screen" id="authScreen">
+        <div class="auth-bg-shapes">
+            <div class="auth-shape shape-1"></div>
+            <div class="auth-shape shape-2"></div>
+            <div class="auth-shape shape-3"></div>
+        </div>
+        <div class="auth-wrapper">
+            <div class="auth-hero-side">
+                <div class="auth-hero-content">
+                    <svg viewBox="0 0 40 40" fill="none" width="64" height="64">
+                        <circle cx="20" cy="20" r="18" fill="url(#logoGrad2)" />
+                        <path d="M20 8 L20 28 M14 14 Q20 8 26 14 M12 20 Q20 12 28 20" stroke="white" stroke-width="2"
+                            stroke-linecap="round" />
+                        <defs>
+                            <linearGradient id="logoGrad2" x1="0" y1="0" x2="40" y2="40">
+                                <stop offset="0%" stop-color="#2ECC71" />
+                                <stop offset="100%" stop-color="#0B3D2E" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <h1>Farm<span class="brand-accent">Connect</span> AI</h1>
+                    <p class="auth-tagline">AI-Powered Agricultural Price Prediction & Distribution Platform</p>
+                    <div class="auth-features">
+                        <div class="auth-feature"><span class="auth-feature-icon">🤖</span><span>AI Price
+                                Forecasting</span></div>
+                        <div class="auth-feature"><span class="auth-feature-icon">📊</span><span>Live Market
+                                Prices</span></div>
+                        <div class="auth-feature"><span class="auth-feature-icon">🛒</span><span>Farmer-Buyer
+                                Marketplace</span></div>
+                        <div class="auth-feature"><span class="auth-feature-icon">🌤️</span><span>Weather & Crop
+                                Advisory</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="auth-form-side">
+                <div class="auth-container glass">
+                    <!-- Login Form -->
+                    <div id="loginForm" class="auth-form">
+                        <h3>Welcome Back 👋</h3>
+                        <p class="auth-form-desc">Login to access your dashboard</p>
+                        <div class="form-group">
+                            <label>📱 Mobile Number</label>
+                            <div class="phone-input"><span class="phone-prefix">+91</span><input type="tel"
+                                    id="loginPhone" class="text-input" placeholder="Enter 10-digit number"
+                                    maxlength="10" required></div>
+                        </div>
+                        <div class="form-group" style="display:flex; justify-content:space-between; align-items:center;">
+                            <label>🔒 Password</label>
+                            <a href="#" id="showForgot" style="font-size:0.8rem; color:var(--primary-glow); text-decoration:none; font-weight:600;">Forgot Password?</a>
+                        </div>
+                        <input type="password" id="loginPassword" class="text-input" placeholder="Enter your password" required style="margin-bottom: 16px;">
+                        <div class="auth-error" id="loginError" style="display:none"></div>
+                        <button class="btn-primary btn-full" id="loginBtn">🚀 Login</button>
+                        <p class="auth-switch">New user? <a href="#" id="showRegister">Create an account</a></p>
+                    </div>
+                    <!-- Forgot Password Form -->
+                    <div id="forgotForm" class="auth-form" style="display:none">
+                        <h3>Reset Password 🔐</h3>
+                        <p class="auth-form-desc">Enter your registered mobile number</p>
+                        
+                        <div class="form-group">
+                            <label>📱 Registered Mobile Number</label>
+                            <div class="phone-input"><span class="phone-prefix">+91</span><input type="tel" id="forgotPhone" class="text-input" placeholder="Enter 10-digit number" maxlength="10" required></div>
+                        </div>
+                        <div class="form-group">
+                            <label>🆕 New Password</label>
+                            <input type="password" id="forgotNewPassword" class="text-input" placeholder="Enter new password (min 4 chars)" required>
+                        </div>
+                        <div class="auth-error" id="forgotError" style="display:none"></div>
+                        <button class="btn-primary btn-full" id="resetPasswordBtn">✅ Reset Password</button>
+                        <p class="auth-switch"><a href="#" id="backToLoginFromForgot">⬅️ Back to Login</a></p>
+                    </div>
+
+                    <!-- Register Form -->
+                    <div id="registerForm" class="auth-form" style="display:none">
+                        <h3>Create Account 🌱</h3>
+                        <p class="auth-form-desc">Join thousands of smart farmers</p>
+                        
+                        <div class="form-group"><label>👤 Full Name</label><input type="text" id="regName"
+                                class="text-input" placeholder="Enter your full name" required></div>
+                        <div class="form-group"><label>📱 Mobile Number</label>
+                            <div class="phone-input"><span class="phone-prefix">+91</span><input type="tel"
+                                    id="regPhone" class="text-input" placeholder="Enter 10-digit valid Indian number" maxlength="10"
+                                    required></div>
+                        </div>
+                        <div class="form-group"><label>🔒 Password</label><input type="password" id="regPassword"
+                                class="text-input" placeholder="Create a password (min 4 chars)" required></div>
+                        <div class="form-group"><label>🧑‍🌾 Role</label><select id="regRole" class="select-input">
+                                <option value="farmer">Farmer / కిసాన్</option>
+                                <option value="buyer">Buyer / கொள்முதல்</option>
+                                <option value="trader">Trader / వ్యాపారి</option>
+                            </select></div>
+                        <div class="form-group"><label>📍 Location</label><input type="text" id="regLocation"
+                                class="text-input" placeholder="Village/City, State" required></div>
+                        <div class="auth-error" id="regError" style="display:none"></div>
+                        <button class="btn-primary btn-full" id="registerBtn">✅ Register & Login</button>
+                        <p class="auth-switch">Already registered? <a href="#" id="showLogin">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <svg class="nav-logo" viewBox="0 0 40 40" fill="none">
+                    <circle cx="20" cy="20" r="18" fill="url(#logoGrad)" />
+                    <path d="M20 8 L20 28 M14 14 Q20 8 26 14 M12 20 Q20 12 28 20" stroke="white" stroke-width="2"
+                        stroke-linecap="round" />
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40">
+                            <stop offset="0%" stop-color="#2ECC71" />
+                            <stop offset="100%" stop-color="#0B3D2E" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="brand-text">Farm<span class="brand-accent">Connect</span> AI</span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#dashboard" class="nav-link active" data-section="dashboard" data-en="Dashboard"
+                    data-hi="डैशबोर्ड" data-te="డాష్‌బోర్డ్" data-ta="டாஷ்போர்ட்" data-kn="ಡ್ಯಾಶ್‌ಬೋರ್ಡ್">Dashboard</a>
+                <a href="#prediction" class="nav-link" data-section="prediction" data-en="AI Prediction"
+                    data-hi="AI भविष्यवाणी" data-te="AI అంచనా" data-ta="AI கணிப்பு" data-kn="AI ಮುನ್ಸೂಚನೆ">AI
+                    Prediction</a>
+                <a href="#market" class="nav-link" data-section="market" data-en="Market Prices" data-hi="बाज़ार भाव"
+                    data-te="మార్కెట్ ధరలు" data-ta="சந்தை விலைகள்" data-kn="ಮಾರುಕಟ್ಟೆ ಬೆಲೆಗಳು">Market Prices</a>
+                <a href="#marketplace" class="nav-link" data-section="marketplace" data-en="Marketplace" data-hi="मंडी"
+                    data-te="మార్కెట్‌ప్లేస్" data-ta="சந்தை" data-kn="ಮಾರುಕಟ್ಟೆ">Marketplace</a>
+                <a href="#orders" class="nav-link" data-section="orders" data-en="My Orders" data-hi="मेरे ऑर्डर"
+                    data-te="నా ఆర్డర్లు" data-ta="எனது ஆர்டர்கள்" data-kn="ನನ್ನ ಆರ್ಡರ್‌ಗಳು">My Orders</a>
+                <a href="#weather" class="nav-link" data-section="weather" data-en="Weather" data-hi="मौसम"
+                    data-te="వాతావరణం" data-ta="வானிலை" data-kn="ಹವಾಮಾನ">Weather</a>
+                <a href="#analytics" class="nav-link" data-section="analytics" data-en="Analytics" data-hi="विश्लेषण"
+                    data-te="విశ్లేషణ" data-ta="பகுப்பாய்வு" data-kn="ವಿಶ್ಲೇಷಣೆ">Analytics</a>
+                <a href="#admin" class="nav-link admin-only" data-section="admin" data-en="Admin Panel"
+                    data-hi="एडमिन पैनल" data-te="అడ్మిన్ ప్యానెల్" data-ta="நிர்வாக பேனல்" data-kn="ನಿರ್ವಾಹಕ ಫಲಕ"
+                    style="display:none">🔒 Admin Panel</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-icon" id="langToggle" title="Toggle Language">
+                    <span id="langLabel">HI</span>
+                </button>
+                <button class="btn-icon" id="themeToggle" title="Toggle Dark Mode">
+                    <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </button>
+                <div class="user-profile" id="userProfile" style="display:none">
+                    <button class="btn-icon user-avatar" id="userAvatar" title="Profile">U</button>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <div class="profile-info"><strong id="profileName">User</strong><span id="profileRole"
+                                class="profile-role">Farmer</span><span id="profilePhone" class="profile-phone">+91
+                                XXXXX</span></div>
+                        <hr>
+                        <button class="dropdown-item" id="changePasswordBtn">🔑 Change Password</button>
+                        <button class="dropdown-item" id="logoutBtn">🚪 Logout</button>
+                    </div>
+                </div>
+                <button class="btn-icon mobile-menu" id="menuToggle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section class="section active" id="dashboard">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title" data-en="Smart Farming Starts Here" data-hi="स्मार्ट खेती यहाँ शुरू होती है"
+                        data-te="స్మార్ట్ వ్యవసాయం ఇక్కడ మొదలవుతుంది" data-ta="ஸ்மார்ட் விவசாயம் இங்கே தொடங்குகிறது"
+                        data-kn="ಸ್ಮಾರ್ಟ್ ಕೃಷಿ ಇಲ್ಲಿ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ">Smart Farming Starts Here</h1>
+                    <p class="hero-subtitle" data-en="AI-powered price predictions to maximize your profits"
+                        data-hi="AI-संचालित मूल्य भविष्यवाणी से अपना मुनाफा बढ़ाएं"
+                        data-te="AI-ఆధారిత ధర అంచనాలతో మీ లాభాలను పెంచండి"
+                        data-ta="AI-இயக்கப்படும் விலை கணிப்புகள் மூலம் உங்கள் லாபத்தை அதிகரிக்கவும்"
+                        data-kn="AI-ಚಾಲಿತ ಬೆಲೆ ಮುನ್ಸೂಚನೆಗಳೊಂದಿಗೆ ನಿಮ್ಮ ಲಾಭವನ್ನು ಹೆಚ್ಚಿಸಿ">AI-powered price predictions
+                        to maximize your profits</p>
+                    <button class="btn-primary hero-cta" id="heroCtaBtn" data-en="Get My AI Prediction"
+                        data-hi="मेरी AI भविष्यवाणी प्राप्त करें" data-te="నా AI అంచనాను పొందండి"
+                        data-ta="என்னுடைய AI கணிப்பைப் பெறுங்கள்" data-kn="ನನ್ನ AI ಮುನ್ಸೂಚನೆ ಪಡೆಯಿರಿ">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                        </svg>
+                        Get My AI Prediction
+                    </button>
+                </div>
+                <div class="hero-particles" id="heroParticles"></div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card glass clickable" id="statGainers" role="button" tabindex="0">
+                    <div class="stat-icon green">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                            <polyline points="17 6 23 6 23 12" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label" data-en="Top Gainer Today" data-hi="आज का टॉप गेनर"
+                            data-te="ఈ రోజు టాప్ గెయినర్" data-ta="இன்றைய சிறந்த ஏற்றம்" data-kn="ಇಂದಿನ ಟಾಪ್ ಗೇನರ್">Top
+                            Gainer Today</span>
+                        <span class="stat-value" id="topGainer">Tomato +12.4%</span>
+                    </div>
+                </div>
+                <div class="stat-card glass clickable" id="statAlerts" role="button" tabindex="0">
+                    <div class="stat-icon amber">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label" data-en="Price Alerts" data-hi="मूल्य अलर्ट" data-te="ధర హెచ్చరికలు"
+                            data-ta="விலை எச்சரிக்கைகள்" data-kn="ಬೆಲೆ ಎಚ್ಚರಿಕೆಗಳು">Price Alerts</span>
+                        <span class="stat-value" id="alertCount">5 Active</span>
+                    </div>
+                </div>
+                <div class="stat-card glass clickable" id="statListings" role="button" tabindex="0">
+                    <div class="stat-icon blue">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" />
+                            <line x1="8" y1="21" x2="16" y2="21" />
+                            <line x1="12" y1="17" x2="12" y2="21" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label" data-en="Active Listings" data-hi="सक्रिय लिस्टिंग"
+                            data-te="యాక్టివ్ జాబితాలు" data-ta="செயலில் உள்ள பட்டியல்கள்"
+                            data-kn="ಸಕ್ರಿಯ ಪಟ್ಟಿಗಳು">Active Listings</span>
+                        <span class="stat-value" id="listingCount">24 Items</span>
+                    </div>
+                </div>
+                <div class="stat-card glass clickable" id="statMarkets" role="button" tabindex="0">
+                    <div class="stat-icon purple">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M3 3h18v18H3z" />
+                            <path d="M3 9h18" />
+                            <path d="M9 3v18" />
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label" data-en="Markets Tracked" data-hi="ट्रैक किए गए बाज़ार"
+                            data-te="ట్రాక్ చేసిన మార్కెట్లు" data-ta="கண்காணிக்கப்படும் சந்தைகள்"
+                            data-kn="ಟ್ರ್ಯಾಕ್ ಮಾಡಲಾದ ಮಾರುಕಟ್ಟೆಗಳು">Markets Tracked</span>
+                        <span class="stat-value">8 Mandis</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mandi/State Selector -->
+            <div class="dashboard-selector">
+                <label data-en="Select Mandi / State:" data-hi="मंडी / राज्य चुनें:"
+                    data-te="మండిని / రాష్ట్రాన్ని ఎంచుకోండి:" data-ta="மண்டி / மாநிலத்தைத் தேர்ந்தெடுக்கவும்:"
+                    data-kn="ಮಂಡಿ / ರಾಜ್ಯವನ್ನು ಆರಿಸಿ:">Select Mandi / State:</label>
+                <select class="select-input" id="dashboardMarketSelect">
+                    <option value="delhi">Azadpur, Delhi 🏛️</option>
+                </select>
+            </div>
+            <!-- Quick Prediction Preview -->
+            <div class="dashboard-grid">
+                <div class="card glass" id="quickPrediction">
+                    <h3 class="card-title" data-en="Quick Price Overview" data-hi="त्वरित मूल्य अवलोकन"
+                        data-te="శీఘ్ర ధర సమీక్ష" data-ta="விரைவு விலை கண்ணோட்டம்" data-kn="ತ್ವರಿತ ಬೆಲೆ ಅವಲೋಕನ">Quick
+                        Price Overview</h3>
+                    <div class="quick-price-table-wrapper">
+                        <table class="quick-price-table" id="quickPriceTable">
+                            <thead>
+                                <tr>
+                                    <th data-en="Crop" data-hi="फसल">Crop</th>
+                                    <th data-en="Price (₹/Qt)" data-hi="मूल्य (₹/क्विं)">Price (₹/Qt)</th>
+                                    <th data-en="Change 24h" data-hi="24h बदलाव">Change 24h</th>
+                                    <th data-en="30-Day Trend" data-hi="30-दिन रुझान">30-Day Trend</th>
+                                </tr>
+                            </thead>
+                            <tbody id="quickPriceTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card glass" id="aiPredictionTop3">
+                    <h3 class="card-title" data-en="🤖 AI Prediction - Top 3 Crops" data-hi="🤖 AI भविष्यवाणी - शीर्ष 3 फसलें"
+                        data-te="🤖 AI ఎంచుకున్న - టాప్ 3 ఫసులు" data-ta="🤖 AI கணிப்பு - முக்கிய 3 பயிர்கள்"
+                        data-kn="🤖 AI ಮುನ್ಸೂಚನೆ - ಟಾಪ್ 3 ಫಸುಗಳು">🤖 AI Prediction - Top 3 Crops</h3>
+                    <div id="topCropsPrediction" class="top-crops-container"></div>
+                </div>
+            </div>
+
+            <!-- Market Activity & Weather Impact -->
+            <div class="dashboard-grid">
+                <div class="card glass" id="recentActivity">
+                    <h3 class="card-title" data-en="📊 Recent Market Activity" data-hi="📊 हालिया बाज़ार गतिविधि"
+                        data-te="📊 ఇటీవలి మార్కెట్ కార్యకలాపం" data-ta="📊 சமீபத்திய சந்தை நடவடிக்கை"
+                        data-kn="📊 ಇತ್ತೀಚಿನ ಮಾರುಕಟ್ಟೆ ಚಟುವಟಿಕೆ">📊 Recent Market Activity</h3>
+                    <div class="activity-feed" id="activityFeed"></div>
+                </div>
+                <div class="card glass" id="weatherImpact">
+                    <h3 class="card-title" data-en="🌤️ Weather Impact on Prices" data-hi="🌤️ कीमतों पर मौसम का प्रभाव"
+                        data-te="🌤️ ధరలపై వాతావరణ ప్రభావం" data-ta="🌤️ விலைகளில் வானிலை தாக்கம்"
+                        data-kn="🌤️ ಬೆಲೆಗಳಲ್ಲಿ ಹವಾಮಾನ ಪ್ರಭಾವ">🌤️ Weather Impact on Prices</h3>
+                    <div id="weatherImpactContent" class="weather-impact-widget"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Prediction Section -->
+        <section class="section" id="prediction">
+            <div class="section-banner banner-analytics">
+                <div class="section-banner-content">
+                    <h2 class="section-banner-title" data-en="AI Price Prediction" data-hi="AI मूल्य भविष्यवाणी">AI Price Prediction</h2>
+                    <p class="section-banner-desc" data-en="Select a commodity and market to get AI-powered price forecasts"
+                        data-hi="AI-संचालित मूल्य पूर्वानुमान प्राप्त करने के लिए कमोडिटी और बाज़ार चुनें">Select a commodity and market to get AI-powered price forecasts</p>
+                </div>
+                <div class="section-banner-icon">📈</div>
+            </div>
+            <div class="prediction-controls">
+                <div class="control-group">
+                    <label data-en="Commodity" data-hi="कमोडिटी">Commodity</label>
+                    <select id="commoditySelect" class="select-input"></select>
+                </div>
+                <div class="control-group">
+                    <label data-en="Market / Mandi" data-hi="बाज़ार / मंडी">Market / Mandi</label>
+                    <select id="marketSelect" class="select-input"></select>
+                </div>
+                <button class="btn-primary" id="predictBtn" data-en="Generate Forecast" data-hi="पूर्वानुमान बनाएं">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                    </svg>
+                    Generate Forecast
+                </button>
+            </div>
+            <div class="prediction-results" id="predictionResults" style="display:none;">
+                <div class="prediction-grid">
+                    <div class="card glass prediction-chart-card">
+                        <h3 class="card-title" data-en="Price Forecast Chart" data-hi="मूल्य पूर्वानुमान चार्ट">Price
+                            Forecast Chart</h3>
+                        <canvas id="predictionChart" width="800" height="400"></canvas>
+                        <div class="chart-legend" id="chartLegend"></div>
+                    </div>
+                    <div class="prediction-sidebar">
+                        <div class="card glass">
+                            <h4 data-en="AI Recommendation" data-hi="AI सिफारिश">AI Recommendation</h4>
+                            <div class="recommendation" id="recommendation"></div>
+                        </div>
+                        <div class="card glass">
+                            <h4 data-en="Confidence Level" data-hi="विश्वास स्तर">Confidence Level</h4>
+                            <div class="confidence-gauge" id="confidenceGauge">
+                                <svg viewBox="0 0 200 120" class="gauge-svg">
+                                    <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="var(--border)"
+                                        stroke-width="12" stroke-linecap="round" />
+                                    <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="url(#gaugeGrad)"
+                                        stroke-width="12" stroke-linecap="round" id="gaugeArc"
+                                        stroke-dasharray="0 251" />
+                                    <text x="100" y="90" text-anchor="middle" class="gauge-text"
+                                        id="gaugeText">0%</text>
+                                    <defs>
+                                        <linearGradient id="gaugeGrad">
+                                            <stop offset="0%" stop-color="#e74c3c" />
+                                            <stop offset="50%" stop-color="#f39c12" />
+                                            <stop offset="100%" stop-color="#2ecc71" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card glass">
+                            <h4 data-en="Price Summary" data-hi="मूल्य सारांश">Price Summary</h4>
+                            <div class="price-summary" id="priceSummary"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Market Prices Section -->
+        <section class="section" id="market">
+            <div class="section-banner banner-market">
+                <div class="section-banner-content">
+                    <h2 class="section-banner-title" data-en="Market Prices" data-hi="बाज़ार भाव">Market Prices</h2>
+                    <p class="section-banner-desc" data-en="Current commodity prices across Indian markets"
+                        data-hi="भारतीय बाज़ारों में वर्तमान कमोडिटी मूल्य">Current commodity prices across Indian markets</p>
+                </div>
+                <div class="section-banner-icon">🧺</div>
+            </div>
+            <div class="market-filters">
+                <input type="text" class="search-input" id="marketSearch" placeholder="Search commodity..."
+                    data-placeholder-en="Search commodity..." data-placeholder-hi="कमोडिटी खोजें...">
+                <select class="select-input" id="stateFilter">
+                    <option value="all" data-en="All States" data-hi="सभी राज्य">All States</option>
+                </select>
+            </div>
+            <div class="table-container glass">
+                <table class="market-table" id="marketTable">
+                    <thead>
+                        <tr>
+                            <th data-en="Commodity" data-hi="कमोडिटी">Commodity</th>
+                            <th data-en="Market" data-hi="बाज़ार">Market</th>
+                            <th data-en="Price (₹/Qt)" data-hi="मूल्य (₹/क्विं)">Price (₹/Qt)</th>
+                            <th data-en="Change" data-hi="बदलाव">Change</th>
+                            <th data-en="Trend" data-hi="रुझान">Trend</th>
+                        </tr>
+                    </thead>
+                    <tbody id="marketTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Marketplace Section -->
+        <section class="section" id="marketplace">
+            <div class="section-banner banner-market">
+                <div class="section-banner-content">
+                    <h2 class="section-banner-title" data-en="Farmer Marketplace" data-hi="किसान मंडी">Farmer Marketplace</h2>
+                    <p class="section-banner-desc" data-en="Buy and sell produce directly" data-hi="सीधे उपज खरीदें और बेचें">Buy and sell produce directly</p>
+                </div>
+                <div class="section-banner-icon">🛍️</div>
+            </div>
+            <div class="marketplace-actions">
+                <button class="btn-primary" id="sellBtn" data-en="Sell Your Produce" data-hi="अपनी उपज बेचें">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                    Sell Your Produce
+                </button>
+            </div>
+            <!-- Sell Modal -->
+            <div class="modal-overlay" id="sellModal" style="display:none;">
+                <div class="modal glass">
+                    <div class="modal-header">
+                        <h3 data-en="List Your Produce" data-hi="अपनी उपज लिस्ट करें">List Your Produce</h3>
+                        <button class="btn-icon modal-close" id="closeSellModal">&times;</button>
+                    </div>
+                    <form id="sellForm" class="sell-form">
+                        <div class="form-group">
+                            <label data-en="Crop Name" data-hi="फसल का नाम">Crop Name</label>
+                            <select id="sellCrop" class="select-input" required></select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-en="Quantity (Quintals)" data-hi="मात्रा (क्विंटल)">Quantity
+                                    (Quintals)</label>
+                                <input type="number" id="sellQty" class="text-input" min="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label data-en="Price (₹/Quintal)" data-hi="मूल्य (₹/क्विंटल)">Price (₹/Quintal)</label>
+                                <input type="number" id="sellPrice" class="text-input" min="1" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label data-en="Location" data-hi="स्थान">Location</label>
+                            <input type="text" id="sellLocation" class="text-input"
+                                placeholder="Village, District, State" required>
+                        </div>
+                        <div class="form-group">
+                            <label data-en="Contact Number" data-hi="संपर्क नंबर">Contact Number</label>
+                            <input type="tel" id="sellContact" class="text-input" placeholder="+91 XXXXX XXXXX"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label data-en="Description" data-hi="विवरण">Description</label>
+                            <textarea id="sellDesc" class="text-input" rows="3"
+                                placeholder="Quality details, organic, etc."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary btn-full" data-en="List for Sale"
+                            data-hi="बिक्री के लिए लिस्ट करें">List for Sale</button>
+                    </form>
+                </div>
+            </div>
+            <div class="listings-grid" id="listingsGrid"></div>
+        </section>
+
+        <!-- Order Tracking Section -->
+        <section class="section" id="orders">
+            <div class="section-banner banner-orders">
+                <div class="section-banner-content">
+                    <h2 class="section-banner-title" data-en="My Orders" data-hi="मेरे ऑर्डर">My Orders</h2>
+                    <p class="section-banner-desc" data-en="Track and manage all your orders in one place"
+                        data-hi="एक जगह पर अपने सभी ऑर्डर ट्रैक और प्रबंधित करें">Track and manage all your orders in one place</p>
+                </div>
+                <div class="section-banner-icon">📦</div>
+            </div>
+            <div class="orders-tabs">
+                <button class="order-tab active" data-tab="all" id="orderTabAll">📦 All Orders</button>
+                <button class="order-tab" data-tab="active" id="orderTabActive">🚚 Active</button>
+                <button class="order-tab" data-tab="completed" id="orderTabCompleted">✅ Completed</button>
+                <button class="order-tab" data-tab="cancelled" id="orderTabCancelled">❌ Cancelled</button>
+            </div>
+            <div class="orders-summary-strip" id="ordersSummary">
+                <div class="order-summary-item">
+                    <span class="order-summary-count" id="orderTotalCount">0</span>
+                    <span class="order-summary-label">Total</span>
+                </div>
+                <div class="order-summary-item">
+                    <span class="order-summary-count" id="orderActiveCount" style="color:var(--blue)">0</span>
+                    <span class="order-summary-label">Active</span>
+                </div>
+                <div class="order-summary-item">
+                    <span class="order-summary-count" id="orderDeliveredCount" style="color:var(--green)">0</span>
+                    <span class="order-summary-label">Delivered</span>
+                </div>
+                <div class="order-summary-item">
+                    <span class="order-summary-count" id="orderTotalSpent" style="color:var(--amber)">₹0</span>
+                    <span class="order-summary-label">Total Value</span>
+                </div>
+            </div>
+            <div class="orders-list" id="ordersList">
+                <div class="orders-empty" id="ordersEmpty">
+                    <div class="orders-empty-icon">📦</div>
+                    <h3 data-en="No orders yet" data-hi="अभी तक कोई ऑर्डर नहीं">No orders yet</h3>
+                    <p data-en="Place an order from the Marketplace to get started"
+                        data-hi="शुरू करने के लिए मार्केटप्लेस से ऑर्डर दें">Place an order from the Marketplace to get
+                        started</p>
+                    <button class="btn-primary" onclick="document.querySelector('[data-section=marketplace]').click()"
+                        data-en="Browse Marketplace" data-hi="मार्केटप्लेस ब्राउज़ करें">🛒 Browse Marketplace</button>
+                </div>
+            </div>
+
+            <!-- Order Detail Modal -->
+            <div class="modal-overlay" id="orderDetailModal" style="display:none;">
+                <div class="modal glass order-detail-modal">
+                    <div class="modal-header">
+                        <h3 data-en="Order Details" data-hi="ऑर्डर विवरण">Order Details</h3>
+                        <button class="btn-icon modal-close" id="closeOrderDetail">&times;</button>
+                    </div>
+                    <div id="orderDetailContent"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Change Password Modal -->
+        <div class="modal-overlay" id="changePasswordModal" style="display:none; z-index:9999;">
+            <div class="modal glass" style="max-width: 400px;">
+                <div class="modal-header">
+                    <h3>Change Password 🔑</h3>
+                    <button class="btn-icon modal-close" id="closeChangePasswordModal">&times;</button>
+                </div>
+                <div class="form-group">
+                    <label>Current Password</label>
+                    <input type="password" id="cpCurrent" class="text-input" placeholder="Enter current password" required>
+                </div>
+                <div class="form-group">
+                    <label>New Password</label>
+                    <input type="password" id="cpNew" class="text-input" placeholder="Enter new password (min 4 chars)" required>
+                </div>
+                <div class="auth-error" id="cpError" style="display:none"></div>
+                <button class="btn-primary btn-full" id="submitChangePasswordBtn" style="margin-top: 16px;">✅ Update Password</button>
+            </div>
+        </div>
+
+        <!-- Weather Section -->
+        <section class="section" id="weather">
+            <div class="section-banner banner-weather">
+                <div class="section-banner-content">
+                    <h2 class="section-banner-title" data-en="Weather & Crop Advisory" data-hi="मौसम और फसल सलाह">Weather & Crop Advisory</h2>
+                    <p class="section-banner-desc" data-en="Weather-based recommendations for your region"
+                        data-hi="आपके क्षेत्र के लिए मौसम आधारित सिफारिशें">Weather-based recommendations for your region</p>
+                </div>
+                <div class="section-banner-icon">🌤️</div>
+            </div>
+            <div class="weather-controls">
+                <select class="select-input" id="weatherRegion"></select>
+            </div>
+            <div class="weather-grid">
+                <div class="card glass weather-current" id="weatherCurrent"></div>
+                <div class="card glass weather-forecast">
+                    <h3 data-en="5-Day Forecast" data-hi="5-दिन का पूर्वानुमान">5-Day Forecast</h3>
+                    <div class="forecast-row" id="forecastRow"></div>
+                </div>
+                <div class="card glass weather-advisory">
+                    <h3 data-en="Crop Advisory" data-hi="फसल सलाह">Crop Advisory</h3>
+                    <div id="cropAdvisory"></div>
+                </div>
+                <div class="card glass weather-indicators">
+                    <h3 data-en="Soil & Rainfall" data-hi="मिट्टी और वर्षा">Soil & Rainfall</h3>
+                    <div id="soilRainfall"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section class="section" id="analytics">
+            <div class="section-banner banner-analytics">
+                <div class="section-banner-content">
+                    <h2 class="section-banner-title" data-en="Analytics & Insights" data-hi="विश्लेषण और अंतर्दृष्टि">Analytics & Insights</h2>
+                    <p class="section-banner-desc" data-en="Data-driven insights for smarter decisions"
+                        data-hi="स्मार्ट निर्णयों के लिए डेटा-संचालित अंतर्दृष्टि">Data-driven insights for smarter decisions</p>
+                </div>
+                <div class="section-banner-icon">🧠</div>
+            </div>
+            <div class="analytics-grid">
+                <div class="card glass">
+                    <h3 data-en="Price Volatility Index" data-hi="मूल्य अस्थिरता सूचकांक">Price Volatility Index</h3>
+                    <div class="volatility-bars" id="volatilityBars"></div>
+                </div>
+                <div class="card glass">
+                    <h3 data-en="Seasonal Trends" data-hi="मौसमी रुझान">Seasonal Trends</h3>
+                    <canvas id="seasonalChart" width="600" height="300"></canvas>
+                </div>
+                <div class="card glass">
+                    <h3 data-en="Best Time to Sell" data-hi="बेचने का सबसे अच्छा समय">Best Time to Sell</h3>
+                    <div class="sell-timing" id="sellTiming"></div>
+                </div>
+                <div class="card glass">
+                    <h3 data-en="Market Comparison" data-hi="बाज़ार तुलना">Market Comparison</h3>
+                    <canvas id="comparisonChart" width="600" height="300"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Panel Section -->
+        <section class="section" id="admin">
+            <div class="section-header">
+                <h2 class="section-title">🔒 Admin Dashboard</h2>
+                <p class="section-desc">Full platform control — manage users, listings, and data</p>
+            </div>
+            <div class="admin-stats stats-grid">
+                <div class="stat-card glass">
+                    <div class="stat-icon green"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg></div>
+                    <div class="stat-info"><span class="stat-label">Total Users</span><span class="stat-value"
+                            id="adminUserCount">0</span></div>
+                </div>
+                <div class="stat-card glass">
+                    <div class="stat-icon amber"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" />
+                            <line x1="8" y1="21" x2="16" y2="21" />
+                            <line x1="12" y1="17" x2="12" y2="21" />
+                        </svg></div>
+                    <div class="stat-info"><span class="stat-label">Active Listings</span><span class="stat-value"
+                            id="adminListingCount">0</span></div>
+                </div>
+                <div class="stat-card glass">
+                    <div class="stat-icon blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                        </svg></div>
+                    <div class="stat-info"><span class="stat-label">Markets Tracked</span><span
+                            class="stat-value">10</span></div>
+                </div>
+                <div class="stat-card glass">
+                    <div class="stat-icon purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                        </svg></div>
+                    <div class="stat-info"><span class="stat-label">Commodities</span><span class="stat-value">12</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Quick Actions -->
+            <div class="admin-actions-bar" style="margin:24px 0;display:flex;gap:12px;flex-wrap:wrap">
+                <button class="btn-primary" id="adminAddProduct" onclick="adminAddNewProduct()">➕ Add New
+                    Product</button>
+                <button class="btn-primary" style="background:linear-gradient(135deg,#e74c3c,#c0392b)"
+                    onclick="if(confirm('Clear all listings and reset to defaults?')){localStorage.removeItem('fc_listings');location.reload()}">🗑️
+                    Reset All Listings</button>
+                <button class="btn-primary" style="background:linear-gradient(135deg,#3498db,#2980b9)"
+                    onclick="exportData()">📥 Export Data (JSON)</button>
+            </div>
+
+            <div class="card glass" style="margin-top:24px">
+                <h3 class="card-title">👥 Registered Users</h3>
+                <div class="table-container">
+                    <table class="market-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Role</th>
+                                <th>Location</th>
+                                <th>Registered</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminUsersBody"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card glass" style="margin-top:24px">
+                <h3 class="card-title">📦 All Marketplace Listings</h3>
+                <div class="table-container">
+                    <table class="market-table">
+                        <thead>
+                            <tr>
+                                <th>Crop</th>
+                                <th>Seller</th>
+                                <th>Qty (Qt)</th>
+                                <th>Price (₹/Qt)</th>
+                                <th>Location</th>
+                                <th>Contact</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminListingsBody"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card glass" style="margin-top:24px">
+                <h3 class="card-title">🚚 All Orders (<span id="adminOrderCount">0</span>)</h3>
+                <div class="table-container">
+                    <table class="market-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Product</th>
+                                <th>Buyer</th>
+                                <th>Seller</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminOrdersBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>FarmConnect AI</h4>
+                    <p data-en="Empowering farmers with AI-driven insights for better price discovery and market access."
+                        data-hi="बेहतर मूल्य खोज और बाज़ार पहुंच के लिए AI-संचालित अंतर्दृष्टि से किसानों को सशक्त बनाना।">
+                        Empowering farmers with AI-driven insights for better price discovery and market access.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 data-en="Useful Links" data-hi="उपयोगी लिंक">Useful Links</h4>
+                    <a href="https://enam.gov.in" target="_blank">eNAM Portal</a>
+                    <a href="https://pmkisan.gov.in" target="_blank">PM-KISAN</a>
+                    <a href="https://farmer.gov.in" target="_blank">Farmer Portal</a>
+                </div>
+                <div class="footer-col">
+                    <h4 data-en="Helpline" data-hi="हेल्पलाइन">Helpline</h4>
+                    <p>Kisan Call Center: <strong>1800-180-1551</strong></p>
+                    <p>PM-KISAN: <strong>155261</strong></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 FarmConnect AI v2.0 — <span data-en="Made for Indian Farmers"
+                        data-hi="भारतीय किसानों के लिए बनाया गया">Made for Indian Farmers</span> 🇮🇳</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- AI Chat Board -->
+    <button class="ai-chat-fab" id="aiChatFab" title="AI Assistant">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </svg>
+        <span class="fab-pulse"></span>
+    </button>
+    <div class="ai-chat-panel" id="aiChatPanel" style="display:none;">
+        <div class="ai-chat-header">
+            <div class="ai-chat-header-info">
+                <div class="ai-chat-avatar">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                    </svg>
+                </div>
+                <div>
+                    <h4>FarmConnect AI</h4>
+                    <span class="ai-chat-status">● Online</span>
+                </div>
+            </div>
+            <button class="btn-icon ai-chat-close" id="aiChatClose">&times;</button>
+        </div>
+        <div class="ai-chat-messages" id="aiChatMessages">
+            <div class="ai-msg ai-msg-bot">
+                <div class="ai-msg-avatar">🤖</div>
+                <div class="ai-msg-bubble">
+                    <p>Namaste! 🙏 I'm your FarmConnect AI assistant. I can help you with:</p>
+                    <ul>
+                        <li>📊 Market price information</li>
+                        <li>🌾 Crop advice & best practices</li>
+                        <li>🌤️ Weather-based recommendations</li>
+                        <li>💰 Selling & buying guidance</li>
+                        <li>📦 Order tracking help</li>
+                    </ul>
+                    <p>Ask me anything about farming!</p>
+                </div>
+            </div>
+        </div>
+        <div class="ai-chat-suggestions" id="aiChatSuggestions">
+            <button class="ai-suggest-chip" data-query="What's the best price for tomato today?">🍅 Tomato
+                price?</button>
+            <button class="ai-suggest-chip" data-query="When should I sell my wheat crop?">🌾 Sell wheat?</button>
+            <button class="ai-suggest-chip" data-query="What's the weather forecast?">🌤️ Weather</button>
+            <button class="ai-suggest-chip" data-query="How to track my order?">📦 Track order</button>
+        </div>
+        <div class="ai-chat-input-area">
+            <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Type your question..."
+                data-placeholder-en="Type your question..." data-placeholder-hi="अपना सवाल टाइप करें...">
+            <button class="ai-chat-send" id="aiChatSend">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13" />
+                    <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="mandi_api.js"></script>
+    <script src="app.js"></script>
+    <script src="predict.js"></script>
+    <script src="orders.js"></script>
+    <script src="chat.js"></script>
+    <script src="auth.js"></script>
+</body>
+
+</html>

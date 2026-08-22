@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "FarmConnect AI",
+    "slug": "farmconnect-ai",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#0B3D2E"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.farmconnect.ai"
+    },
+  }
+}

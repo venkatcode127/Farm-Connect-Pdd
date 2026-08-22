@@ -1,75 +1,407 @@
 // ===== FarmConnect AI - Data Layer =====
 
 export const COMMODITIES = [
-  { id: 'rice', name: 'Rice (Basmati)', nameHi: 'चावल (बासमती)', nameTe: 'బియ్యం (బాస్మతి)', nameTa: 'அரிசி (பாஸ்மதி)', nameKn: 'ಅಕ್ಕಿ (ಬಾಸ್ಮತಿ)', emoji: '🌾', unit: 'Quintal', category: 'Grain', seasonal: [1.02,1.01,0.98,0.96,0.95,0.97,1.0,1.02,1.04,1.05,1.03,1.02] },
-  { id: 'wheat', name: 'Wheat', nameHi: 'गेहूँ', nameTe: 'గోధుమ', nameTa: 'கோதுமை', nameKn: 'ಗೋಧಿ', emoji: '🌿', unit: 'Quintal', category: 'Grain', seasonal: [0.97,0.96,0.95,0.98,1.02,1.04,1.05,1.03,1.01,0.99,0.98,0.97] },
-  { id: 'tomato', name: 'Tomato', nameHi: 'टमाटर', nameTe: 'టమాటో', nameTa: 'தக்காளி', nameKn: 'ಟೊಮೆಟೊ', emoji: '🍅', unit: 'Quintal', category: 'Vegetable', seasonal: [0.85,0.80,0.90,1.05,1.15,1.25,1.30,1.20,1.05,0.90,0.85,0.82] },
-  { id: 'onion', name: 'Onion', nameHi: 'प्याज', nameTe: 'ఉల్లిపాయ', nameTa: 'வெங்காயம்', nameKn: 'ಈರುಳ್ಳಿ', emoji: '🧅', unit: 'Quintal', category: 'Vegetable', seasonal: [1.10,1.05,0.95,0.90,0.88,0.92,0.98,1.05,1.12,1.18,1.15,1.12] },
-  { id: 'potato', name: 'Potato', nameHi: 'आलू', nameTe: 'బంగాళాదుంప', nameTa: 'உருளைக்கிழங்கு', nameKn: 'ಆಲೂಗಡ್ಡೆ', emoji: '🥔', unit: 'Quintal', category: 'Vegetable', seasonal: [0.90,0.88,0.92,0.98,1.05,1.10,1.12,1.08,1.02,0.95,0.92,0.90] },
-  { id: 'cotton', name: 'Cotton', nameHi: 'कपास', nameTe: 'పత్తి', nameTa: 'பருத்தி', nameKn: 'ಹತ್ತಿ', emoji: '☁️', unit: 'Quintal', category: 'Cash Crop', seasonal: [0.98,0.97,0.96,0.95,0.97,1.0,1.02,1.04,1.06,1.05,1.02,1.0] },
-  { id: 'sugarcane', name: 'Sugarcane', nameHi: 'गन्ना', nameTe: 'చెరకు', nameTa: 'கரும்பு', nameKn: 'ಕಬ್ಬು', emoji: '🎋', unit: 'Quintal', category: 'Cash Crop', seasonal: [1.0,1.0,0.99,0.98,0.97,0.98,1.0,1.01,1.02,1.03,1.02,1.01] },
-  { id: 'soybean', name: 'Soybean', nameHi: 'सोयाबीन', nameTe: 'సోయాబీన్', nameTa: 'சோயாபீன்', nameKn: 'ಸೋಯಾಬೀನ್', emoji: '🫘', unit: 'Quintal', category: 'Oilseed', seasonal: [0.95,0.93,0.92,0.94,0.98,1.02,1.06,1.08,1.10,1.06,1.0,0.97] },
-  { id: 'mustard', name: 'Mustard', nameHi: 'सरसों', nameTe: 'ఆవాలు', nameTa: 'கடுகு', nameKn: 'ಸಾಸಿವೆ', emoji: '🌼', unit: 'Quintal', category: 'Oilseed', seasonal: [0.96,0.94,0.98,1.02,1.06,1.08,1.05,1.02,0.99,0.97,0.95,0.96] },
-  { id: 'chilli', name: 'Red Chilli', nameHi: 'लाल मिर्च', nameTe: 'ఎర్ర మిర్చి', nameTa: 'சிவப்பு மிளகாய்', nameKn: 'ಕೆಂಪು ಮೆಣಸಿನಕಾಯಿ', emoji: '🌶️', unit: 'Quintal', category: 'Spice', seasonal: [1.05,1.02,0.98,0.95,0.93,0.96,1.0,1.04,1.08,1.10,1.08,1.06] },
-  { id: 'maize', name: 'Maize', nameHi: 'मक्का', nameTe: 'మొక్కజొన్న', nameTa: 'மக்காச்சோளம்', nameKn: 'ಮೆಕ್ಕೆಜೋಳ', emoji: '🌽', unit: 'Quintal', category: 'Grain', seasonal: [0.98,0.96,0.95,0.97,1.0,1.03,1.05,1.04,1.02,1.0,0.98,0.97] },
-  { id: 'groundnut', name: 'Groundnut', nameHi: 'मूंगफली', nameTe: 'వేరుశెనగ', nameTa: 'நிலக்கடலை', nameKn: 'ಕಡಲೆಕಾಯಿ', emoji: '🥜', unit: 'Quintal', category: 'Oilseed', seasonal: [0.97,0.95,0.94,0.96,0.99,1.02,1.05,1.07,1.06,1.03,1.0,0.98] }
+  // Grains & Cereals
+  { 
+    id: 'rice', 
+    name: 'Rice (Basmati)', 
+    nameHi: 'चावल (बासमती)', 
+    nameTe: 'బియ్యం (బాస్మతి)', 
+    nameTa: 'அரிசி (பாஸ்மதி)', 
+    nameKn: 'ಅಕ್ಕಿ (ಬಾಸ್ಮತಿ)', 
+    emoji: '🌾', 
+    unit: 'Quintal', 
+    category: 'Grain', 
+    basePrice: 3850,
+    image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    seasonal: [1.02,1.01,0.98,0.96,0.95,0.97,1.0,1.02,1.04,1.05,1.03,1.02] 
+  },
+  { 
+    id: 'wheat', 
+    name: 'Wheat', 
+    nameHi: 'गेहूँ', 
+    nameTe: 'గోధుమ', 
+    nameTa: 'கோதுமை', 
+    nameKn: 'ಗೋಧಿ', 
+    emoji: '🌿', 
+    unit: 'Quintal', 
+    category: 'Grain', 
+    basePrice: 2450,
+    image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    seasonal: [0.97,0.96,0.95,0.98,1.02,1.04,1.05,1.03,1.01,0.99,0.98,0.97] 
+  },
+  { 
+    id: 'maize', 
+    name: 'Maize (Corn)', 
+    nameHi: 'मक्का', 
+    nameTe: 'మొక్కజొన్న', 
+    nameTa: 'மக்காச்சோளம்', 
+    nameKn: 'ಮೆಕ್ಕೆಜೋಳ', 
+    emoji: '🌽', 
+    unit: 'Quintal', 
+    category: 'Grain', 
+    basePrice: 2050,
+    image: 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    seasonal: [0.98,0.96,0.95,0.97,1.0,1.03,1.05,1.04,1.02,1.0,0.98,0.97] 
+  },
+  { 
+    id: 'jowar', 
+    name: 'Jowar (Sorghum)', 
+    nameHi: 'ज्वार', 
+    nameTe: 'జొన్నలు', 
+    nameTa: 'சோளம்', 
+    nameKn: 'ಜೋಳ', 
+    emoji: '🌾', 
+    unit: 'Quintal', 
+    category: 'Grain', 
+    basePrice: 3200,
+    image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    seasonal: [1.0,0.98,0.97,0.99,1.01,1.03,1.02,1.0,0.98,0.99,1.01,1.0] 
+  },
+  { 
+    id: 'bajra', 
+    name: 'Bajra (Pearl Millet)', 
+    nameHi: 'बाजरा', 
+    nameTe: 'సజ్జలు', 
+    nameTa: 'கம்பு', 
+    nameKn: 'ಸಜ್ಜೆ', 
+    emoji: '🌾', 
+    unit: 'Quintal', 
+    category: 'Grain', 
+    basePrice: 2350,
+    image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+    seasonal: [0.95,0.96,0.98,1.02,1.04,1.05,1.01,0.98,0.96,0.95,0.97,0.98] 
+  },
+
+  // Pulses & Legumes
+  { 
+    id: 'chana', 
+    name: 'Chana (Gram / Chickpeas)', 
+    nameHi: 'चना', 
+    nameTe: 'శనగలు', 
+    nameTa: 'கொண்டைக்கடலை', 
+    nameKn: 'ಕಡಲೆ', 
+    emoji: '🫘', 
+    unit: 'Quintal', 
+    category: 'Pulse', 
+    basePrice: 5300,
+    image: 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
+    seasonal: [0.94,0.93,0.96,1.01,1.06,1.08,1.05,1.02,0.98,0.96,0.95,0.95] 
+  },
+  { 
+    id: 'tur_dal', 
+    name: 'Tur / Arhar (Pigeon Pea)', 
+    nameHi: 'अरहर दाल', 
+    nameTe: 'కందిపప్పు', 
+    nameTa: 'துவரம் பருப்பு', 
+    nameKn: 'ತೊಗರಿ ಬೇಳೆ', 
+    emoji: '🫘', 
+    unit: 'Quintal', 
+    category: 'Pulse', 
+    basePrice: 7800,
+    image: 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    seasonal: [0.96,0.95,0.97,1.02,1.07,1.09,1.05,1.01,0.98,0.96,0.95,0.96] 
+  },
+  { 
+    id: 'moong', 
+    name: 'Moong (Green Gram)', 
+    nameHi: 'मूँग', 
+    nameTe: 'పెసలు', 
+    nameTa: 'பாசிப்பயறு', 
+    nameKn: 'ಹೆಸರು ಕಾಳು', 
+    emoji: '🫘', 
+    unit: 'Quintal', 
+    category: 'Pulse', 
+    basePrice: 7400,
+    image: 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    seasonal: [0.97,0.96,0.98,1.03,1.06,1.07,1.04,1.0,0.98,0.96,0.95,0.96] 
+  },
+
+  // Vegetables
+  { 
+    id: 'tomato', 
+    name: 'Tomato (Hybrid & Desi)', 
+    nameHi: 'टमाटर', 
+    nameTe: 'టమాటో', 
+    nameTa: 'தக்காளி', 
+    nameKn: 'ಟೊಮೆಟೊ', 
+    emoji: '🍅', 
+    unit: 'Quintal', 
+    category: 'Vegetable', 
+    basePrice: 2600,
+    image: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+    seasonal: [0.85,0.80,0.90,1.05,1.15,1.25,1.30,1.20,1.05,0.90,0.85,0.82] 
+  },
+  { 
+    id: 'onion', 
+    name: 'Onion (Red Nasik)', 
+    nameHi: 'प्याज', 
+    nameTe: 'ఉల్లిపాయ', 
+    nameTa: 'வெங்காயம்', 
+    nameKn: 'ಈರುಳ್ಳಿ', 
+    emoji: '🧅', 
+    unit: 'Quintal', 
+    category: 'Vegetable', 
+    basePrice: 1950,
+    image: 'https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4',
+    seasonal: [1.10,1.05,0.95,0.90,0.88,0.92,0.98,1.05,1.12,1.18,1.15,1.12] 
+  },
+  { 
+    id: 'potato', 
+    name: 'Potato (Agra & Jyoti)', 
+    nameHi: 'आलू', 
+    nameTe: 'బంగాళాదుంప', 
+    nameTa: 'உருளைக்கிழங்கு', 
+    nameKn: 'ಆಲೂಗಡ್ಡೆ', 
+    emoji: '🥔', 
+    unit: 'Quintal', 
+    category: 'Vegetable', 
+    basePrice: 1350,
+    image: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
+    seasonal: [0.90,0.88,0.92,0.98,1.05,1.10,1.12,1.08,1.02,0.95,0.92,0.90] 
+  },
+  { 
+    id: 'garlic', 
+    name: 'Garlic (Desi)', 
+    nameHi: 'लहसुन', 
+    nameTe: 'వెల్లుల్లి', 
+    nameTa: 'பூண்டு', 
+    nameKn: 'ಬೆಳ್ಳುಳ್ಳಿ', 
+    emoji: '🧄', 
+    unit: 'Quintal', 
+    category: 'Vegetable', 
+    basePrice: 9200,
+    image: 'https://images.unsplash.com/photo-1540148426945-6cf22a6b2383?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    seasonal: [0.92,0.90,0.95,1.02,1.10,1.15,1.12,1.05,0.98,0.94,0.91,0.90] 
+  },
+  { 
+    id: 'ginger', 
+    name: 'Ginger (Fresh Green)', 
+    nameHi: 'अदरक', 
+    nameTe: 'అల్లం', 
+    nameTa: 'இஞ்சி', 
+    nameKn: 'ಶುಂಠಿ', 
+    emoji: '🫚', 
+    unit: 'Quintal', 
+    category: 'Vegetable', 
+    basePrice: 7500,
+    image: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    seasonal: [0.94,0.92,0.96,1.04,1.12,1.16,1.10,1.02,0.96,0.92,0.91,0.93] 
+  },
+
+  // Fruits
+  { 
+    id: 'mango', 
+    name: 'Mango (Alphonso & Banganapalli)', 
+    nameHi: 'आम', 
+    nameTe: 'మామిడి', 
+    nameTa: 'மாம்பழம்', 
+    nameKn: 'ಮಾವಿನ ಹಣ್ಣು', 
+    emoji: '🥭', 
+    unit: 'Quintal', 
+    category: 'Fruit', 
+    basePrice: 6800,
+    image: 'https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+    seasonal: [0.80,0.85,0.95,1.25,1.40,1.30,0.95,0.85,0.80,0.78,0.78,0.80] 
+  },
+  { 
+    id: 'banana', 
+    name: 'Banana (Robusta & Cavendish)', 
+    nameHi: 'केला', 
+    nameTe: 'అరటిపండు', 
+    nameTa: 'வாழைப்பழம்', 
+    nameKn: 'ಬಾಳೆಹಣ್ಣು', 
+    emoji: '🍌', 
+    unit: 'Quintal', 
+    category: 'Fruit', 
+    basePrice: 1850,
+    image: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4',
+    seasonal: [0.95,0.96,0.98,1.02,1.05,1.06,1.04,1.01,0.98,0.96,0.95,0.95] 
+  },
+  { 
+    id: 'apple', 
+    name: 'Apple (Kashmiri & Shimla)', 
+    nameHi: 'सेब', 
+    nameTe: 'యాపిల్', 
+    nameTa: 'ஆப்பிள்', 
+    nameKn: 'ಸೇಬು', 
+    emoji: '🍎', 
+    unit: 'Quintal', 
+    category: 'Fruit', 
+    basePrice: 8500,
+    image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
+    seasonal: [1.10,1.15,1.18,1.20,1.15,1.05,0.90,0.85,0.82,0.88,0.95,1.05] 
+  },
+
+  // Cash Crops & Spices
+  { 
+    id: 'cotton', 
+    name: 'Cotton (BT Long Staple)', 
+    nameHi: 'कपास', 
+    nameTe: 'పత్తి', 
+    nameTa: 'பருத்தி', 
+    nameKn: 'ಹತ್ತಿ', 
+    emoji: '☁️', 
+    unit: 'Quintal', 
+    category: 'Cash Crop', 
+    basePrice: 6250,
+    image: 'https://images.unsplash.com/photo-1606041008023-472dfb5e530f?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
+    seasonal: [0.98,0.97,0.96,0.95,0.97,1.0,1.02,1.04,1.06,1.05,1.02,1.0] 
+  },
+  { 
+    id: 'sugarcane', 
+    name: 'Sugarcane', 
+    nameHi: 'गन्ना', 
+    nameTe: 'చెరకు', 
+    nameTa: 'கரும்பு', 
+    nameKn: 'ಕಬ್ಬು', 
+    emoji: '🎋', 
+    unit: 'Quintal', 
+    category: 'Cash Crop', 
+    basePrice: 355,
+    image: 'https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4',
+    seasonal: [1.0,1.0,0.99,0.98,0.97,0.98,1.0,1.01,1.02,1.03,1.02,1.01] 
+  },
+  { 
+    id: 'chilli', 
+    name: 'Red Chilli (Guntur Teja)', 
+    nameHi: 'लाल मिर्च', 
+    nameTe: 'ఎర్ర మిర్చి', 
+    nameTa: 'சிவப்பு மிளகாய்', 
+    nameKn: 'ಕೆಂಪು ಮೆಣಸಿನಕಾಯಿ', 
+    emoji: '🌶️', 
+    unit: 'Quintal', 
+    category: 'Spice', 
+    basePrice: 8600,
+    image: 'https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4',
+    seasonal: [1.05,1.02,0.98,0.95,0.93,0.96,1.0,1.04,1.08,1.10,1.08,1.06] 
+  },
+  { 
+    id: 'turmeric', 
+    name: 'Turmeric (Nizamabad & Salem)', 
+    nameHi: 'हल्दी', 
+    nameTe: 'పసుపు', 
+    nameTa: 'மஞ்சள்', 
+    nameKn: 'ಅರಿಶಿನ', 
+    emoji: '🟡', 
+    unit: 'Quintal', 
+    category: 'Spice', 
+    basePrice: 12500,
+    image: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    seasonal: [1.08,1.05,0.97,0.93,0.92,0.96,1.02,1.06,1.10,1.12,1.09,1.07] 
+  },
+
+  // Oilseeds
+  { 
+    id: 'soybean', 
+    name: 'Soybean (Yellow)', 
+    nameHi: 'सोयाबीन', 
+    nameTe: 'సోయాబీన్', 
+    nameTa: 'சோயாபீன்', 
+    nameKn: 'ಸೋಯಾಬೀನ್', 
+    emoji: '🫘', 
+    unit: 'Quintal', 
+    category: 'Oilseed', 
+    basePrice: 4250,
+    image: 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
+    seasonal: [0.95,0.93,0.92,0.94,0.98,1.02,1.06,1.08,1.10,1.06,1.0,0.97] 
+  },
+  { 
+    id: 'mustard', 
+    name: 'Mustard Seed (Sarson)', 
+    nameHi: 'सरसों', 
+    nameTe: 'ఆవాలు', 
+    nameTa: 'கடுகு', 
+    nameKn: 'ಸಾಸಿವೆ', 
+    emoji: '🌼', 
+    unit: 'Quintal', 
+    category: 'Oilseed', 
+    basePrice: 5150,
+    image: 'https://images.unsplash.com/photo-1508615039623-a25605d2b022?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4',
+    seasonal: [0.96,0.94,0.98,1.02,1.06,1.08,1.05,1.02,0.99,0.97,0.95,0.96] 
+  },
+  { 
+    id: 'groundnut', 
+    name: 'Groundnut (Peanut)', 
+    nameHi: 'मूंगफली', 
+    nameTe: 'వేరుశెనగ', 
+    nameTa: 'நிலக்கடலை', 
+    nameKn: 'ಕಡಲೆಕಾಯಿ', 
+    emoji: '🥜', 
+    unit: 'Quintal', 
+    category: 'Oilseed', 
+    basePrice: 5400,
+    image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=800&q=80',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    seasonal: [0.97,0.95,0.94,0.96,0.99,1.02,1.05,1.07,1.06,1.03,1.0,0.98] 
+  }
 ];
 
 export const MARKETS = [
-  { id: 'delhi', name: 'Azadpur, Delhi', nameHi: 'आज़ादपुर, दिल्ली', nameTe: 'ఆజాద్‌పూర్, ఢిల్లీ', nameTa: 'ஆசாத்பூர், டெல்லி', nameKn: 'ಆಜಾದ್‌ಪುರ, ದೆಹಲಿ', state: 'Delhi', stateHi: 'दिल्ली' },
-  { id: 'mumbai', name: 'Vashi, Mumbai', nameHi: 'वाशी, मुंबई', nameTe: 'వాషి, ముంబై', nameTa: 'வாஷி, மும்பை', nameKn: 'ವಾಷಿ, ಮುಂಬೈ', state: 'Maharashtra', stateHi: 'महाराष्ट्र' },
-  { id: 'bangalore', name: 'Yeshwanthpur, Bangalore', nameHi: 'येशवंतपुर, बैंगलोर', nameTe: 'యశవంతపుర, బెంగళూరు', nameTa: 'யெஷ்வந்தபூர், பெங்களூரு', nameKn: 'ಯಶವಂತಪುರ, ಬೆಂಗಳೂರು', state: 'Karnataka', stateHi: 'कर्नाटक' },
-  { id: 'hyderabad', name: 'Bowenpally, Hyderabad', nameHi: 'बोवेनपल्ली, हैदराबाद', nameTe: 'బోవెన్‌పల్లి, హైదరాబాద్', nameTa: 'போவன்பள்ளி, ஹைதராபாத்', nameKn: 'ಬೋವೆನ್‌ಪಲ್ಲಿ, ಹೈದರಾಬಾದ್', state: 'Telangana', stateHi: 'तेलंगाना' },
-  { id: 'chennai', name: 'Koyambedu, Chennai', nameHi: 'कोयम्बेडू, चेन्नई', nameTe: 'కోయంబేడు, చెన్నై', nameTa: 'கோயம்பேடு, சென்னை', nameKn: 'ಕೋಯಂಬೇಡು, ಚೆನ್ನೈ', state: 'Tamil Nadu', stateHi: 'तमिल नाडु' },
-  { id: 'lucknow', name: 'Alambagh, Lucknow', nameHi: 'आलमबाग, लखनऊ', nameTe: 'ఆలంబాగ్, లక్నో', nameTa: 'ஆலம்பாக், லக்னோ', nameKn: 'ಆಲಂಬಾಗ್, ಲಕ್ನೋ', state: 'Uttar Pradesh', stateHi: 'उत्तर प्रदेश' },
-  { id: 'jaipur', name: 'Muhana, Jaipur', nameHi: 'मुहाना, जयपुर', nameTe: 'ముహానా, జైపూర్', nameTa: 'முஹானா, ஜெய்பூர்', nameKn: 'ಮುಹಾನಾ, ಜೈಪುರ', state: 'Rajasthan', stateHi: 'राजस्थान' },
-  { id: 'kolkata', name: 'Posta, Kolkata', nameHi: 'पोस्ता, कोलकाता', nameTe: 'పోస్తా, కోల్‌కతా', nameTa: 'போஸ்தா, கொல்கத்தா', nameKn: 'ಪೋಸ್ತಾ, ಕೋಲ್ಕತಾ', state: 'West Bengal', stateHi: 'पश्चिम बंगाल' },
-  { id: 'guntur', name: 'Guntur, Andhra Pradesh', nameHi: 'गुंटूर, आंध्र प्रदेश', nameTe: 'గుంటూరు, ఆంధ్రప్రదేశ్', nameTa: 'குண்டூர், ஆந்திரப் பிரதேசம்', nameKn: 'ಗುಂಟೂರು, ಆಂಧ್ರಪ್ರದೇಶ', state: 'Andhra Pradesh', stateHi: 'आंध्र प्रदेश' },
-  { id: 'warangal', name: 'Warangal, Telangana', nameHi: 'वारंगल, तेलंगाना', nameTe: 'వరంగల్, తెలంగాణ', nameTa: 'வாரங்கல், தெலங்கானா', nameKn: 'ವಾರಂಗಲ್, ತೆಲಂಗಾಣ', state: 'Telangana', stateHi: 'तेलंगाना' }
+  // North India
+  { id: 'delhi', name: 'Azadpur APMC, Delhi', state: 'Delhi' },
+  { id: 'karnal', name: 'Karnal Grain Market, Haryana', state: 'Haryana' },
+  { id: 'khanna', name: 'Khanna Mandi (Asia Largest), Punjab', state: 'Punjab' },
+  { id: 'lucknow', name: 'Alambagh Mandi, Lucknow', state: 'Uttar Pradesh' },
+  { id: 'varanasi', name: 'Varanasi APMC, Uttar Pradesh', state: 'Uttar Pradesh' },
+  { id: 'jaipur', name: 'Muhana Mandi, Jaipur', state: 'Rajasthan' },
+  { id: 'kota', name: 'Kota Mandi, Rajasthan', state: 'Rajasthan' },
+
+  // West & Central India
+  { id: 'mumbai', name: 'Vashi APMC, Navi Mumbai', state: 'Maharashtra' },
+  { id: 'pune', name: 'Gultekdi APMC, Pune', state: 'Maharashtra' },
+  { id: 'nashik', name: 'Lasalgaon Onion Market, Nashik', state: 'Maharashtra' },
+  { id: 'nagpur', name: 'Kalamna Mandi, Nagpur', state: 'Maharashtra' },
+  { id: 'indore', name: 'Choithram APMC, Indore', state: 'Madhya Pradesh' },
+  { id: 'neemuch', name: 'Neemuch Mandi, Madhya Pradesh', state: 'Madhya Pradesh' },
+  { id: 'ahmedabad', name: 'Ahmedabad APMC, Gujarat', state: 'Gujarat' },
+  { id: 'unjha', name: 'Unjha Spice Market, Gujarat', state: 'Gujarat' },
+
+  // South India
+  { id: 'hyderabad', name: 'Bowenpally Market, Hyderabad', state: 'Telangana' },
+  { id: 'warangal', name: 'Warangal Enmamulagadda Yard, Telangana', state: 'Telangana' },
+  { id: 'guntur', name: 'Guntur Mirchi Yard, Andhra Pradesh', state: 'Andhra Pradesh' },
+  { id: 'vijayawada', name: 'Gollapudi APMC, Vijayawada', state: 'Andhra Pradesh' },
+  { id: 'kurnool', name: 'Kurnool Mandi, Andhra Pradesh', state: 'Andhra Pradesh' },
+  { id: 'bangalore', name: 'Yeshwanthpur APMC, Bangalore', state: 'Karnataka' },
+  { id: 'mysore', name: 'Bandipalya APMC, Mysore', state: 'Karnataka' },
+  { id: 'hubli', name: 'Amargol APMC, Hubli', state: 'Karnataka' },
+  { id: 'chennai', name: 'Koyambedu Wholesale, Chennai', state: 'Tamil Nadu' },
+  { id: 'madurai', name: 'Mattuthavani APMC, Madurai', state: 'Tamil Nadu' },
+  { id: 'salem', name: 'Salem Agromarket, Tamil Nadu', state: 'Tamil Nadu' },
+  { id: 'kochi', name: 'Kochi Spices Exchange, Kerala', state: 'Kerala' },
+
+  // East India
+  { id: 'kolkata', name: 'Posta Bazar, Kolkata', state: 'West Bengal' },
+  { id: 'siliguri', name: 'Regulated Market, Siliguri', state: 'West Bengal' },
+  { id: 'patna', name: 'Bazaar Samiti, Patna', state: 'Bihar' }
 ];
 
-const BASE_PRICES = {
-  rice:       { delhi: 3850, mumbai: 3920, bangalore: 4050, hyderabad: 3780, chennai: 4100, lucknow: 3700, jaipur: 3680, kolkata: 3800, guntur: 3820, warangal: 3750 },
-  wheat:      { delhi: 2450, mumbai: 2520, bangalore: 2600, hyderabad: 2480, chennai: 2650, lucknow: 2380, jaipur: 2400, kolkata: 2460, guntur: 2500, warangal: 2470 },
-  tomato:     { delhi: 2800, mumbai: 3200, bangalore: 2400, hyderabad: 2600, chennai: 2900, lucknow: 2500, jaipur: 2700, kolkata: 3100, guntur: 2550, warangal: 2650 },
-  onion:      { delhi: 1800, mumbai: 1950, bangalore: 2100, hyderabad: 1850, chennai: 2200, lucknow: 1700, jaipur: 1650, kolkata: 1900, guntur: 1820, warangal: 1880 },
-  potato:     { delhi: 1200, mumbai: 1350, bangalore: 1500, hyderabad: 1280, chennai: 1450, lucknow: 1100, jaipur: 1150, kolkata: 1180, guntur: 1300, warangal: 1260 },
-  cotton:     { delhi: 6200, mumbai: 6350, bangalore: 6100, hyderabad: 6280, chennai: 6150, lucknow: 6050, jaipur: 6180, kolkata: 6100, guntur: 6320, warangal: 6250 },
-  sugarcane:  { delhi: 350, mumbai: 360, bangalore: 370, hyderabad: 355, chennai: 365, lucknow: 340, jaipur: 345, kolkata: 350, guntur: 358, warangal: 352 },
-  soybean:    { delhi: 4200, mumbai: 4350, bangalore: 4100, hyderabad: 4250, chennai: 4150, lucknow: 4050, jaipur: 4180, kolkata: 4120, guntur: 4200, warangal: 4180 },
-  mustard:    { delhi: 5100, mumbai: 5250, bangalore: 5050, hyderabad: 5150, chennai: 5080, lucknow: 4950, jaipur: 5200, kolkata: 5050, guntur: 5120, warangal: 5100 },
-  chilli:     { delhi: 8500, mumbai: 8800, bangalore: 8200, hyderabad: 8600, chennai: 8400, lucknow: 8100, jaipur: 8300, kolkata: 8450, guntur: 8900, warangal: 8650 },
-  maize:      { delhi: 1950, mumbai: 2050, bangalore: 2100, hyderabad: 1980, chennai: 2080, lucknow: 1880, jaipur: 1900, kolkata: 1920, guntur: 2000, warangal: 1960 },
-  groundnut:  { delhi: 5400, mumbai: 5550, bangalore: 5300, hyderabad: 5450, chennai: 5350, lucknow: 5200, jaipur: 5380, kolkata: 5280, guntur: 5480, warangal: 5400 }
-};
 
-// Generate realistic 90-day price history using random walk with seasonal adjustment
-function generatePriceHistory() {
-  const history = {};
-  const today = new Date();
-  COMMODITIES.forEach(c => {
-    history[c.id] = {};
-    MARKETS.forEach(m => {
-      const base = BASE_PRICES[c.id][m.id];
-      const prices = [];
-      let price = base * (0.92 + Math.random() * 0.08);
-      for (let i = 89; i >= 0; i--) {
-        const date = new Date(today);
-        date.setDate(date.getDate() - i);
-        const month = date.getMonth();
-        const seasonalFactor = c.seasonal[month];
-        const dailyChange = (Math.random() - 0.48) * base * 0.025;
-        price = price * 0.97 + (base * seasonalFactor) * 0.03 + dailyChange;
-        price = Math.max(base * 0.7, Math.min(base * 1.4, price));
-        prices.push({ date: date.toISOString().split('T')[0], price: Math.round(price) });
-      }
-      history[c.id][m.id] = prices;
-    });
-  });
-  return history;
-}
 
-export const PRICE_HISTORY = generatePriceHistory();
+
 
 export const WEATHER_DATA = {
   delhi:     { temp: 38, high: 42, low: 28, humidity: 35, wind: 14, condition: 'Sunny', conditionHi: 'धूप', icon: '☀️', rainfall: 2, soil_moisture: 30 },
@@ -157,3 +489,46 @@ const ACTIVITIES = [
   { color: 'var(--green)', text: 'Cotton prices rising in Gujarat', textHi: 'गुजरात में कपास के भाव बढ़ रहे', textTe: 'గుజరాత్‌లో పత్తి ధరలు పెరుగుతున్నాయి', textTa: 'குஜராத்தில் பருத்தி விலை உயர்கிறது', textKn: 'ಗುಜರಾತ್‌ನಲ್ಲಿ ಹತ್ತಿ ಬೆಲೆ ಏರಿಕೆ', time: '2 hr ago', timeHi: '2 घंटे पहले', timeTe: '2 గంటల క్రితం', timeTa: '2 மணி நேரத்திற்கு முன்', timeKn: '2 ಗಂಟೆಗಳ ಹಿಂದೆ' },
   { color: 'var(--purple)', text: 'Soybean MSP update announced', textHi: 'सोयाबीन MSP अपडेट घोषित', textTe: 'సోయాబీన్ MSP నవీకరణ ప్రకటించబడింది', textTa: 'சோயாபீன் MSP புதுப்பிப்பு அறிவிக்கப்பட்டது', textKn: 'ಸೋಯಾಬೀನ್ MSP ನವೀಕರಣ ಘೋಷಣೆ', time: '3 hr ago', timeHi: '3 घंटे पहले', timeTe: '3 గంటల క్రితం', timeTa: '3 மணி நேரத்திற்கு முன்', timeKn: '3 ಗಂಟೆಗಳ ಹಿಂದೆ' }
 ];
+
+// ===== Generate PRICE_HISTORY for all crops across all markets =====
+// Each market has a unique multiplier (±20%) and 30 days of realistic fluctuation data.
+const MARKET_MULTIPLIERS = {
+  delhi:      1.08, karnal:    1.05, khanna:    1.03, lucknow:   0.98,
+  varanasi:   0.96, jaipur:    1.01, kota:      0.99, mumbai:    1.12,
+  pune:       1.09, nashik:    1.06, nagpur:    1.04, indore:    1.02,
+  neemuch:    0.97, ahmedabad: 1.07, unjha:     1.10, hyderabad: 1.05,
+  warangal:   0.95, guntur:    1.00, vijayawada:1.03, kurnool:   0.94,
+  bangalore:  1.08, mysore:    1.05, hubli:     0.97, chennai:   1.06,
+  madurai:    1.01, salem:     0.98, kochi:     1.14, kolkata:   1.03,
+  siliguri:   0.96, patna:     0.93
+};
+
+const _generateHistory = (basePrice, marketId, days = 30) => {
+  const multiplier = MARKET_MULTIPLIERS[marketId] || 1.0;
+  const base = Math.round(basePrice * multiplier);
+  const history = [];
+  let price = base;
+  // Seeded pseudo-random using marketId + day for reproducibility
+  const seed = marketId.split('').reduce((s, c) => s + c.charCodeAt(0), 0);
+  for (let d = days; d >= 0; d--) {
+    const noise = ((seed * (d + 1) * 9301 + 49297) % 233280) / 233280; // 0-1
+    const delta = Math.round((noise - 0.5) * basePrice * 0.04); // ±2% swing
+    price = Math.max(Math.round(base * 0.85), Math.min(Math.round(base * 1.15), price + delta));
+    const date = new Date();
+    date.setDate(date.getDate() - d);
+    history.push({ date: date.toISOString().slice(0, 10), price });
+  }
+  return history;
+};
+
+export const PRICE_HISTORY = (() => {
+  const ph = {};
+  COMMODITIES.forEach(crop => {
+    ph[crop.id] = {};
+    MARKETS.forEach(market => {
+      ph[crop.id][market.id] = _generateHistory(crop.basePrice, market.id);
+    });
+  });
+  return ph;
+})();
+

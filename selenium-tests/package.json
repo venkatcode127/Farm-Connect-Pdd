@@ -1,0 +1,17 @@
+{
+  "name": "react-js-selenium-automation",
+  "version": "2.0.0",
+  "description": "Enterprise Selenium WebDriver E2E Automation for React JS Web Application",
+  "main": "tests/web-e2e.spec.js",
+  "scripts": {
+    "test": "mocha tests/**/*.spec.js --timeout 60000",
+    "report:excel": "node generate_excel.js"
+  },
+  "dependencies": {
+    "chromedriver": "^126.0.0",
+    "selenium-webdriver": "^4.22.0",
+    "mocha": "^10.4.0",
+    "chai": "^4.4.1",
+    "exceljs": "^4.4.0"
+  }
+}
