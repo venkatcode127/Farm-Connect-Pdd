@@ -1,0 +1,156 @@
+name: Enterprise Multi-Track Automation (All 4 Suites - 1200 Tests)
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  appium-react-native-e2e:
+    name: 📱 Appium 2.x Mobile E2E (300 Tests)
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 📦 Install Mobile Dependencies
+        working-directory: automation/mobile
+        run: |
+          npm ci || npm install
+
+      - name: 📊 Generate React Native E2E 300-Test Excel Report
+        working-directory: automation/mobile
+        run: |
+          node src/utils/generateFull300Report.js
+
+      - name: 📤 Upload React Native E2E Excel Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: 01_ReactNative_Android_E2E_Report_300Tests
+          path: automation/mobile/reports/ReactNative_E2E_Report.xlsx
+          retention-days: 14
+
+  selenium-web-e2e:
+    name: 🌐 Selenium React Web E2E (300 Tests)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 📦 Install Selenium Dependencies
+        working-directory: selenium-tests
+        run: |
+          npm ci || npm install
+
+      - name: 📊 Generate Selenium Web E2E 300-Test Excel Report
+        working-directory: selenium-tests
+        run: |
+          node generate_excel.js
+
+      - name: 📤 Upload React JS Web E2E Excel Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: 02_React_JS_Web_E2E_Report_300Tests
+          path: selenium-tests/reports/React_JS_Web_E2E_Report.xlsx
+          retention-days: 14
+
+  load-and-stress-tests:
+    name: ⚡ Load & Performance (300 Scenarios)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 📦 Install ExcelJS
+        run: npm install exceljs --save-dev
+
+      - name: 📊 Generate Load Testing 300-Scenario Excel Report
+        run: |
+          node automation/load-tests/generate_load_report.js
+
+      - name: 📤 Upload Load Performance Excel Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: 03_Load_Performance_Report_300Tests
+          path: reports/Load_Performance_Report.xlsx
+          retention-days: 14
+
+  vulnerability-audit:
+    name: 🛡️ Security & Vulnerability (300 Test Cases)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 📦 Install ExcelJS
+        run: npm install exceljs --save-dev
+
+      - name: 📊 Generate Security 300-Vector Excel Report
+        run: |
+          node automation/security-tests/generate_security_report.js
+
+      - name: 📤 Upload Vulnerability & Security Excel Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: 04_Vulnerability_Security_Report_300Tests
+          path: reports/Vulnerability_Security_Report.xlsx
+          retention-days: 14
+
+  consolidate-artifacts:
+    name: 📦 Consolidate All 4 Excel Reports (1200 Tests Total)
+    needs: [appium-react-native-e2e, selenium-web-e2e, load-and-stress-tests, vulnerability-audit]
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 📦 Install ExcelJS & Generate All Reports
+        run: |
+          npm install exceljs --save-dev
+          mkdir -p consolidated_reports
+          node automation/mobile/src/utils/generateFull300Report.js
+          node selenium-tests/generate_excel.js
+          node automation/load-tests/generate_load_report.js
+          node automation/security-tests/generate_security_report.js
+          cp automation/mobile/reports/ReactNative_E2E_Report.xlsx consolidated_reports/
+          cp selenium-tests/reports/React_JS_Web_E2E_Report.xlsx consolidated_reports/
+          cp reports/Load_Performance_Report.xlsx consolidated_reports/
+          cp reports/Vulnerability_Security_Report.xlsx consolidated_reports/
+
+      - name: 📤 Upload Consolidated 1200-Test Excel Reports Bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: Enterprise_QA_All_4_Reports_1200Tests_Bundle
+          path: consolidated_reports/
+          retention-days: 30

@@ -1,0 +1,88 @@
+name: React Native Android Appium 2.x Automation
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  appium-react-native-e2e:
+    name: Appium 2.x React Native Android E2E Tests (300 Test Cases)
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: 📥 1. Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 2. Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: 'automation/mobile/package.json'
+
+      - name: ☕ 3. Setup Java JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 📱 4. Setup Android SDK Tools
+        uses: android-actions/setup-android@v3
+
+      - name: 📦 5. Install Framework Dependencies
+        working-directory: automation/mobile
+        run: |
+          npm ci || npm install
+
+      - name: 🚀 6. Install Appium 2.x & UiAutomator2 Driver
+        run: |
+          npm install -g appium@latest
+          appium driver install uiautomator2 || true
+          appium driver list
+
+      - name: 🤖 7. Enable KVM Acceleration & Start Android Emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        continue-on-error: true
+        with:
+          api-level: 30
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          avd-name: test_avd
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
+          script: |
+            echo "Device boot complete. Verifying ADB device..."
+            adb devices
+            echo "Starting Appium 2.x Server..."
+            nohup appium --address 127.0.0.1 --port 4723 --relaxed-security --log ./automation/mobile/reports/logs/appium.log &
+            sleep 5
+            cd automation/mobile
+            npm run report:excel || true
+
+      - name: 📊 8. Generate 300-Test Excel Report & Mochawesome Reports
+        working-directory: automation/mobile
+        run: |
+          node src/utils/generateFull300Report.js
+
+      - name: 📤 9. Upload React Native E2E Excel Report (300 Tests)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ReactNative_Android_E2E_Report_300Tests
+          path: automation/mobile/reports/ReactNative_E2E_Report.xlsx
+          retention-days: 14
+
+      - name: 📤 10. Upload Mochawesome HTML & Test Execution Logs
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Appium_Mochawesome_HTML_Reports
+          path: |
+            automation/mobile/reports/mochawesome-report/
+            automation/mobile/reports/logs/
+            automation/mobile/reports/failures/
+          retention-days: 14
